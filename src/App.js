@@ -1,10 +1,14 @@
-
+import { Routes, Route } from "react-router-dom";
+import  { AuthProvider } from "./components/context/AuthContext";
+import Welcome from "./components/pages/Welcome";
 
 function App() {
   return (
-    <div>
-
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+      </Routes>
+    </AuthProvider>
   );
 }
 
