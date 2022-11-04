@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
+import { async } from "@firebase/util";
 
 const authContext = createContext();
 
@@ -19,25 +20,41 @@ export const AuthProvider = ({ children }) => {
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
+  const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
+
   //  los valores del parámetro vienen del evento (es una destructuración del evento con los valores que queremos)  
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
+
+  // para el signup
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError('')
     try {
       await signup(user.email, user.password);
       console.log("super bien registrado");
-      setError("");
     } catch (error) {
       console.log("algo va fatal", error);
       setError(error.message);
     }
   };
 
+  // para el login
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault()
+    setError('')
+    try{
+      await login(user.email, user.password)
+      console.log("HAS ENTRADO!!")
+    } catch (error) {
+      console.log("hemos hecho algo mal", error)
+      setError(error.message)
+    }
+  }
+
   return (
-    <authContext.Provider value={{ handleChange, handleSubmit, error }}>
+    <authContext.Provider value={{ handleChange, handleSubmit, error, handleSubmitLogin }}>
       {children}
     </authContext.Provider>
   );
