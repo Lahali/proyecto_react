@@ -9,6 +9,12 @@ export function useAuth() {
   return useContext(authContext)
 }
 
+// export const useAuth = () => {
+//   const context = useContext(authContext)
+//   if(!context) throw new Error ('No hay provider')
+//   return context
+// }
+
 export const AuthProvider = ({children}) => {
 
   const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password)

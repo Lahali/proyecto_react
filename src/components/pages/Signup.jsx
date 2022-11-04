@@ -19,23 +19,15 @@ const Signup= () => {
  }
 
 
-const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
   e.preventDefault()
-  signup(user.email, user.password)
-  console.log(user)
-}
-
-//  const handleSubmit = async (event) => {
-//   event.preventDefault()
-//   console.log("submit", user)
-//   setError('')
-//   try{
-//     await signup(user.email. user.password)
-//     console.log("super bien registrado")
-//   } catch(error) {
-//     console.log("algo va fatal",error.code)
-//   }
-//  }
+  try{
+    await signup(user.email, user.password)
+    console.log("super bien registrado")
+  } catch(error) {
+    console.log("algo va fatal", error)
+  }
+ }
 
 
   return (
