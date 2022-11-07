@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 export default function NewMarker(props) {
 
-    // const map = useMapEvents({
     useMapEvents({
 
         click: (e) => {
             console.log('E', e)
             props.setNweMarkerPosition(e.latlng);
+
         },
         /* click: (e) => {
             console.log('E', e)
@@ -22,19 +22,19 @@ export default function NewMarker(props) {
         }, */
 
     })
-    //console.log({ props.newMarkerPosition })
     return (
         <>
-            {props.newMarkerPosition && <Marker
+            {props.newMarkerPosition && <Marker //componente de ReactLeaflet
                 position={props.newMarkerPosition} >
-                <Tooltip
-
-                    interactive //hace que se pueda hacer click dentro por ejemplo
-                >
-
-                    {/* pasamos a addScene las coordinadas */}
-                    <Link to='./addScene'>Añade una escena aqui!</Link>
-                </Tooltip></Marker>}
+                <Tooltip //componente de ReactLeaflet
+                    permanent // simpre visible
+                    interactive> {/* hace que se pueda hacer click dentro por ejemplo */}
+                    <div className="tooltip">
+                        {/* falta pasar a addScene las coordinadas */}
+                        <Link to='./addScene'>Añade una escena<br />en esta posicion!</Link>
+                    </div>
+                </Tooltip>
+            </Marker>}
         </>
     )
 }

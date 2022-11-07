@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import peliculas from './data/peliculas.json'  // el archivo con el array de peliculas
+import peliculas from '../data/peliculas.json'  // el archivo con el array de peliculas
 
 export default function Home() {
 

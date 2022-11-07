@@ -1,12 +1,13 @@
 import { useState } from "react";
-import up from './media/up.svg';
-import down from './media/down.svg';
+import up from '../media/up.svg';
+import down from '../media/down.svg';
 import NavigateButtons from "./NavigateButtons";
 
 export default function Card(props) {
 
     const [clickedCard, setClickedCard] = useState(false)
 
+    // animacion que sube y baja la card (mirar CSS)
     const mountedStyle = { animation: "inAnimation 1s" };
     const unmountedStyle = {
         animation: "outAnimation 1s ",
@@ -14,9 +15,8 @@ export default function Card(props) {
     };
 
     const handleClick = () => {
-        console.log('click', clickedCard);
         setClickedCard(!clickedCard);
-        setInterval(() => { // esto actualzia el centro del mapa
+        setInterval(() => { // esto actualzia el centro del mapa cuando se mueve la card
             props.map.invalidateSize()
         }, "10", 1000);
     }
@@ -43,15 +43,16 @@ export default function Card(props) {
                                 width: "200px",
                                 marginBottom: "20px"
                             }}
-                            src={require(`${props.currentMarker.img}`)}
+                            //src={require(`${props.currentMarker.img}`)} // el require te permite no importarlas
+                            // ahora la imagen es hardcoded
+                            src={require('../data/img/02.jpg')} // el 'require' te permite no importar las img
+
                         />
                         <NavigateButtons
                             movie={props.movie}
                             map={props.map}
                             currentMarker={props.currentMarker}
                             setCurrentMarker={props.setCurrentMarker}
-                        //mapPosition={props.mapPosition}
-                        //setMapPosition={props.setMapPosition}
                         />
                     </>
                 </div >

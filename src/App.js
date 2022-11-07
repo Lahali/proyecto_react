@@ -1,11 +1,10 @@
-import './App.css';
-import Main from "./Main"
-import Home from "./Home";
-import AddScene from "./AddScene";
+import Main from "./pages/Main"
+import Home from "./pages/Home";
+import AddScene from "./pages/AddScene";
 
 import { Routes, Route, Link } from "react-router-dom";
 
-const App = () => {
+export default function App() {
 
   return (
     <>
@@ -17,5 +16,3 @@ const App = () => {
     </>
   )
 }
-
-export default App;
