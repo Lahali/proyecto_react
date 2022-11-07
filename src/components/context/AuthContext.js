@@ -47,9 +47,11 @@ export const AuthProvider = ({ children }) => {
     try{
       await login(user.email, user.password)
       console.log("HAS ENTRADO!!")
+      console.log(auth)
     } catch (error) {
       console.log("hemos hecho algo mal", error)
       setError(error.message)
+      console.log(auth, error)
     }
   }
 
