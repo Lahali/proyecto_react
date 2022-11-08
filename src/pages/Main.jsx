@@ -32,7 +32,6 @@ export default function Main() {
       <Navbar
         title={movie.title}
       />
-
       <div className="mainContainer">
 
         <div className='mapContainer'>
