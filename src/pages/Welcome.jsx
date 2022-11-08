@@ -1,6 +1,7 @@
 import React from "react";
-import Login from "../../pages/Login";
-import Signup from "../../pages/Signup";
+import Signup from "./Signup";
+import Login from "./Login"
+
 
 export default function Welcome(){
   
