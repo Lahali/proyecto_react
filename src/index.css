@@ -69,14 +69,14 @@ text-align: center;
   }
 }
 
-.navbarContainer {
+/* .navbarContainer {
   height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(153, 158, 16);
   color: white;
-}
+} */
 
 .openClose{
   height: 20px;

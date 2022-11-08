@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar';
 import peliculas from '../data/peliculas.json'  // el archivo con el array de peliculas
 
-export default function Home() {
+export default function Home(props) {
 
     const [filteredTitle, setFilteredTitle] = useState('');
 
@@ -47,6 +48,7 @@ export default function Home() {
 
     return (
         <div className="home">
+    
             <h1>Esta es la Home</h1>
 
             <div>
