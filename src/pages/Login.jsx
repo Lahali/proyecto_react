@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../components/context/AuthContext";
 
 const Login = () => {
   const { handleChange, handleSubmitLogin, error } = useAuth();
