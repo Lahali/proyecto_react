@@ -14,7 +14,7 @@ export default function Home(props) {
         for (let i = 0; i < movieLength; i++) {
             movieFeatures.push(...peliculas[i].features)
         }
-        console.log('features:::,', movieFeatures)
+        // console.log('features:::,', movieFeatures)
         return (
             {
                 title: 'TODAS LAS PELIS',

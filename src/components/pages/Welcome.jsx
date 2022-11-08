@@ -2,7 +2,8 @@ import React from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
-const Welcome = () => {
+export default function Welcome(){
+  
   return (
     <div className="flex flex-col p-3">
       <label htmlFor="my-modal-signup" className="btn btn-primary md:w-1/5 m-3">
@@ -13,6 +14,4 @@ const Welcome = () => {
       <Login/>
     </div>
   );
-};
-
-export default Welcome;
+}

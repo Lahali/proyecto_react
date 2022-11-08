@@ -1,5 +1,5 @@
 
-import  { AuthProvider } from "./components/context/AuthContext";
+import { AuthProvider } from "./components/context/AuthContext";
 import Welcome from "./components/pages/Welcome";
 import Main from "./pages/Main"
 import Home from "./pages/Home";
