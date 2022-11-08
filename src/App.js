@@ -11,17 +11,16 @@ export default function App() {
 
 
   return (
-    <>
-      <AuthProvider>
-        <Routes>
-          <Route path="/Welcome" element={<Welcome />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/main' element={<Main />} />
-          <Route path='/main/AddScene' element={<AddScene />} />
-        </Routes >
-      </AuthProvider>
-    </>
-  )
+
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path='/main' element={<Main />} />
+        <Route path='/main/AddScene' element={<AddScene />} />
+      </Routes>
+    </AuthProvider>
+  );
 }
 
 
