@@ -34,7 +34,7 @@ export default function AddScene() {
 
             </form>
 
-            <Link to='/main'>vueve al mapa</Link>
+            <Link to='/home'>vueve a la home</Link>
         </div>
     )
 }
