@@ -40,7 +40,7 @@ const Navbar = (props) => {
 
             <ul
               tabIndex={0}
-              className={`mt-3 p-2 shadow menu menu-compact ${isOpen ? 'dropdown-content' : ''} bg-base-100 rounded-box w-52`}
+              className={`mt-3 p-2 shadow menu menu-compact ${isOpen === true ? '' : 'dropdown-content'} bg-base-100 rounded-box w-52`}
             >
               <li>
                 <label

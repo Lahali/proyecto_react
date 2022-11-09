@@ -34,8 +34,9 @@ export default function Home(props) {
       return;
     } else {
       moviesList.push(
-        <li key={pelicula.title}>
-          <Link to="/main" state={{ film: pelicula }}>
+        <li className="link link-hover m-5" key={pelicula.title}>
+          {/* esto es una prop desde el link */}
+          <Link to="/main" state={{ film: pelicula }}> 
             {pelicula.title}
           </Link>
         </li>
@@ -44,24 +45,29 @@ export default function Home(props) {
   });
 
   return (
+    <>
+    {/* <Navbar/> */}
     <div className="flex-col items-center p-3 ">
-      <h1 className="text-3xl">Esta es la Home</h1>
-      <div>
-        <Link to="/main" state={{ film: allMoviesScenes() }}>
-          Todas las peliculas
+      <h1 className="text-3xl m-3">Esta es la Home</h1>
+      <div className="">
+        <Link  to="/main" state={{ film: allMoviesScenes() }}>
+         <button className="btn btn-outline btn-primary w-60">
+           Todas las peliculas
+          </button>
         </Link>
-        <p>Busca en nuestro archivo de {peliculas.length} peliculas!</p>
+        <p className="m-3">Busca en nuestro archivo de {peliculas.length} peliculas!</p>
         <input
-          className="input input-bordered w-full max-w-xs mt-2"
+          className="input input-bordered w-60 max-w-xs mt-2"
           type="text"
           placeholder="search..."
           value={filteredTitle}
           onChange={handleChange}
         ></input>
       </div>
-      <ul className="list-disc">
+      <ul className="list-none text-xl">
         {moviesList}
       </ul>
     </div>
+    </>
   );
 }
