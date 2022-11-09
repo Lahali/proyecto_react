@@ -50,8 +50,8 @@ export default function NavigateButtons(props) {
 
     return (
         <div className="navigateButtons">
-            <button className="button" onClick={before}>BEFORE</button>
-            <button className="button" onClick={next}>NEXT</button>
+            <button className="buttonNav" onClick={before}>BEFORE</button>
+            <button className="buttonNav" onClick={next}>NEXT</button>
         </div>
     )
 }
