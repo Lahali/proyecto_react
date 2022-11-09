@@ -19,13 +19,13 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
-export const database = getFirestore(app)
+export const database = getFirestore(app) //es necesario poner (app) ?
 
 
 // LUEGO LO MOVEMOS EN OTRO SITIO!!
 
 // collection ref
-const colRef = collection(database, 'movies')
+const colRef = collection(database, 'movies') // colRef es collection reference
 
 let movies = [];  // eso devuelve un array con todas las pelis
 // get collection data
@@ -37,6 +37,6 @@ getDocs(colRef)
     })
   })
 
-// console.log('database: ', database)
-// console.log('colRef: ', colRef)
-// console.log('Movies: ', movies);
+console.log('database: ', database)
+console.log('colRef: ', colRef)
+console.log('Movies: ', movies);
