@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { async } from "@firebase/util";
 
@@ -55,8 +55,19 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // para el logout
+  const logout = () =>  signOut(auth)
+
+  // esta función de Firebase nos devuelve la información cada vez que el usuario cambia: abre o cierra sesión, etc
+  useEffect(() => {
+    const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsuscribe()
+  }, []);
+
   return (
-    <authContext.Provider value={{ handleChange, handleSubmit, error, handleSubmitLogin }}>
+    <authContext.Provider value={{ handleChange, handleSubmit, error, handleSubmitLogin, logout }}>
       {children}
     </authContext.Provider>
   );

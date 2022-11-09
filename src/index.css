@@ -89,11 +89,11 @@ text-align: center;
 display :flex;
 justify-content: center;
 }
-button {
+/* button {
   width: 100%;
   height: 2rem;
   font-size: 1.3rem;
-}
+} */
 
 .hola {
   background-color: green;
@@ -101,9 +101,9 @@ button {
   z-index: 100000;
 }
 
-li {
+/* li {
   font-size: 30px;
-margin-top: 80px;}
+margin-top: 80px;} */
 
 
 .tooltip{
