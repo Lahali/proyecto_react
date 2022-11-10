@@ -1,10 +1,37 @@
+import { getDocs } from "firebase/firestore";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
+import { moviesRef } from "../components/firebase/firebaseConfig"
+// import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function Home(props) {
   const [filteredTitle, setFilteredTitle] = useState("");
+
+  const [peliculas, setPeliculas] = useState([])
+
+  // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
+  useEffect(()=>{
+    let movies = [];
+    getDocs(moviesRef)
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        movies.push({ ...doc.data() }) // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
+      setPeliculas(movies)
+      console.log("useEffect!!!")
+      })
+    })
+    .catch(err =>{
+      console.log(err.message)
+    })
+  }, []) // se puede poner como dependencia que un usuario haya agregado una escena
+
+
+
+
+
+
+
 
   // todas las escenas de todas las pelis
   let allMoviesScenes = () => {
