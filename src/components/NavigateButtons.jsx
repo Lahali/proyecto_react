@@ -11,7 +11,7 @@ export default function NavigateButtons(props) {
         let nextIndexEscena = 0;
         let lengthMovie = props.movie.features.length;
         let indexEscena = props.movie.features.findIndex(escena => escena.properties.escena === props.currentMarker.nombre)
-        if (indexEscena == lengthMovie - 1) {
+        if (indexEscena === lengthMovie - 1) {
             nextIndexEscena = 0
         } else {
             nextIndexEscena = indexEscena + 1
@@ -33,7 +33,7 @@ export default function NavigateButtons(props) {
         let nextIndexEscena = 0;
         let lengthMovie = props.movie.features.length;
         let indexEscena = props.movie.features.findIndex(escena => escena.properties.escena === props.currentMarker.nombre)
-        if (indexEscena == 0) {
+        if (indexEscena === 0) {
             nextIndexEscena = lengthMovie - 1
         } else {
             nextIndexEscena = indexEscena - 1
@@ -50,8 +50,9 @@ export default function NavigateButtons(props) {
 
     return (
         <div className="navigateButtons">
-            <button className="buttonNav" onClick={before}>BEFORE</button>
-            <button className="buttonNav" onClick={next}>NEXT</button>
+            {/* props.action para el onClick y {children} el texto*/}
+            <button className="buttonNav" onClick={props.action}>{props.children}</button>
+            {/* <button className="buttonNav" onClick={next}>NEXT</button> */}
         </div>
     )
 }

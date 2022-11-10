@@ -19,11 +19,6 @@ code {
 
 
 
-@layer components {
-
-
-}
-
 .container {
   display: flex;
 }
