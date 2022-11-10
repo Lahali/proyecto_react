@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet'
 import DisplayMarkers from '../components/DisplayMarkers';
 import NewMarker from '../components/NewMarker'
@@ -13,7 +12,6 @@ export default function Map(props) {
     const mapURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const mapURL2 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     
-    const [newMarkerPosition, setNweMarkerPosition] = useState();
 
 return (
 <div className='mapContainer'>
@@ -29,8 +27,6 @@ return (
             />
 
             <NewMarker // para agregar el mapa para una nueva escena
-              newMarkerPosition={newMarkerPosition}
-              setNweMarkerPosition={setNweMarkerPosition}
               map={props.map}
             />
 

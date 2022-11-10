@@ -16,7 +16,7 @@ export default function App() {
         <Route path='/' element={<Welcome />} />
         <Route path="/home" element={<Home />} />
         <Route path='/main' element={<Main />} />
-        <Route path='/main/AddScene' element={<AddScene />} />
+        <Route path='/AddScene' element={<AddScene />} />
       </Routes>
     </AuthProvider>
   );
