@@ -29,22 +29,72 @@ export default function Card(props) {
     <>
       {
         props.currentMarker.img && (
-          <div className="collapse" onClick={handleClick}>
-            <input type="checkbox" />
-            <div className="collapse-title text-xl font-medium">
-              Click me to show/hide content
+          <div className="relative w-full overflow-hidden">
+            <input
+              className="peer absolute top-0 inset-x-0 w-full h-12 opacity-0 z-10 cursor-pointer"
+              type="checkbox"
+            />
+
+            <div className="absolute top-3 right-3 text-black transition-transform duration-500 rotate-0 peer-checked:rotate-180">
+              <svg
+                xmlns="http://wwww.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             </div>
-            <div className="flex flex-col collapse-content">
-              <NavigateButtons
+
+            <div className="text-xl font-medium">
+              Click para que pasen cosas
+            </div>
+            <div className="flex flex-col overflow-hidden items-center  transition-all duration-1000 max-h-0 peer-checked:max-h-fit">
+              <div className="p-4">
+            <NavigateButtons
                     movie={props.movie}
                     map={props.map}
                     currentMarker={props.currentMarker}
                     setCurrentMarker={props.setCurrentMarker}
-                />
+                    action={next}
+                > previous</NavigateButtons>
                 <img src="https://placeimg.com/640/480/any" />
+              </div>
             </div>
           </div>
         )
+        // props.currentMarker.img && (
+        //   <div className="collapse" onClick={handleClick}>
+        //     <input type="checkbox" />
+        //     <div className="collapse-title text-xl font-medium">
+        //       Click me to show/hide content
+        //     </div>
+        //     <div className="flex flex-col collapse-content">
+        //       <NavigateButtons
+        //             movie={props.movie}
+        //             map={props.map}
+        //             currentMarker={props.currentMarker}
+        //             setCurrentMarker={props.setCurrentMarker}
+        //             action={props.action}
+        //         > previous</NavigateButtons>
+        /* <NavigateButtons
+                    movie={props.movie}
+                    map={props.map}
+                    currentMarker={props.currentMarker}
+                    setCurrentMarker={props.setCurrentMarker} 
+                    action={next}
+                />
+                    */
+        //         <img src="https://placeimg.com/640/480/any" />
+        //     </div>
+        //   </div>
+        // )
 
         // <div className="card"
         //     //    style={{ height: clickedCard ? "50%" : "10vh" }}
