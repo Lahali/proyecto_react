@@ -62,7 +62,7 @@ export default function Card(props) {
                     map={props.map}
                     currentMarker={props.currentMarker}
                     setCurrentMarker={props.setCurrentMarker}
-                    action={next}
+                  
                 > previous</NavigateButtons>
                 <img src="https://placeimg.com/640/480/any" />
               </div>
