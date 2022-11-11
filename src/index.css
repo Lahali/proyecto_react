@@ -17,16 +17,18 @@ code {
     monospace;
 }
 
-
+.leaflet-touch .leaflet-control-attribution {
+  display: none;
+}
 
 .container {
   display: flex;
 }
 
-.home {
+/* .home {
 height: 100vh;
 background-color: rgb(255, 91, 91);
-}
+} */
 
 
 .mainContainer{
