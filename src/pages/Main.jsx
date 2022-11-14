@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-import { useLocation } from 'react-router-dom' // esto para importar "props" con Link
+import { useLocation, useParams } from 'react-router-dom' // esto para importar "props" con Link
 import Map from '../components/Map';
 
 export default function Main() {
 
   const location = useLocation()
   const { film } = location.state;
+  // const {film} = useParams()
+
   const [movie, setMovie] = useState(film); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
 

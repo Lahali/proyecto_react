@@ -10,6 +10,7 @@ import { database } from "./firebase/firebaseConfig"
 
 export default function AddMovieFirebase() {
 
+
   let scene1 = {
 
     "type": "Feature",
@@ -129,7 +130,7 @@ let scene4 = {
     }
     
     
-    // COLLECTION es el array con todos las peliculas
+    // COLLECTION es el array con todos las movies
     // DOCUMENT es la singula pelicula
     
     
