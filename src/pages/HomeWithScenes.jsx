@@ -3,15 +3,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddMovieFirebase from "../components/AddMovieFirebase";
+import { useGetData } from "../components/context/MoviesProvider";
 import { scenesRef } from "../components/firebase/firebaseConfig"
+import MovieCard from "../components/MovieCard";
+import Navbar from "../components/Navbar";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function HomeWithScenes(props) {
 
   const [filteredTitle, setFilteredTitle] = useState("");
-  const [moviesFromScenes, setMoviesFromScenes] = useState([])
+  // const [moviesId, setMoviesId] = useState([])
   // const [peliculas, setPeliculas] = useState([]) cambiamos peliculas por scenes
   const [scenes, setScenes] = useState([])
+
+  const { moviesId } = useGetData()
 
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
   useEffect(()=>{
@@ -30,19 +35,21 @@ export default function HomeWithScenes(props) {
   }, []) // se puede poner como dependencia que un usuario haya agregado una escena
 
 
-// devuelve los titulos de peliculas a partir de las escena
-useEffect(()=>{
-let movieList = [];
-let sceneslength = scenes.length;
-for (let i=0; i<sceneslength;i++) {
-  if (movieList.includes(scenes[i].properties.movie_title)) {
-    console.log('hola')
-  } else {
-    movieList.push(scenes[i].properties.movie_title);
-  }
-}
-setMoviesFromScenes(movieList);
-}, [scenes])
+// devuelve los id de peliculas a partir de las escena
+// useEffect(()=>{
+// let movieList = [];
+// let sceneslength = scenes.length;
+// for (let i=0; i<sceneslength;i++) {
+//   if (movieList.includes(scenes[i].properties.TMDB_ID
+//     )) {
+//     console.log('hola')
+//   } else {
+//     movieList.push(scenes[i].properties.TMDB_ID
+//       );
+//   }
+// }
+// setMoviesId(movieList);
+// }, [scenes])
 /*   // todas las escenas de todas las pelis
   let allMoviesScenes = () => {
     let movieLength = peliculas.length;
@@ -68,29 +75,41 @@ setMoviesFromScenes(movieList);
 
   // por cada pelicula del DB creamos un Link que manda al mapa con los marker de las escenas
   // esto viene filtrado segun el State filteredTitle
-  let sceneList = []; // es mejor hacer así o llamar directamente a una funcion como allMoviesScenes???
-  scenes.forEach((scene) => {
-    if (
-      scene.properties.scene_title.toLowerCase().indexOf(filteredTitle.toLowerCase()) === -1
-    ) {
-      return;
-    } else {
-      sceneList.push(
-        <li className="link link-hover m-5" key={scene.properties.scene_title}>
-          <Link to="/main" state={{ film: scene }}> 
-            {scene.properties.scene_title}
-          </Link>
-        </li>
-      );
-    }
-  });
+  // let sceneList = [];  es mejor hacer así o llamar directamente a una funcion como allMoviesScenes???
+  // scenes.forEach((scene) => {
+  //   if (
+  //     scene.properties.scene_title.toLowerCase().indexOf(filteredTitle.toLowerCase()) === -1
+  //   ) {
+  //     return;
+  //   } else {
+  //     sceneList.push(
+  //       <li className="link link-hover m-5" key={scene.properties.scene_title}>
+  //         <Link to="/main" state={{ film: scene }}> 
+  //           {scene.properties.scene_title}
+  //         </Link>
+  //       </li>
+  //     );
+  //   }
+  // });
 
-console.log("scenes::", scenes)
-console.log("moviesFromScenes::", moviesFromScenes)
+const getSceneList = () => {
+  getDocs(scenesRef).then((response) => {
+    const sceneList = response.doc.map((doc) => doc.data())
+    setScenes(sceneList)
+  }).catch((error) => console.log(error))
+}
+
+useEffect(() => {
+  getSceneList()
+}, [])
+
+console.log("escenitas::", scenes)
+
+console.log("moviesId::", moviesId)
 
   return (
     <>
-    {/* <Navbar/> */}
+    <Navbar/>
     <div className="flex-col items-center p-3 ">
       <h1 className="text-3xl m-3">Esta es la Home</h1>
       <div className="">
@@ -108,9 +127,9 @@ console.log("moviesFromScenes::", moviesFromScenes)
           onChange={handleChange}
         ></input>
       </div>
-      <ul className="list-none text-xl">
-        {sceneList}
-      </ul>
+          {moviesId.map((item, index) => {
+          return ( <MovieCard key={index} getMovieId={item}/>)
+          })}
     </div>
     </>
   );
