@@ -26,13 +26,13 @@ return (
               url={mapURL}
             />
 
-            <NewMarker // para agregar el mapa para una nueva escena
+            <NewMarker // para agregar al mapa para una nueva escena
               map={props.map}
             />
 
-            <DisplayMarkers // eseña los marker en la mapa
-              title={props.movie.title}
-              movieFeatures={props.movie}
+            <DisplayMarkers // eseña los marker en el mapa
+              // title={props.arrayScenes.title}
+              arrayScenes={props.arrayScenes}
               currentMarker={props.currentMarker}
               setCurrentMarker={props.setCurrentMarker}
             />

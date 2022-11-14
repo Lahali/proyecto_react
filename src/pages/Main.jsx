@@ -8,7 +8,7 @@ export default function Main() {
 
   const location = useLocation()
   const { scenes } = location.state;
-  const [movie, setMovie] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
+  const [arrayScenes, setMovie] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
 
   // const { film } = location.state;
   // const {film} = useParams()
@@ -16,24 +16,24 @@ export default function Main() {
   const [map, setMap] = useState(null);
 
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
-  //console.log('currentMarker::', currentMarker);
+  console.log('currentMarker (MAIN):', currentMarker);
   
   return (
     <>
-      <Navbar
-      />
+      <Navbar />
+
       <div className="mainContainer">
 
         <Map
         map={map}
         setMap={setMap}
-        movie={movie}
+        arrayScenes={arrayScenes}
         currentMarker={currentMarker}
         setCurrentMarker={setCurrentMarker}
         />
 
         <Card // esta es la card que sube desde abajao "estilo Google Maps"
-          movie={movie}
+          arrayScenes={arrayScenes}
           currentMarker={currentMarker}
           setCurrentMarker={setCurrentMarker}
           map={map}
@@ -42,29 +42,4 @@ export default function Main() {
       </div>
     </>
   )
-
 }
-
-//const mapURL = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png'
-// const leafletMap = useMap();
-// useEffect(() => {
-//   leafletMap.panTo(mapPosition)
-// }, [mapPosition])
-
-// console.log('movie:::', movie)
-// console.log('currentMarker:::', currentMarker)
-
-// useEffect(() => {
-//   //map.setView(currentMarker.coordinates)
-//   console.log('holaaaaaaa')
-//   if (typeof (currentMarker.coordinates) != "undefined") {
-//     map.panTo([0, 0])
-//   }
-// }, [clickedCard])
-
-/*   useEffect(() => {
-    if (map) {
-      map.invalidateSize();
-      console.log('ESOOOOO')
-    }
-  }, [clickedCard]); */
