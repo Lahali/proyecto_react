@@ -3,21 +3,22 @@ import { useEffect } from "react"
 
 export default function SearchMovie(props){
 
-    const url = 'https://api.themoviedb.org/3/'
-    const APIkeyTMDB = 'acd4ce3d4f5b076a97e8814e1c6acf13'
-    const language = '&language=es-ES'
-    const externalSource = '&external_source=imdb_id'
+    const url = 'https://api.themoviedb.org/3/';
+    const APIkey = process.env.REACT_APP_API_KEY_TMDB;
+    console.log('APIkey',APIkey)
+    const language = '&language=es-ES';
+    const externalSource = '&external_source=imdb_id';
   
     // ejemplo que te devuelve peli a partir de IMDB_ID tt0230600
     // /useEffect(() => {
-    //     fetch(`${url}find/tt0230600?api_key=${APIkeyTMDB}${language}${externalSource}`)
+    //     fetch(`${url}find/tt0230600?api_key=${APIkey}${language}${externalSource}`)
     //       .then(res => res.json())
     //       .then(data => console.log('TMDB data: ', data))
     //   }, [])
 
 
-    /useEffect(() => {
-        fetch(`${url}search/movie?api_key=${APIkeyTMDB}&query=${props.search}&page=1${language}`)
+    useEffect(() => {
+        fetch(`${url}search/movie?api_key=${APIkey}&query=${props.search}&page=1${language}`)
           .then(res => res.json())
           .then(data=> {
             props.setMoviesResults(data.results);
