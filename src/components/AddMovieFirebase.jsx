@@ -10,7 +10,7 @@ import { database } from "./firebase/firebaseConfig"
 
 export default function AddMovieFirebase() {
 
-  // peliculas de ejemplo para subir al database
+  // movies de ejemplo para subir al database
   const todo_sobre_mi_madre = {
       "type": "FeatureCollection",
       "title": "Todo Sobre Mi Madre",
@@ -192,7 +192,7 @@ export default function AddMovieFirebase() {
     }
     
     
-    // COLLECTION es el array con todos las peliculas
+    // COLLECTION es el array con todos las movies
     // DOCUMENT es la singula pelicula
   
     
