@@ -30,7 +30,7 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
-          <p className="text-center">{props.title}</p>
+          <p className="text-center">holaaaa</p>
         </div>
         <div className="lg:hidden md:hidden"></div>
         <div className="flex justify-end p-2">

@@ -2,21 +2,32 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom' // esto para importar "props" con Link
 import CloudinaryWidget from "../components/CloudinaryWidget"
+import SearchMovie from "../components/SearchMovie"
 
 export default function AddScene() {
     
     const location = useLocation()
-    const  {latlng}  = location.state; //ha problemas con esto si al dar al boton cambia la url
+    const  {latlng}  = location.state; //hay problemas con esto si al dar al boton cambia la url
     
     // state para luego poner en la escena. Demasiado lio hacer un state solo como que es un objecto anidado
     const [coordinates, setCoordinates] = useState(latlng.lat, latlng.lng);
     const [movieTitle, setMovieTitle] = useState("");
     const [sceneTitle, setSceneTitle] = useState("");
     const [sceneDescription, setSceneDescription] = useState("");
-    const [imgUrl, setiImgUrl] = useState("");
+    const [url, updateUrl] = useState();
     
     const [scene, setScene] = useState({})
     
+
+    // por el componente SearchMovie
+    const [moviesResults, setMoviesResults] = useState([]); 
+    const [search, setSearch] = useState("");
+   
+
+
+
+
+
     const handleChangeMovieTitle = e => {
         setMovieTitle(e.target.value)
     }
@@ -30,23 +41,27 @@ export default function AddScene() {
     const handleSubmit = () => {
         setScene(
             {
-                "type": "Feature",
-                "properties": {
-                    "img":"",
-                    "escena": sceneTitle, // habria que cambiarlo por titulo escena
-                    "sceneDescription": sceneDescription,
-                    "lugar": ""
-                },
-                "geometry": {
-                    //"coordinates": [latlng.lat, latlng.lng],
-                    "coordinates": coordinates,
-                    "type": "Point"
-                }
+            "type": "Feature",
+            "properties": {
+                "img": url,
+                "scene_title": sceneTitle,
+                "scene_description": sceneDescription,
+                "position": "",
+                "scene_ID" : "00001", // el id lo pone ya firebase en automatico?
+                "imdb_movie_ID" : "tt0230600",
+                "movie_title" : "Los Otros",
+            },
+            "geometry": {
+                "coordinates": coordinates,
+                "type": "Point"
             }
-            )
         }
+        )
+          };
+
+         // console.log("url:" ,url)
+          // console.log("scene:" ,scene)
         
-        // console.log("scene:" ,scene)
         // console.log("coordinates:" ,coordinates)
         
     return (
@@ -54,31 +69,34 @@ export default function AddScene() {
                 <br/>
             <Link to='/home'>HOME</Link>
             <br/><hr/>
+
+        <SearchMovie
+            moviesResults={moviesResults}
+            setMoviesResults={setMoviesResults}
+            search={search}
+            setSearch={setSearch}
+        />
+
             <form>
-                <label>a que pelicula quieres subir la escena?
-                    {/* aqui el ideal seria que cuando empieza a escribir le salgan
-                    las peli que hay en TMDB y cuando selecciona una el ID de la peli,
-                que puede ser el ID de IMDB se usa tambien como nuestro ID */}
-                    <input
-                        type="text"
-                        onChange={handleChangeMovieTitle}
-                        />
-                </label><br /><br />
-                <label>titulo de la escena?
+
+            {/* <div className="form-control">
+          <label className="label">
+            <span className="label-text">titulo pelicula</span>
+          </label>
+          <input type="text"  className="input input-bordered" />
+        </div> */}
+
+               <br />
+                <label className="label">titulo de la escena?
                     <input
                         type="text"
                         onChange={handleChangeSceneTitle}
                         />
                 </label><br /><br />
 
-                <label>elije una foto
-                    <input
-                        type="file"
-                        // onChange={handleChange}
-                        />
-                </label><br /><br />
 
-                <label>...y escribe algo
+
+                <label className="label">...y escribe algo
                     <textarea
                         rows="4"
                         cols="30"
@@ -86,15 +104,19 @@ export default function AddScene() {
                         onChange={handleChangeSceneDescription}
                         name="sceneDescription"/>
                 </label><br /><br />
-
+                <CloudinaryWidget
+                url={url}
+                updateUrl={updateUrl}
+                />
+                <br/>
+                <hr/>
                 <label>SUBMIT
                 {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
                 {/* si aqui no pongo type='button' se comporta como un submit */}
-                <button type="button" onClick={handleSubmit}/> . 
+                <button type="button" onClick={handleSubmit}/> 
                 </label>
             </form>
 
-                <CloudinaryWidget />
                 
         </div>
     )
@@ -102,7 +124,7 @@ export default function AddScene() {
 
 // ejemplo de objecto escena que hay que subir:
 
-const escena_para_agregar = {
+/* const escena_para_agregar = {
     "type": "Feature",
     "properties": {
         "img":"./data/img/99.jpg",
@@ -116,7 +138,7 @@ const escena_para_agregar = {
         ],
         "type": "Point"
     }
-}
+} */
 /* {
     "type": "Feature",
     "properties": {
