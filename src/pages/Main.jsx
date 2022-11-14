@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-import { useLocation } from 'react-router-dom' // esto para importar "props" con Link
+import { useLocation, useParams } from 'react-router-dom' // esto para importar "props" con Link
 import Map from '../components/Map';
 
 export default function Main() {
@@ -9,6 +9,10 @@ export default function Main() {
   const location = useLocation()
   const { scenes } = location.state;
   const [movie, setMovie] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
+
+  // const { film } = location.state;
+  // const {film} = useParams()
+
   const [map, setMap] = useState(null);
 
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado

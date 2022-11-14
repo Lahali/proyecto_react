@@ -1,7 +1,7 @@
 import { Marker, Popup, useMap } from "react-leaflet";
 import * as L from "leaflet";
 import iconRed from '../icon/icon-red.png' // icono rojo
-import iconAzul from '../icon/icon-azul.png' // icono azul
+import iconAzul from '../icon/marker1.svg' // icono azul
 
 
 export default function DisplayMarkers(props) {
