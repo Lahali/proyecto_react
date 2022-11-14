@@ -133,8 +133,11 @@ export default function Card(props) {
                 />
               </svg>
             </div>
+
             <div>
               <img src="https://placeimg.com/640/480/any" />
+
+            
             </div>
           </div>
         </div>

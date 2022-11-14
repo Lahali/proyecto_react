@@ -20,4 +20,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const database = getFirestore(app) //es necesario poner (app) ?
+
 export const moviesRef = collection(database, 'movies')  // moviesRef es collection reference
+export const scenesRef = collection(database, 'scenes')  // moviesRef es collection reference
