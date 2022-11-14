@@ -81,9 +81,9 @@ const Navbar = (props) => {
             <div
               className={`${
                 isOpen ? "" : "hidden"
-              } right-0 rounded-md p-3 absolute z-[999] shadow w-40 h-28 bg-gray-100`}
+              } right-0 rounded-md p-3 absolute z-[999] shadow w-40 h-28 bg-white`}
             >
-              <ul className="space-y-4 mt-3">
+              <ul className="lg:flex lg:flex-row lg:w-auto w-full space-y-4 mt-3">
                 <li>
                   <button
                     htmlFor="my-modal-signup"
