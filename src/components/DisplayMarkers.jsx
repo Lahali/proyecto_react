@@ -45,9 +45,9 @@ export default function DisplayMarkers(props) {
                 icon={getMarkerIcon(index)}
                 index={index}
                 //key={String(coordinates)}
-                nombre={properties.escena}
+                nombre={properties.scene_title}
                 imagen={properties.img}
-                position={[coordinates[1], coordinates[0]]}
+                position={coordinates}
                 eventHandlers={{
                     click: handleClick
                 }}

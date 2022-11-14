@@ -7,8 +7,8 @@ import Map from '../components/Map';
 export default function Main() {
 
   const location = useLocation()
-  const { film } = location.state;
-  const [movie, setMovie] = useState(film); // guardamo en un State los datos mandados dentro de Link
+  const { scenes } = location.state;
+  const [movie, setMovie] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
 
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
@@ -17,7 +17,6 @@ export default function Main() {
   return (
     <>
       <Navbar
-        title={movie.title}
       />
       <div className="mainContainer">
 

@@ -3,19 +3,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddMovieFirebase from "../components/AddMovieFirebase";
-import { moviesRef } from "../components/firebase/firebaseConfig"
+import { scenesRef } from "../components/firebase/firebaseConfig"
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function HomeWithScenes(props) {
-  const [filteredTitle, setFilteredTitle] = useState("");
 
+  const [filteredTitle, setFilteredTitle] = useState("");
+  const [moviesFromScenes, setMoviesFromScenes] = useState([])
   // const [peliculas, setPeliculas] = useState([]) cambiamos peliculas por scenes
   const [scenes, setScenes] = useState([])
 
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
   useEffect(()=>{
     let scenes = [];
-    getDocs(moviesRef)
+    getDocs(scenesRef)
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         scenes.push({ ...doc.data() }) // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
@@ -29,6 +30,19 @@ export default function HomeWithScenes(props) {
   }, []) // se puede poner como dependencia que un usuario haya agregado una escena
 
 
+// devuelve los titulos de peliculas a partir de las escena
+useEffect(()=>{
+let movieList = [];
+let sceneslength = scenes.length;
+for (let i=0; i<sceneslength;i++) {
+  if (movieList.includes(scenes[i].properties.movie_title)) {
+    console.log('hola')
+  } else {
+    movieList.push(scenes[i].properties.movie_title);
+  }
+}
+setMoviesFromScenes(movieList);
+}, [scenes])
 /*   // todas las escenas de todas las pelis
   let allMoviesScenes = () => {
     let movieLength = peliculas.length;
@@ -72,6 +86,7 @@ export default function HomeWithScenes(props) {
   });
 
 console.log("scenes::", scenes)
+console.log("moviesFromScenes::", moviesFromScenes)
 
   return (
     <>

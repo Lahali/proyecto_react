@@ -32,7 +32,7 @@ return (
 
             <DisplayMarkers // eseña los marker en la mapa
               title={props.movie.title}
-              movieFeatures={props.movie.features}
+              movieFeatures={props.movie}
               currentMarker={props.currentMarker}
               setCurrentMarker={props.setCurrentMarker}
             />

@@ -24,7 +24,7 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div className="navbar-center">
-          <p className="normal-case text-xl">{props.title}</p>
+          <p className="normal-case text-xl">holaaaa</p>
         </div>
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
