@@ -13,7 +13,9 @@ export function useGetData() {
 
 export const MoviesProvider = ({ children }) => {
   const [scenes, setScenes] = useState([]);
+  // esto viene de la base de datos de firestore
   const [moviesId, setMoviesId] = useState([]);
+  // esto viene de la api
   const [moviesData, setMoviesData] = useState([{title:'', id:'', poster:''}]);
 
   //  duplico esta función aquí porque no puedo pasar scenes x props
@@ -45,17 +47,19 @@ export const MoviesProvider = ({ children }) => {
     setMoviesId(movieList);
   }, [scenes]);
 
-  const {id} = useParams()
+
+
+// const {id} = useParams()
 
   const url = "https://api.themoviedb.org/3/";
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
 
- useEffect(() => {
+useEffect(() => {
   getMovieData()
-}, [])
+}, [moviesId])
 
 const getMovieData = async() => {
-  const data = await fetch(`${url}movie/1933?api_key=${APIkey}`)  
+  const data = await fetch(`${url}movie/${moviesId[2]}?api_key=${APIkey}`)  
   const movie = await data.json()
   setMoviesData({title: movie.original_title, id: movie.id, poster: movie.poster_path })
 }

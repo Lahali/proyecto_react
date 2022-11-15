@@ -7,7 +7,7 @@ const MovieCard = (props) => {
   const { moviesData } = useGetData();
   const { id } = useParams();
 
-  //  const moviesFiltered = moviesData.filter((item) => item.id === id ? item.title : "")
+  //  const moviesFiltered = moviesData.filter((item) => item.id === id ? item. : "")
 
   return (
     <div className="bg-white shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech">
