@@ -16,10 +16,12 @@ export default function DisplayMarkers(props) {
     }
 
     const handleClick = e => {
+        console.log('COSEEEE', e.sourceTarget.options)
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
         props.setCurrentMarker({
-            nombre: e.sourceTarget.options.nombre,
-            img: e.sourceTarget.options.imagen,
+            scene_title: e.sourceTarget.options.scene_title,
+            movie_title: e.sourceTarget.options.movie_title,
+            img: e.sourceTarget.options.img,
             coordinates: e.latlng,
             index: e.target.options.index // esto sireve para el icono
         });
@@ -34,8 +36,8 @@ export default function DisplayMarkers(props) {
         return createIcon(iconAzul);
     }
 
-    // por cada escena genero un Marker
-    const displayMarkers = props.movieFeatures.map((marker, index) => {
+    // MAP! por cada escena genero un Marker
+    const displayMarkers = props.arrayScenes.map((marker, index) => {
         const coordinates = marker.geometry.coordinates;
         const properties = marker.properties;
 
@@ -45,9 +47,10 @@ export default function DisplayMarkers(props) {
                 icon={getMarkerIcon(index)}
                 index={index}
                 //key={String(coordinates)}
-                nombre={properties.scene_title}
-                imagen={properties.img}
-                position={coordinates}
+                scene_title={properties.scene_title}
+                movie_title={properties.movie_title}
+                img={properties.img}
+                position={coordinates} // la propiedad tiene que ser position!
                 eventHandlers={{
                     click: handleClick
                 }}

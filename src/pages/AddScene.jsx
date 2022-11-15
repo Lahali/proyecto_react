@@ -48,7 +48,8 @@ export default function AddScene() {
                 "scene_description": sceneDescription,
                 "position": "",
                 "scene_ID" : "00001", // el id lo pone ya firebase en automatico?
-                "imdb_movie_ID" : "tt0230600",
+                "imdb_movie_ID" : "",
+                "TMDB_ID" : "",
                 "movie_title" : "Los Otros",
             },
             "geometry": {
