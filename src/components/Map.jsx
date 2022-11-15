@@ -31,7 +31,6 @@ return (
             />
 
             <DisplayMarkers // eseña los marker en el mapa
-              // title={props.arrayScenes.title}
               arrayScenes={props.arrayScenes}
               currentMarker={props.currentMarker}
               setCurrentMarker={props.setCurrentMarker}

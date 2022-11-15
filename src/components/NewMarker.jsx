@@ -10,7 +10,7 @@ export default function NewMarker(props) {
 
     useMapEvents({
 
-        click: (e) => {
+        click: (e) => { // aqui ponerle una condicion que si haces click en otro sitio del mapa desaparece el marker y tooltip
             console.log('E', e)
             setNweMarkerPosition(e.latlng);
 

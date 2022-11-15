@@ -36,7 +36,7 @@ export default function DisplayMarkers(props) {
         return createIcon(iconAzul);
     }
 
-    // por cada escena genero un Marker
+    // MAP! por cada escena genero un Marker
     const displayMarkers = props.arrayScenes.map((marker, index) => {
         const coordinates = marker.geometry.coordinates;
         const properties = marker.properties;
@@ -50,7 +50,7 @@ export default function DisplayMarkers(props) {
                 scene_title={properties.scene_title}
                 movie_title={properties.movie_title}
                 img={properties.img}
-                position={coordinates} // esto tiene que ser position!
+                position={coordinates} // la propiedad tiene que ser position!
                 eventHandlers={{
                     click: handleClick
                 }}

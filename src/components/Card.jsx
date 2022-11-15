@@ -9,20 +9,19 @@ export default function Card(props) {
   
   //funciones de activación de los botones
   const buttonAction = (action) => {
-    let nextIndexEscena = 0;
-    let lengthMovie = props.arrayScenes.length;
+    let nextIndexEscena;
+    let lengthArrayScenes = props.arrayScenes.length;
     let indexEscena = props.arrayScenes.findIndex(
-      (escena) => escena.properties.scene_title === props.currentMarker.scene_title
-      );
+      (escena) => escena.properties.scene_title === props.currentMarker.scene_title);
       if (action === "next") {
-        if (indexEscena === lengthMovie - 1) {
+        if (indexEscena === lengthArrayScenes - 1) {
           nextIndexEscena = 0;
         } else {
           nextIndexEscena = indexEscena + 1;
         }
       } else {
         if (indexEscena === 0) {
-          nextIndexEscena = lengthMovie - 1;
+          nextIndexEscena = lengthArrayScenes - 1;
         } else {
           nextIndexEscena = indexEscena - 1;
         }
@@ -124,10 +123,7 @@ export default function Card(props) {
             </div>
 
             <div>
-              {/* <img src="https://placeimg.com/640/480/any" /> */}
-              <img src={props.currentMarker.img} />
-
-            
+              <img src={props.currentMarker.img} />            
             </div>
           </div>
         </div>
