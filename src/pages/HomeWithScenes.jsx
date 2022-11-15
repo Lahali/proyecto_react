@@ -4,53 +4,51 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import AddMovieFirebase from "../components/AddMovieFirebase";
 import { useGetData } from "../components/context/MoviesProvider";
-import { scenesRef } from "../components/firebase/firebaseConfig"
+import { scenesRef } from "../components/firebase/firebaseConfig";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function HomeWithScenes(props) {
-
   const [filteredTitle, setFilteredTitle] = useState("");
-  // const [moviesId, setMoviesId] = useState([])
-  // const [peliculas, setPeliculas] = useState([]) cambiamos peliculas por scenes
-  const [scenes, setScenes] = useState([])
+  const [scenes, setScenes] = useState([]);
 
-  const { moviesId } = useGetData()
+  const { moviesId, moviesData } = useGetData();
 
+
+  // ESTE USEEFFECT NO LO ESTÁ LEYENDO!! LO LEE DIRECTAMENTE EN EL PROVIDER
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
-  useEffect(()=>{
-    let scenes = [];
-    getDocs(scenesRef)
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        scenes.push({ ...doc.data() }) // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
-        setScenes(scenes)
-      console.log("useEffect!!!")
-      })
-    })
-    .catch(err =>{
-      console.log(err.message)
-    })
-  }, []) // se puede poner como dependencia que un usuario haya agregado una escena
+  // useEffect(() => {
+  //   let scenes = [];
+  //   getDocs(scenesRef)
+  //     .then((snapshot) => {
+  //       snapshot.docs.forEach((doc) => {
+  //         scenes.push({ ...doc.data() }); // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
+  //         setScenes(scenes);
+  //         console.log("useEffect!!!BIS");
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // }, []); // se puede poner como dependencia que un usuario haya agregado una escena
 
-
-// devuelve los id de peliculas a partir de las escena
-// useEffect(()=>{
-// let movieList = [];
-// let sceneslength = scenes.length;
-// for (let i=0; i<sceneslength;i++) {
-//   if (movieList.includes(scenes[i].properties.TMDB_ID
-//     )) {
-//     console.log('hola')
-//   } else {
-//     movieList.push(scenes[i].properties.TMDB_ID
-//       );
-//   }
-// }
-// setMoviesId(movieList);
-// }, [scenes])
-/*   // todas las escenas de todas las pelis
+  // devuelve los id de peliculas a partir de las escena
+  // useEffect(()=>{
+  // let movieList = [];
+  // let sceneslength = scenes.length;
+  // for (let i=0; i<sceneslength;i++) {
+  //   if (movieList.includes(scenes[i].properties.TMDB_ID
+  //     )) {
+  //     console.log('hola')
+  //   } else {
+  //     movieList.push(scenes[i].properties.TMDB_ID
+  //       );
+  //   }
+  // }
+  // setMoviesId(movieList);
+  // }, [scenes])
+  /*   // todas las escenas de todas las pelis
   let allMoviesScenes = () => {
     let movieLength = peliculas.length;
     let movieFeatures = [];
@@ -64,12 +62,11 @@ export default function HomeWithScenes(props) {
     };
   }; */
 
-  
   const handleChange = (e) => {
     setFilteredTitle(() => e.target.value);
   };
 
-  // titleMovieList 
+  // titleMovieList
   // let titleMovieList = [];
   // scenes.forEach
 
@@ -84,7 +81,7 @@ export default function HomeWithScenes(props) {
   //   } else {
   //     sceneList.push(
   //       <li className="link link-hover m-5" key={scene.properties.scene_title}>
-  //         <Link to="/main" state={{ film: scene }}> 
+  //         <Link to="/main" state={{ film: scene }}>
   //           {scene.properties.scene_title}
   //         </Link>
   //       </li>
@@ -92,45 +89,52 @@ export default function HomeWithScenes(props) {
   //   }
   // });
 
-const getSceneList = () => {
-  getDocs(scenesRef).then((response) => {
-    const sceneList = response.doc.map((doc) => doc.data())
-    setScenes(sceneList)
-  }).catch((error) => console.log(error))
-}
+  const getSceneList = () => {
+    getDocs(scenesRef)
+      .then((response) => {
+        const sceneList = response.doc.map((doc) => doc.data());
+        setScenes(sceneList);
+      })
+      .catch((error) => console.log(error));
+  };
 
-useEffect(() => {
-  getSceneList()
-}, [])
+  useEffect(() => {
+    getSceneList();
+  }, []);
 
-console.log("escenitas::", scenes)
+  console.log("escenitas::", scenes);
 
-console.log("moviesId::", moviesId)
+  console.log("moviesId::", moviesId);
 
   return (
     <>
-    <Navbar/>
-    <div className="flex-col items-center p-3 ">
-      <h1 className="text-3xl m-3">Esta es la Home</h1>
-      <div className="">
-        <Link  to="/main" state={{ scenes: scenes }}>
-         <button className="btn btn-outline btn-primary w-60">
-           Todas las peliculas
-          </button>
-        </Link>
-        <p className="m-3">Busca en nuestro archivo de {scenes.length} escenas!</p>
-        <input
-          className="input input-bordered w-60 max-w-xs mt-2"
-          type="text"
-          placeholder="search..."
-          value={filteredTitle}
-          onChange={handleChange}
-        ></input>
+      <Navbar />
+      <div className="flex-col items-center p-3 ">
+        <h1 className="text-3xl m-3">Esta es la Home</h1>
+        <div className="">
+          <Link to="/main" state={{ scenes: scenes }}>
+            <button className="btn btn-outline btn-primary w-60">
+              Todas las peliculas
+            </button>
+          </Link>
+          <p className="m-3">
+            Busca en nuestro archivo de {scenes.length} escenas!
+          </p>
+          <input
+            className="input input-bordered w-60 max-w-xs my-2"
+            type="text"
+            placeholder="search..."
+            value={filteredTitle}
+            onChange={handleChange}
+          ></input>
+        </div>
+
+      {
+        moviesData.map((item, index) => {
+          return <MovieCard key={index} getTitle={item.title} getPoster={item.poster}/>
+        })
+      }
       </div>
-          {moviesId.map((item, index) => {
-          return ( <MovieCard key={index} getMovieId={item}/>)
-          })}
-    </div>
     </>
   );
 }

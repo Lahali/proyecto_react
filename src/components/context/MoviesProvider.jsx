@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { getDocs } from "firebase/firestore";
+import { connectFirestoreEmulator, getDocs } from "firebase/firestore";
 import { scenesRef } from "../firebase/firebaseConfig";
 import { useParams } from "react-router-dom";
 import { async } from "@firebase/util";
@@ -35,6 +35,7 @@ export const MoviesProvider = ({ children }) => {
       });
   }, []);
 
+
   useEffect(() => {
     let movieList = [];
     let sceneslength = scenes.length;
@@ -49,20 +50,31 @@ export const MoviesProvider = ({ children }) => {
 
 
 
-// const {id} = useParams()
+
 
   const url = "https://api.themoviedb.org/3/";
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
 
+// useEffect(() => {
+//   getMovieData()
+// }, [moviesId])
+
 useEffect(() => {
-  getMovieData()
+  const data = []
+  const idLenght = moviesId.length
+  for(let i = 0; i < idLenght; i++) {
+    const getMovieData = async() => {
+      const data2 = await fetch(`${url}movie/${moviesId[i]}}?api_key=${APIkey}`)  
+      const movie = await data2.json()
+      data.push({title:movie.original_title, id: movie.id, poster: movie.poster_path})
+    }
+    getMovieData()
+    setMoviesData(data)
+  }
+
 }, [moviesId])
 
-const getMovieData = async() => {
-  const data = await fetch(`${url}movie/${moviesId[2]}?api_key=${APIkey}`)  
-  const movie = await data.json()
-  setMoviesData({title: movie.original_title, id: movie.id, poster: movie.poster_path })
-}
+
 console.log("lo estoy intentado...", moviesData)
 
 
