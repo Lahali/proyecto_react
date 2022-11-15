@@ -78,28 +78,29 @@ const Navbar = (props) => {
             </label>
             {/* MENÚ DROPDOWN USUARIO */}
             {/* hay que mover el eje z xq sino se queda detrás del mapa!! */}
-            <div
+            {/* OJO! La función de cerrar el menu creo que habría que cambiarla. Esto es temporal */}
+            <div onClick={() => isOpen === true ? setIsOpen(false) : ""}
               className={`${
                 isOpen ? "" : "hidden"
-              } right-0 rounded-md p-3 absolute z-[999] shadow w-40 h-28 bg-white`}
+              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[999] shadow md:max-w-xs lg:max-w-xs h-auto bg-white`}
             >
-              <ul className="lg:flex lg:flex-row lg:w-auto w-full space-y-4 mt-3">
+              <ul className="space-y-4 mt-3">
                 <li>
                   <button
                     htmlFor="my-modal-signup"
-                    className="hover:font-medium"
+                    className=" w-full p-2 rounded-full hover:bg-base-200 m-2"
                   >
                     Signup
                   </button>
                 </li>
                 <li>
-                  <a
+                  <button
                     htmlFor="my-modal-login"
                     href="#"
-                    className="hover:font-medium"
+                    className=" w-full p-2 rounded-full hover:bg-base-200 m-2"
                   >
                     Login
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { moviesRef } from "../components/firebase/firebaseConfig";
 import Navbar from "../components/Navbar";
+import MovieCard from "../components/MovieCard";
 // import movies from "../data/movies.json"; // el archivo con el array de movies
 
 export default function Home(props) {
@@ -11,29 +12,13 @@ export default function Home(props) {
   const [movies, setmovies] = useState([]);
   const [searchField, setSearchField] = useState("");
 
-  // con este useEffect guardamos todo el database de Firestore en el useState 'movies'
-  // useEffect(()=>{
-  //   let movies = [];
-  //   getDocs(moviesRef)
-  //   .then((snapshot) => {
-  //     snapshot.docs.forEach((doc) => {
-  //       movies.push({ ...doc.data() }) // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
-  //     setmovies(movies)
-  //     console.log("useEffect!!!")
-  //     })
-  //   })
-  //   .catch(err =>{
-  //     console.log(err.message)
-  //   })
-  // }, [])  se puede poner como dependencia que un usuario haya agregado una escena
 
-  // funcionalidad para recuperar los datos de la base de datos
   useEffect(() => {
     getMovieList();
     console.log("palículas", moviesList)
   }, []);
 
-  const getMovieList = (e) => {
+  const getMovieList = () => {
     getDocs(moviesRef)
     .then((response) => {
         const moviesList = response.docs.map((doc) => doc.data());
@@ -129,14 +114,16 @@ export default function Home(props) {
         <ul className="list-none text-xl">
           {filteredMovies.length > 0
             ? filteredMovies.map((movie) => (
-                <li className="link link-hover m-5" key={movie.title}>
-                  {movie.title}
-                </li>
+                <MovieCard 
+                key={movie.scene}
+                getMovieTitle={movie.scene}/>
+              
               ))
             : movies.map((movie) => (
-                <li className="link link-hover m-5" key={movie.title}>
-                  {movie.title}
-                </li>
+              <MovieCard 
+              key={movie.scene}
+              getMovieTitle={movie.scene}/>
+            
               ))}
         </ul>
       </div>
