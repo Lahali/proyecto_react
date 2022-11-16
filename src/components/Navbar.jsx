@@ -18,6 +18,10 @@ const Navbar = (props) => {
   };
 
 
+  // const filteredMovies = movies.filter((movie) => {
+  //   return movie.title.toLowerCase().startsWith(searchField.toLowerCase());
+  // });
+
   // esto es para evitar que dé errores al cargar esta página
   const avoidError = props.filteredMovies ? props.filteredMovies.length : 0
 

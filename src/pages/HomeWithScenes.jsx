@@ -11,19 +11,18 @@ import Navbar from "../components/Navbar";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function HomeWithScenes(props) {
-  const [filteredTitle, setFilteredTitle] = useState("");
+  const [searchField, setSearchField] = useState("");
   const { moviesData, scenes } = useGetData();
 
-
-  
-
+  // LÓGICA DEL BUSCADOR
+  const filteredMovies = moviesData.filter((movie) => {
+    return movie.title.toLowerCase().includes(searchField.toLowerCase());
+  });
 
   const handleChange = (e) => {
-    setFilteredTitle(() => e.target.value);
+    setSearchField(e.target.value);
+    console.log("pelis del buscador, JUST IN CASE", filteredMovies);
   };
-
-
-
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function HomeWithScenes(props) {
       <div className="flex-col items-center p-3 ">
         <h1 className="text-3xl m-3">Esta es la Home</h1>
         <div className="">
-          <Link to="/main/"> 
+          <Link to="/main/">
             <button className="btn btn-outline btn-primary w-60">
               Todas las peliculas
             </button>
@@ -43,21 +42,30 @@ export default function HomeWithScenes(props) {
             className="input input-bordered w-60 max-w-xs my-2"
             type="text"
             placeholder="search..."
-            value={filteredTitle}
+            value={searchField}
             onChange={handleChange}
           ></input>
         </div>
-
-      {
-        moviesData.map((item, index) => {
-          return <MovieCard
-          key={index}
-          getMovieTitle={item.title}
-          getMoviePoster={item.poster}
-          movieId={item.id}
-          />
-        })
-      }
+        {/* BUSCADOR */}
+        {filteredMovies.length
+          ? filteredMovies.map((movie, index) => {
+              <MovieCard
+                key={index}
+                getMovieTitle={movie.title}
+                getMoviePoster={movie.poster}
+                movieId={movie.id}
+              />;
+            })
+          : moviesData.map((movie, index) => {
+              return (
+                <MovieCard
+                  key={index}
+                  getMovieTitle={movie.title}
+                  getMoviePoster={movie.poster}
+                  movieId={movie.id}
+                />
+              );
+            })}
       </div>
     </>
   );
