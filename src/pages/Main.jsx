@@ -3,20 +3,19 @@ import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import { useLocation, useParams } from 'react-router-dom' // esto para importar "props" con Link
 import Map from '../components/Map';
+import { useGetData } from '../components/context/MoviesProvider';
 
 export default function Main() {
 
-  const location = useLocation()
-  const { scenes } = location.state;
+  const { scenes } = useGetData()
   const [arrayScenes, setMovie] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
-
-  // const { film } = location.state;
-  // const {film} = useParams()
-
   const [map, setMap] = useState(null);
-
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
   console.log('currentMarker (MAIN):', currentMarker);
+  // const location = useLocation()
+  // const { scenes } = location.state;
+  // const { film } = location.state;
+  // const {film} = useParams()
   
   return (
     <>
