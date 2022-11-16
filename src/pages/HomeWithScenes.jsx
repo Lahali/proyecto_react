@@ -1,3 +1,4 @@
+import { itMatchesOne } from "daisyui/src/lib/postcss-prefixer/utils";
 import { getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -112,7 +113,7 @@ export default function HomeWithScenes(props) {
       <div className="flex-col items-center p-3 ">
         <h1 className="text-3xl m-3">Esta es la Home</h1>
         <div className="">
-          <Link to="/main" state={{ scenes: scenes }}>
+          <Link to="/main/"> 
             <button className="btn btn-outline btn-primary w-60">
               Todas las peliculas
             </button>
@@ -131,7 +132,12 @@ export default function HomeWithScenes(props) {
 
       {
         moviesData.map((item, index) => {
-          return <MovieCard key={index} getTitle={item.title} getPoster={item.poster}/>
+          return <MovieCard
+          key={index}
+          getMovieTitle={item.title}
+          getMoviePoster={item.poster}
+          movieId={item.id}
+          />
         })
       }
       </div>
