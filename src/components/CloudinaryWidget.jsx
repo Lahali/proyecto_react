@@ -47,15 +47,18 @@ export default function CloudinaryWidget(props) {
   
           {error && <p>{ error }</p>}
   
-          {props.url && (
-            <>
-            {/* aqui para cambiar que pasa despues upload con exito */}
-
-              <p><img src={ props.url } alt="Uploaded image" /></p>
-              <p>{ props.url }</p>
-            </>
-          )}
+          {/* aqui para cambiar que pasa despues upload con exito */}
+          {props.url && <p>imagen cargada con exito!</p>}
         </div>
       </main>
     );
   }  
+  
+  
+  
+  
+  
+  
+  
+  // <p><img src={ props.url } alt="Uploaded image" /></p>
+  // <p>{ props.url }</p>
