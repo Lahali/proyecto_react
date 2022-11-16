@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { collection, addDoc } from "firebase/firestore"; 
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from 'react-router-dom' // esto para importar "props" con Link
 import CloudinaryWidget from "../components/CloudinaryWidget"
+import { database } from "../components/firebase/firebaseConfig";
 import SearchMovie from "../components/SearchMovie"
 
 export default function AddScene() {
@@ -10,27 +12,18 @@ export default function AddScene() {
     const  {latlng}  = location.state; //hay problemas con esto si al dar al boton cambia la url
     
     // state para luego poner en la escena. Demasiado lio hacer un state solo como que es un objecto anidado
-    const [coordinates, setCoordinates] = useState(latlng.lat, latlng.lng);
-    const [movieTitle, setMovieTitle] = useState("");
+    const [coordinates, setCoordinates] = useState([latlng.lat, latlng.lng]);
+    const [movieSelected, setsetMovieSelected] = useState(); // desde este sacamos titulo peli y ID
     const [sceneTitle, setSceneTitle] = useState("");
     const [sceneDescription, setSceneDescription] = useState("");
     const [url, updateUrl] = useState();
     
-    const [scene, setScene] = useState({})
+    const [sceneToUpload, setSceneToUpload] = useState()
     
-
     // por el componente SearchMovie
     const [moviesResults, setMoviesResults] = useState([]); 
-    const [search, setSearch] = useState("");
+    const [userSearch, setUserSearch] = useState(""); // lo que vamos tecleando en el input
    
-
-
-
-
-
-    const handleChangeMovieTitle = e => {
-        setMovieTitle(e.target.value)
-    }
     const handleChangeSceneTitle = e => {
         setSceneTitle(e.target.value)
     }
@@ -39,7 +32,7 @@ export default function AddScene() {
     }
     
     const handleSubmit = () => {
-        setScene(
+        setSceneToUpload(
             {
             "type": "Feature",
             "properties": {
@@ -47,10 +40,10 @@ export default function AddScene() {
                 "scene_title": sceneTitle,
                 "scene_description": sceneDescription,
                 "position": "",
-                "scene_ID" : "00001", // el id lo pone ya firebase en automatico?
+                "scene_ID" : "esto lo borramos?", // el id lo pone ya firebase en automatico?
                 "imdb_movie_ID" : "",
-                "TMDB_ID" : "",
-                "movie_title" : "Los Otros",
+                "TMDB_ID" : movieSelected.id,
+                "movie_title" : movieSelected.title,
             },
             "geometry": {
                 "coordinates": coordinates,
@@ -60,33 +53,39 @@ export default function AddScene() {
         )
           };
 
-         // console.log("url:" ,url)
-          // console.log("scene:" ,scene)
-        
-        // console.log("coordinates:" ,coordinates)
-        
+          const scenesRef = collection(database, 'scenes')
+          useEffect(()=> {
+            sceneToUpload && addDoc(scenesRef, sceneToUpload)
+            console.log('ESCENA SUBIDA!!!')
+          }, [sceneToUpload]
+
+          )
+
+
+          console.log("movieSelected:" ,movieSelected)
+          console.log("coordinates:" ,coordinates)
+
+          console.log("sceneToUpload:" ,sceneToUpload)
+                
+
+
     return (
         <div style={{padding: "20px"}}>
                 <br/>
             <Link to='/home'>HOME</Link>
-            <br/><hr/>
+            
+            <br/><hr/><hr/><br/>
 
         <SearchMovie
             moviesResults={moviesResults}
             setMoviesResults={setMoviesResults}
-            search={search}
-            setSearch={setSearch}
+            userSearch={userSearch}
+            setUserSearch={setUserSearch}
+            movieSelected={movieSelected}
+            setsetMovieSelected={setsetMovieSelected}
         />
 
             <form>
-
-            {/* <div className="form-control">
-          <label className="label">
-            <span className="label-text">titulo pelicula</span>
-          </label>
-          <input type="text"  className="input input-bordered" />
-        </div> */}
-
                <br />
                 <label className="label">titulo de la escena?
                     <input
@@ -95,15 +94,13 @@ export default function AddScene() {
                         />
                 </label><br /><br />
 
-
-
                 <label className="label">...y escribe algo
                     <textarea
                         rows="4"
                         cols="30"
                         placeholder="escribe algo aqui"
                         onChange={handleChangeSceneDescription}
-                        name="sceneDescription"/>
+                        />
                 </label><br /><br />
                 <CloudinaryWidget
                 url={url}

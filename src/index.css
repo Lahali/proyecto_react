@@ -50,15 +50,25 @@ height: 100%;
   height: 100%;
 }
 
-.card{
-/* transition: "height 2s"; */
+.isClose{
+  
+}
+
+.isOpen {
+
+}
+
+
+
+/* .card{
+transition: "height 2s";
 display: flex;
 flex-direction: column;
 max-height: 50vh;
 
 background-color: rgb(60, 184, 222);
 text-align: center;
-}
+} */
 
 /* @keyframes inAnimation {
   0% {
