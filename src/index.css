@@ -6,6 +6,8 @@
 
 body {
   margin: 0;
+  box-sizing: border-box;
+  border: dotted red 2px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -16,23 +18,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
+  }
+  
+  .tooltip{
+    padding:20px;
+    display: flex;
+    font-size: 1rem
+  }
+  
 nav {
   background-color: rgba(255, 255, 255, 30);
+  height: 9.5vh
 }
 
-.leaflet-touch .leaflet-control-attribution {
+/* esto es pra la licencia */
+/* .leaflet-touch .leaflet-control-attribution {
   display: none;
-}
-
-.container {
-  display: flex;
-}
-
-/* .home {
-height: 100vh;
-background-color: rgb(255, 91, 91);
 } */
 
 
@@ -42,7 +43,7 @@ background-color: rgb(255, 91, 91);
   height: 90vh;;
 }
 .mapContainer{
-height: 100%;
+  height: 100%;
 }
 
 .leaflet-container { /* nunca borrar esto! */
@@ -55,10 +56,19 @@ height: 100%;
 }
 
 .isOpen {
-
+  
 }
 
 
+/* esto quien lo usa? */
+/* .container {
+  display: flex;
+} */
+
+/* .home {
+height: 100vh;
+background-color: rgb(255, 91, 91);
+} */
 
 /* .card{
 transition: "height 2s";
@@ -97,7 +107,7 @@ text-align: center;
   color: white;
 } */
 
-.openClose{
+/* .openClose{
   height: 20px;
 }
 .openClose img {
@@ -112,24 +122,15 @@ justify-content: center;
   width: 100%;
   height: 2rem;
   font-size: 1.3rem;
-}
+} */
 
-.hola {
-  background-color: green;
-  border: 2px solid red;
-  z-index: 100000;
-}
+
 
 /* li {
   font-size: 30px;
 margin-top: 80px;} */
 
 
-.tooltip{
-  padding:20px;
-  display: flex;
-  font-size: 1rem
-}
 /* .popup-fixed {
   position: fixed;
   top: auto;

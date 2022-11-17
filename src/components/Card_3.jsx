@@ -4,10 +4,7 @@ import down from "../media/down.svg";
 import NavigateButtons from "./NavigateButtons";
 import { isEmpty } from "@firebase/util";
 import '../style_Card_2.css'  // lo importo solo aqui de momento!
-
-
-export default function Card_2(props) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Card_3(props) {
 
   //funciones de activación de los botones
   const buttonAction = (action) => {
@@ -43,26 +40,54 @@ export default function Card_2(props) {
         );
       };
       
-      // este handle activa que el puntero se centre en la transicion mientras se abre la card
+      /* // este handle activa que el puntero se centre en la transicion mientras se abre la card
       const handleClick = () => {
         setIsOpen(!isOpen);
-        setInterval(
-          () => {
-            props.map.invalidateSize(); // esto actualzia el centro del mapa cuando se mueve la card
+        setInterval(() => {
+            props.map.invalidateSize()
+            console.log('HOLAAAAA'); // esto actualzia el centro del mapa cuando se mueve la card
           },
-          "10",
-          1000
+          100   // esto significa que se actualiza cada estos milisegundos
           );
+        }; */
+
+
+
+
+      // este handle activa que el puntero se centre en la transicion mientras se abre la card
+      const handleClick = () => {
+        props.setBoxIsOpen(!props.boxIsOpen);
+        
+        let timing = 0;
+        const interval = setInterval(updateMap, 10); // cada 10 milisegundos
+        function updateMap() {
+          props.map.invalidateSize();
+          timing++;
+          if (timing > 100) { // 100 veces 10 milisegundos son 1s
+            clearInterval(interval);
+          }}
+
         };
         
-        //console.log('currentMarker CARD_2', props.currentMarker)
+
+
+
+
+
+
+
+
+
+
+
+        console.log('currentMarker CARD_2', props.currentMarker)
         
 
         // esto para elijir entre las tres clases del "box"
         const boxStyle = () => {
           if (isEmpty(props.currentMarker)) {
             return 'boxHidden'
-            } else if (isOpen) {
+            } else if (props.boxIsOpen) {
               return 'boxOpen'
             } else {
               return 'boxClosed'

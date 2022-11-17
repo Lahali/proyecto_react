@@ -1,28 +1,42 @@
 import { useState } from "react";
+import { isCompositeComponentWithType } from "react-dom/test-utils";
 import { Marker, Tooltip, useMapEvents } from "react-leaflet";
+import { isEmpty } from "@firebase/util";
+
 import { Link } from "react-router-dom";
 
 
 export default function NewMarker(props) {
 
     const [newMarkerPosition, setNweMarkerPosition] = useState();
-    const [toogle, setToogle] = useState(false) // esto sirve solo para que no salga el marker a cada click
+    const [toogle, setToogle] = useState(false) // esto sirve solo para que no salga el marker a cada click (CUTRADAAAAA)
+
+    //const leafletMap = useMap();
 
 
     useMapEvents({
         click: (e) => {
-            console.log('E', e)
+            // console.log('E', e)
+            props.setCurrentMarker({})
             setNweMarkerPosition(e.latlng);
-            setToogle(!toogle)
-        },      
+            
+            if (isEmpty(props.currentMarker)) {
+                setToogle(!toogle)
+            } else {
+                return;
+            }
+                    },      
     })
 
-    return (
-        <>
+    // let renderCondition = ()=> {
+    //     if ()
+    // }
 
-{/* aqui ponerle una condicion que si haces click en otro sitio del mapa desaparece el marker y tooltip */}
-            
-            {(newMarkerPosition && toogle) && <Marker //componente de ReactLeaflet
+console.log('props.currentMarker IsEMPTY', (isEmpty(props.currentMarker)))
+     return (
+        <>
+           
+            {(newMarkerPosition && (toogle && isEmpty(props.currentMarker))) && <Marker //componente de ReactLeaflet
                 position={newMarkerPosition} >
                 <Tooltip //componente de ReactLeaflet
                     permanent // siempre visible
