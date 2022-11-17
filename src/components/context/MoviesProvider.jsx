@@ -16,10 +16,13 @@ export const MoviesProvider = ({ children }) => {
   // esto viene de la base de datos de firestore
   const [moviesId, setMoviesId] = useState([]);
   // esto viene de la api
-  const [moviesData, setMoviesData] = useState([{title:'', id:'', poster:''}]);
+  const [moviesData, setMoviesData] = useState([
+    { title: "", id: "", poster: "" },
+  ]);
 
-  //  duplico esta función aquí porque no puedo pasar scenes x props
+
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
+  // AQUÍ RECUPERAMOS LOS DATOS DE FIRESTORE
   useEffect(() => {
     let scenes = [];
     getDocs(scenesRef)
@@ -36,6 +39,8 @@ export const MoviesProvider = ({ children }) => {
   }, []);
 
 
+// AQUÍ RECOGEMOS LOS ID PARA COMPARAR LOS ID DE SCENES CON LA API  
+// devuelve los id de peliculas a partir de las escena
   useEffect(() => {
     let movieList = [];
     let sceneslength = scenes.length;
@@ -48,39 +53,50 @@ export const MoviesProvider = ({ children }) => {
     setMoviesId(movieList);
   }, [scenes]);
 
+  // ==> ESTA FUNCIONALIDAD CREO QUE ESTABA REPETIDA!!
 
+  // const getSceneList = () => {
+  //   getDocs(scenesRef)
+  //     .then((response) => {
+  //       const sceneList = response.doc.map((doc) => doc.data());
+  //       setScenes(sceneList);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
-
+  // useEffect(() => {
+  //   getSceneList();
+  // }, [moviesId]);
 
   const url = "https://api.themoviedb.org/3/";
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
 
-// useEffect(() => {
-//   getMovieData()
-// }, [moviesId])
-
-useEffect(() => {
-  const data = []
-  const idLenght = moviesId.length
-  for(let i = 0; i < idLenght; i++) {
-    const getMovieData = async() => {
-      const data2 = await fetch(`${url}movie/${moviesId[i]}}?api_key=${APIkey}`)  
-      const movie = await data2.json()
-      data.push({title:movie.original_title, id: movie.id, poster: movie.poster_path})
+// AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
+  useEffect(() => {
+    let data = [];
+    const idLength = moviesId.length;
+    for (let i = 0; i < idLength; i++) {
+      const getMovieData = async () => {
+        const data2 = await fetch(
+          `${url}movie/${moviesId[i]}}?api_key=${APIkey}`
+        );
+        const movie = await data2.json();
+        data.push({
+          title: movie.original_title,
+          id: movie.id,
+          poster: movie.poster_path,
+        });
+      };
+      getMovieData();
     }
-    getMovieData()
-    setMoviesData(data)
-  }
+    Promise.all(data).then(setMoviesData(data));
+  }, [moviesId]);
 
-}, [moviesId])
-
-
-console.log("lo estoy intentado...", moviesData)
-
+  console.log("lo estoy intentado...", moviesData);
 
   return (
     <div>
-      <moviesContext.Provider value={{ moviesId, moviesData }}>
+      <moviesContext.Provider value={{ moviesId, moviesData, scenes }}>
         {children}
       </moviesContext.Provider>
     </div>

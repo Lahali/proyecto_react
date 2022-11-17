@@ -18,6 +18,10 @@ const Navbar = (props) => {
   };
 
 
+  // const filteredMovies = movies.filter((movie) => {
+  //   return movie.title.toLowerCase().startsWith(searchField.toLowerCase());
+  // });
+
   // esto es para evitar que dé errores al cargar esta página
   const avoidError = props.filteredMovies ? props.filteredMovies.length : 0
 
@@ -35,7 +39,7 @@ const Navbar = (props) => {
         <div className="lg:hidden md:hidden"></div>
         <div className="flex justify-end p-2">
           {/* BÚSQUEDA */} 
-          <div className="relative">
+          {/* <div className="relative">
             <input
               className= 'input input-bordered lg:w-60 w-40 max-w-xs max-h-10 mx-3 mt-2'
               type="text"
@@ -43,13 +47,13 @@ const Navbar = (props) => {
               value={props.filteredTitle}
               onChange={props.handleChange}
               onClick={() => setSearchOpen(!searchOpen)}
-            />
+            /> */}
 
             {/* MENÚ DROPDOWN BÚSQUEDA */}
-            <div className= {`${searchOpen ? "" : "hidden"} right-0 bg-white rounded-md absolute z-[999] shadow w-60`}>
-              <ul className="list-none space-y-4 mt-3">
+            {/* <div className= {`${searchOpen ? "" : "hidden"} right-0 bg-white rounded-md absolute z-[999] shadow w-60`}>
+              <ul className="list-none space-y-4 mt-3"> */}
                 {/* hacemos un renderizado condicional xq si el array está undefined, así sigue funcionando */}
-                {
+                {/* {
                 avoidError
                   ? props.filteredMovies && props.filteredMovies.map((movie) => (
                       <li className="link link-hover m-5" key={movie.title}>
@@ -64,7 +68,7 @@ const Navbar = (props) => {
                 
               </ul>
             </div>
-          </div>
+          </div> */}
           {/* USUARIO */}
           <div className="relative">
             <label

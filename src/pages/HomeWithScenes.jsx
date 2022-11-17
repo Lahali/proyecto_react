@@ -11,101 +11,22 @@ import Navbar from "../components/Navbar";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function HomeWithScenes(props) {
-  const [filteredTitle, setFilteredTitle] = useState("");
-  const [scenes, setScenes] = useState([]);
+  const [searchField, setSearchField] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([])
+  const { moviesData, scenes } = useGetData();
 
-  const { moviesId, moviesData } = useGetData();
-
-
-  // ESTE USEEFFECT NO LO ESTÁ LEYENDO!! LO LEE DIRECTAMENTE EN EL PROVIDER
-  // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
-  // useEffect(() => {
-  //   let scenes = [];
-  //   getDocs(scenesRef)
-  //     .then((snapshot) => {
-  //       snapshot.docs.forEach((doc) => {
-  //         scenes.push({ ...doc.data() }); // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
-  //         setScenes(scenes);
-  //         console.log("useEffect!!!BIS");
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }, []); // se puede poner como dependencia que un usuario haya agregado una escena
-
-  // devuelve los id de peliculas a partir de las escena
-  // useEffect(()=>{
-  // let movieList = [];
-  // let sceneslength = scenes.length;
-  // for (let i=0; i<sceneslength;i++) {
-  //   if (movieList.includes(scenes[i].properties.TMDB_ID
-  //     )) {
-  //     console.log('hola')
-  //   } else {
-  //     movieList.push(scenes[i].properties.TMDB_ID
-  //       );
-  //   }
-  // }
-  // setMoviesId(movieList);
-  // }, [scenes])
-  /*   // todas las escenas de todas las pelis
-  let allMoviesScenes = () => {
-    let movieLength = peliculas.length;
-    let movieFeatures = [];
-    for (let i = 0; i < movieLength; i++) {
-      movieFeatures.push(...peliculas[i].features);
-    }
-    // console.log('features:::,', movieFeatures)
-    return {
-      title: "TODAS LAS PELIS",
-      features: movieFeatures,
-    };
-  }; */
+  // LÓGICA DEL BUSCADOR
+  const getFilteredMovies = () => {
+    moviesData.filter((movie) => {
+    movie.title.toLowerCase().includes(searchField.toLowerCase());
+    return setFilteredMovies(getFilteredMovies)
+    });
+  }
 
   const handleChange = (e) => {
-    setFilteredTitle(() => e.target.value);
+    setSearchField(e.target.value);
   };
-
-  // titleMovieList
-  // let titleMovieList = [];
-  // scenes.forEach
-
-  // por cada pelicula del DB creamos un Link que manda al mapa con los marker de las escenas
-  // esto viene filtrado segun el State filteredTitle
-  // let sceneList = [];  es mejor hacer así o llamar directamente a una funcion como allMoviesScenes???
-  // scenes.forEach((scene) => {
-  //   if (
-  //     scene.properties.scene_title.toLowerCase().indexOf(filteredTitle.toLowerCase()) === -1
-  //   ) {
-  //     return;
-  //   } else {
-  //     sceneList.push(
-  //       <li className="link link-hover m-5" key={scene.properties.scene_title}>
-  //         <Link to="/main" state={{ film: scene }}>
-  //           {scene.properties.scene_title}
-  //         </Link>
-  //       </li>
-  //     );
-  //   }
-  // });
-
-  const getSceneList = () => {
-    getDocs(scenesRef)
-      .then((response) => {
-        const sceneList = response.doc.map((doc) => doc.data());
-        setScenes(sceneList);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    getSceneList();
-  }, []);
-
-  console.log("escenitas::", scenes);
-
-  console.log("moviesId::", moviesId);
+  // console.log("pelis del buscador, JUST IN CASE", filteredMovies);
 
   return (
     <>
@@ -113,7 +34,7 @@ export default function HomeWithScenes(props) {
       <div className="flex-col items-center p-3 ">
         <h1 className="text-3xl m-3">Esta es la Home</h1>
         <div className="">
-          <Link to="/main/"> 
+          <Link to="/main/">
             <button className="btn btn-outline btn-primary w-60">
               Todas las peliculas
             </button>
@@ -125,21 +46,30 @@ export default function HomeWithScenes(props) {
             className="input input-bordered w-60 max-w-xs my-2"
             type="text"
             placeholder="search..."
-            value={filteredTitle}
+            value={searchField}
             onChange={handleChange}
           ></input>
         </div>
-
-      {
-        moviesData.map((item, index) => {
-          return <MovieCard
-          key={index}
-          getMovieTitle={item.title}
-          getMoviePoster={item.poster}
-          movieId={item.id}
-          />
-        })
-      }
+        {/* BUSCADOR */}
+        {filteredMovies.length > 0
+          ? filteredMovies.map((movie, index) => {
+              <MovieCard
+                key={index}
+                getMovieTitle={movie.title}
+                getMoviePoster={movie.poster}
+                movieId={movie.id}
+              />;
+            })
+          : moviesData.map((movie, index) => {
+              return (
+                <MovieCard
+                  key={index}
+                  getMovieTitle={movie.title}
+                  getMoviePoster={movie.poster}
+                  movieId={movie.id}
+                />
+              );
+            })}
       </div>
     </>
   );
