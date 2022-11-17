@@ -16,14 +16,17 @@ export default function Main() {
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
 
+
   const filtered = () => {
-    const scenesFiltered = scenes.filter((movie) => movie.properties.TMDB_ID === id)
+    // ==> AQUÍ HAY QUE MIRAR QUE EL TMDB_ID PASARLO A NUMBER
+    const scenesFiltered = scenes.filter((movie) => (movie.properties.TMDB_ID) === parseInt(id))
     if(!id) {
       return setArrayScenes(scenes)
     } else {
       return setArrayScenes(scenesFiltered)
     }
   };
+
 
   
   useEffect(() => {

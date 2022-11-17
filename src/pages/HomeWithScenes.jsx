@@ -16,17 +16,21 @@ export default function HomeWithScenes(props) {
   const { moviesData, scenes } = useGetData();
 
   // LÓGICA DEL BUSCADOR
-  const getFilteredMovies = () => {
-    moviesData.filter((movie) => {
-    movie.title.toLowerCase().includes(searchField.toLowerCase());
-    return setFilteredMovies(getFilteredMovies)
-    });
+  const getFilter = (searchField) => {
+    const resultFilter = moviesData.filter((item) => {
+      if(item.title.toLowerCase().includes(searchField.toLowerCase())){
+        return item
+      }
+    })
+    setFilteredMovies(resultFilter)
   }
+  console.log(filteredMovies)
 
   const handleChange = (e) => {
-    setSearchField(e.target.value);
-  };
-  // console.log("pelis del buscador, JUST IN CASE", filteredMovies);
+    setSearchField(e.target.value)
+    getFilter(e.target.value)
+  }
+  
 
   return (
     <>
@@ -53,12 +57,12 @@ export default function HomeWithScenes(props) {
         {/* BUSCADOR */}
         {filteredMovies.length > 0
           ? filteredMovies.map((movie, index) => {
-              <MovieCard
+              return (<MovieCard
                 key={index}
                 getMovieTitle={movie.title}
                 getMoviePoster={movie.poster}
                 movieId={movie.id}
-              />;
+              />);
             })
           : moviesData.map((movie, index) => {
               return (
