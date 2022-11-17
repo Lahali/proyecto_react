@@ -28,7 +28,11 @@ return (
 
             <NewMarker // para agregar al mapa para una nueva escena
               map={props.map}
-            />
+              currentMarker={props.currentMarker}
+              setCurrentMarker={props.setCurrentMarker}
+              boxIsOpen={props.boxIsOpen}
+              setBoxIsOpen={props.setBoxIsOpen}
+                />
 
             <DisplayMarkers // eseña los marker en el mapa
               arrayScenes={props.arrayScenes}

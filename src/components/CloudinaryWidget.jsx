@@ -29,7 +29,9 @@ export default function CloudinaryWidget(props) {
     return (
       <main className="main">
 
+          {/* este classname que es? */}
         <div className="container">
+        
 
           <UploadWidget onUpload={handleOnUpload}>
             {({ open }) => {
