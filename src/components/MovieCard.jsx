@@ -7,7 +7,7 @@ const MovieCard = (props) => {
   // console.log("esto debería ser el id", getId)
 
   return (
-    <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech">
+    <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto">
       <Link to={`/main/${getId}`}>
         <img
           className="h-28 w-auto float-left mr-4 rounded-l-md"
@@ -16,7 +16,6 @@ const MovieCard = (props) => {
         />
         <div className="mx-3 p-4">
           <h2 className="card-title">{props.getMovieTitle}</h2>
-          <p className="mx-2">Información: </p>
         </div>
       </Link>
     </div>

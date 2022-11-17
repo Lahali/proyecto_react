@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../components/context/AuthContext";
 
-const Signup = () => {
+const Signup = ({isOpen, setIsOpen}) => {
   const { handleChange, handleSubmit, error } = useAuth();
 
   return (
@@ -10,8 +10,12 @@ const Signup = () => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <div className="modal-action">
-            <label htmlFor="my-modal-signup" className="btn btn-primary">
-              x
+            <label
+              htmlFor="my-modal-signup"
+              className="text-primary font-bold text-2xl hover:text-primary-content"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              X
             </label>
           </div>
           <h3 className="font-bold text-lg">Crea una cuenta nueva</h3>
@@ -23,7 +27,11 @@ const Signup = () => {
               name="email"
               type="email"
               placeholder="Email"
-              className="input input-bordered w-full max-w-xs"
+              className={
+                error
+                  ? "input input-bordered input-error w-full max-w-xs"
+                  : "input input-bordered w-full max-w-xs"
+              }
             />
             <label className="m-2">Contraseña:</label>
             <input
@@ -31,11 +39,15 @@ const Signup = () => {
               name="password"
               type="password"
               placeholder="Contraseña"
-              className="input input-bordered w-full max-w-xs"
+              className={
+                error
+                  ? "input input-bordered input-error w-full max-w-xs"
+                  : "input input-bordered w-full max-w-xs"
+              }
             />
             <button
               type="submit"
-              className="btn btn-primary mt-3 w-full max-w-xs"
+              className="btn btn-primary my-8 w-full max-w-xs"
             >
               Registrarse
             </button>

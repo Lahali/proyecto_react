@@ -1,9 +1,9 @@
 import React from "react";
 import { useAuth } from "../components/context/AuthContext";
 
-const Login = () => {
+const Login = ({isOpen, setIsOpen}) => {
   const { handleChange, handleSubmitLogin, error } = useAuth();
-
+ 
   return (
     <div>
       <input type="checkbox" id="my-modal-login" className="modal-toggle" />
@@ -12,7 +12,8 @@ const Login = () => {
           <div className="modal-action">
             <label
               htmlFor="my-modal-login"
-              className="btn btn-primary"
+              className="text-primary font-bold text-2xl hover:text-primary-content"
+              onClick={() => setIsOpen(!isOpen)}
             >
               X
             </label>
@@ -26,7 +27,11 @@ const Login = () => {
               name="email"
               type="email"
               placeholder="Email"
-              className="input input-bordered w-full max-w-xs"
+              className={
+                error
+                  ? "input input-bordered input-error w-full max-w-xs"
+                  : "input input-bordered w-full max-w-xs"
+              }
             />
             <label className="m-2">Contraseña:</label>
             <input
@@ -34,11 +39,15 @@ const Login = () => {
               name="password"
               type="password"
               placeholder="Contraseña"
-              className="input input-bordered w-full max-w-xs"
+              className={
+                error
+                  ? "input input-bordered input-error w-full max-w-xs"
+                  : "input input-bordered w-full max-w-xs"
+              }
             />
             <button
               type="submit"
-              className="btn btn-primary mt-3 w-full max-w-xs"
+              className="btn btn-primary my-8 w-full max-w-xs"
             >
               Entrar
             </button>

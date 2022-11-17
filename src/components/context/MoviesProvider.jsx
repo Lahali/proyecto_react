@@ -17,9 +17,8 @@ export const MoviesProvider = ({ children }) => {
   const [moviesId, setMoviesId] = useState([]);
   // esto viene de la api
   const [moviesData, setMoviesData] = useState([
-    { title: "", id: "", poster: "" },
+    { title: "", id: "", poster: "", scenes: 0 },
   ]);
-
 
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
   // AQUÍ RECUPERAMOS LOS DATOS DE FIRESTORE
@@ -38,9 +37,8 @@ export const MoviesProvider = ({ children }) => {
       });
   }, []);
 
-
-// AQUÍ RECOGEMOS LOS ID PARA COMPARAR LOS ID DE SCENES CON LA API  
-// devuelve los id de peliculas a partir de las escena
+  // AQUÍ RECOGEMOS LOS ID PARA COMPARAR LOS ID DE SCENES CON LA API
+  // devuelve los id de peliculas a partir de las escena
   useEffect(() => {
     let movieList = [];
     let sceneslength = scenes.length;
@@ -52,6 +50,7 @@ export const MoviesProvider = ({ children }) => {
     }
     setMoviesId(movieList);
   }, [scenes]);
+  console.log("a ver qué sale", moviesId);
 
   // ==> ESTA FUNCIONALIDAD CREO QUE ESTABA REPETIDA!!
 
@@ -68,17 +67,46 @@ export const MoviesProvider = ({ children }) => {
   //   getSceneList();
   // }, [moviesId]);
 
-  const url = "https://api.themoviedb.org/3/";
-  const APIkey = process.env.REACT_APP_API_KEY_TMDB;
+  // BUSCAR CUÁNTAS ESCENAS TIENE CADA PELÍCULA
+  // moviesData.sort((a, b) => {
+  //   return a.id - b.id;
+  // });
 
-// AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
+  // const maybeitworks = () => {
+  //   moviesData.map((movie, index) =>
+  //     movie[index].id === movie[index + 1].id
+  //       ? setMoviesData([{ ...moviesData, scenes: +1 }])
+  //       : ""
+  //   );
+  // };
+
+   // ==> PRUEBA CHAPUCERA
+  //  moviesData.sort((a, b) => {
+  //   return a.id - b.id;
+  // });
+
+  // const maybeitworks = () => {
+  //   moviesData.map((movie, index) =>
+  //     movie[index].id === movie[index + 1].id
+  //       ? setMoviesData([{ ...moviesData, scenes: +1 }])
+  //       : ""
+  //   );
+  // };
+
+
+
+
+
+  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
+  const APIkey = process.env.REACT_APP_API_KEY_TMDB;
+  const url = "https://api.themoviedb.org/3/";
   useEffect(() => {
     let data = [];
     const idLength = moviesId.length;
     for (let i = 0; i < idLength; i++) {
       const getMovieData = async () => {
         const data2 = await fetch(
-          `${url}movie/${moviesId[i]}}?api_key=${APIkey}`
+          `${url}movie/${moviesId[i]}}?api_key=${APIkey}&append_to_response=credits`
         );
         const movie = await data2.json();
         data.push({
@@ -88,15 +116,18 @@ export const MoviesProvider = ({ children }) => {
         });
       };
       getMovieData();
+  
     }
     Promise.all(data).then(setMoviesData(data));
   }, [moviesId]);
 
+
   console.log("lo estoy intentado...", moviesData);
+  console.log("monto escenas", scenes);
 
   return (
     <div>
-      <moviesContext.Provider value={{ moviesId, moviesData, scenes }}>
+      <moviesContext.Provider value={{ moviesId, moviesData, scenes, setMoviesData }}>
         {children}
       </moviesContext.Provider>
     </div>
