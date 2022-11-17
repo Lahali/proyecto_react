@@ -12,17 +12,21 @@ import Navbar from "../components/Navbar";
 
 export default function HomeWithScenes(props) {
   const [searchField, setSearchField] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([])
   const { moviesData, scenes } = useGetData();
 
   // LÓGICA DEL BUSCADOR
-  const filteredMovies = moviesData.filter((movie) => {
-    return movie.title.toLowerCase().includes(searchField.toLowerCase());
-  });
+  const getFilteredMovies = () => {
+    moviesData.filter((movie) => {
+    movie.title.toLowerCase().includes(searchField.toLowerCase());
+    return setFilteredMovies(getFilteredMovies)
+    });
+  }
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
-    console.log("pelis del buscador, JUST IN CASE", filteredMovies);
   };
+  // console.log("pelis del buscador, JUST IN CASE", filteredMovies);
 
   return (
     <>
@@ -47,7 +51,7 @@ export default function HomeWithScenes(props) {
           ></input>
         </div>
         {/* BUSCADOR */}
-        {filteredMovies.length
+        {filteredMovies.length > 0
           ? filteredMovies.map((movie, index) => {
               <MovieCard
                 key={index}
