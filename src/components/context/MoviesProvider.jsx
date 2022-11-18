@@ -50,7 +50,7 @@ export const MoviesProvider = ({ children }) => {
     }
     setMoviesId(movieList);
   }, [scenes]);
-  console.log("a ver qué sale", moviesId);
+
 
   // ==> ESTA FUNCIONALIDAD CREO QUE ESTABA REPETIDA!!
 
@@ -67,37 +67,8 @@ export const MoviesProvider = ({ children }) => {
   //   getSceneList();
   // }, [moviesId]);
 
-  // BUSCAR CUÁNTAS ESCENAS TIENE CADA PELÍCULA
-  // moviesData.sort((a, b) => {
-  //   return a.id - b.id;
-  // });
 
-  // const maybeitworks = () => {
-  //   moviesData.map((movie, index) =>
-  //     movie[index].id === movie[index + 1].id
-  //       ? setMoviesData([{ ...moviesData, scenes: +1 }])
-  //       : ""
-  //   );
-  // };
-
-   // ==> PRUEBA CHAPUCERA
-  //  moviesData.sort((a, b) => {
-  //   return a.id - b.id;
-  // });
-
-  // const maybeitworks = () => {
-  //   moviesData.map((movie, index) =>
-  //     movie[index].id === movie[index + 1].id
-  //       ? setMoviesData([{ ...moviesData, scenes: +1 }])
-  //       : ""
-  //   );
-  // };
-
-
-
-
-
-  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
+ // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
   const url = "https://api.themoviedb.org/3/";
   useEffect(() => {
@@ -116,9 +87,10 @@ export const MoviesProvider = ({ children }) => {
         });
       };
       getMovieData();
-  
     }
     Promise.all(data).then(setMoviesData(data));
+
+
   }, [moviesId]);
 
 

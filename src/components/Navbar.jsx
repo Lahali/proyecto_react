@@ -77,7 +77,7 @@ const Navbar = (props) => {
               </div>
             </label>
             {/* MENÚ DROPDOWN USUARIO */}
-            {/* hay que mover el eje z xq sino se queda detrás del mapa!! */}
+            {/* hay que mover el eje z xq sino se queda detrás del mapa!! absolute es lo q hace que no mueva el resto*/}
             <div
               className={`${
                 isOpen ? "" : "hidden"

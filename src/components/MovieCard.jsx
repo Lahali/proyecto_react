@@ -16,6 +16,7 @@ const MovieCard = (props) => {
         />
         <div className="mx-3 p-4">
           <h2 className="card-title">{props.getMovieTitle}</h2>
+          <p>Número de escenas: {props.getMovieScenes}</p>
         </div>
       </Link>
     </div>

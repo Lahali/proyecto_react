@@ -13,25 +13,17 @@ import Navbar from "../components/Navbar";
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const { moviesData, scenes, setMoviesData } = useGetData();
+  const { moviesData, scenes  } = useGetData();
+
+  const [repeated, setRepeated] = useState(0)
 
   const [pepe, setPepe] = useState("");
 
-  
-  // const maybeitworks = () => {
-  //   moviesData.map((movie, index) =>
-  //   movie[index].id === movie[index + 1].id
-  //   ? setMoviesData([{ ...moviesData, scenes: +1 }])
-  //   : ""
-  //   );
-  // };
-  // moviesData.sort((a, b) => {
-  //   return a.id - b.id;
-  // });
-  
 
+  scenes.sort((a, b) => {
+        return a.properties.TMDB_ID - b.properties.TMDB_ID
+      })
 
-  console.log("qué estamos haciendo", moviesData)
 
 
   // LÓGICA DEL BUSCADOR
@@ -43,7 +35,7 @@ export default function Home(props) {
     });
     setFilteredMovies(resultFilter);
   };
-  console.log(filteredMovies);
+ 
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
@@ -97,6 +89,7 @@ export default function Home(props) {
                     getMovieTitle={movie.title}
                     getMoviePoster={movie.poster}
                     getMovieDate={movie.date}
+                    getMovieScenes={movie.scenes}
                 />
               );
             })}
