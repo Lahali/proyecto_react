@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/proyecto_react/static/css/main.4fa29307.css",
+    "main.js": "/proyecto_react/static/js/main.0e59a609.js",
+    "static/js/787.6f0ee195.chunk.js": "/proyecto_react/static/js/787.6f0ee195.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/proyecto_react/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "index.html": "/proyecto_react/index.html",
+    "static/media/marker1.svg": "/proyecto_react/static/media/marker1.fab836a166b3035a87eaf95eaa94e7c9.svg",
+    "static/media/down.svg": "/proyecto_react/static/media/down.a38300e5ded49ee0faa7fa7b570b2416.svg",
+    "static/media/up.svg": "/proyecto_react/static/media/up.402ff56677f3fced2356344f56a13a94.svg",
+    "main.4fa29307.css.map": "/proyecto_react/static/css/main.4fa29307.css.map",
+    "main.0e59a609.js.map": "/proyecto_react/static/js/main.0e59a609.js.map",
+    "787.6f0ee195.chunk.js.map": "/proyecto_react/static/js/787.6f0ee195.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4fa29307.css",
+    "static/js/main.0e59a609.js"
+  ]
+}
