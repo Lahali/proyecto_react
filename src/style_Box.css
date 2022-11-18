@@ -4,16 +4,18 @@
   }
   .boxOpen{
     height: 110%;
-    background-color: aqua;
-    transition: 0.5s;
+    transition: 1s;
   }
   
   .boxClosed{
     height: 20%;
-    background-color: aqua;
-    transition: 0.5s;
+    transition: 1s;
   }
   .boxHidden{
   height: 0px;
-  background-color: rgb(255, 0, 225);
+  transition: 1s;
+  }
+
+  .imgContainer{
+    height: 300px;
   }

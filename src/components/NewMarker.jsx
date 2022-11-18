@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { isCompositeComponentWithType } from "react-dom/test-utils";
-import { Marker, Tooltip, useMapEvents } from "react-leaflet";
+
+import { Marker, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { isEmpty } from "@firebase/util";
 
 import { Link } from "react-router-dom";
@@ -16,23 +16,26 @@ export default function NewMarker(props) {
 
     useMapEvents({
         click: (e) => {
-            // console.log('E', e)
-            props.setCurrentMarker({})
-            setNweMarkerPosition(e.latlng);
-            
-            if (isEmpty(props.currentMarker)) {
-                setToogle(!toogle)
-            } else {
+            console.log('CLICK newMarker')
+
+                props.setCurrentMarker({})
+                setNweMarkerPosition(e.latlng);
+                
+                if (isEmpty(props.currentMarker)) {
+                    setToogle(!toogle) 
+                    // !toogle && leafletMap.panTo(e.latlng); // esto para centrar el mapa donde sale el tooltip
+                } else {
+                    // esto pasa alguna vez?
                 return;
-            }
-                    },      
+                            }
+        },      
     })
 
     // let renderCondition = ()=> {
     //     if ()
     // }
 
-console.log('props.currentMarker IsEMPTY', (isEmpty(props.currentMarker)))
+// console.log('props.currentMarker IsEMPTY', (isEmpty(props.currentMarker)))
      return (
         <>
            

@@ -3,8 +3,9 @@ import up from "../media/up.svg";
 import down from "../media/down.svg";
 import NavigateButtons from "./NavigateButtons";
 import { isEmpty } from "@firebase/util";
-import '../style_Card_2.css'  // lo importo solo aqui de momento!
-export default function Card_3(props) {
+import '../style_Box.css'  // lo importo solo aqui de momento!
+
+export default function Box(props) {
 
   //funciones de activación de los botones
   const buttonAction = (action) => {
@@ -39,54 +40,34 @@ export default function Card_3(props) {
         { animate: true, duration: 1}
         );
       };
-      
-      /* // este handle activa que el puntero se centre en la transicion mientras se abre la card
-      const handleClick = () => {
-        setIsOpen(!isOpen);
-        setInterval(() => {
-            props.map.invalidateSize()
-            console.log('HOLAAAAA'); // esto actualzia el centro del mapa cuando se mueve la card
-          },
-          100   // esto significa que se actualiza cada estos milisegundos
-          );
-        }; */
 
-
-
-
-      // este handle activa que el puntero se centre en la transicion mientras se abre la card
-      const handleClick = () => {
-        props.setBoxIsOpen(!props.boxIsOpen);
-        
+      function updateMapWhenResze(){
         let timing = 0;
         const interval = setInterval(updateMap, 10); // cada 10 milisegundos
         function updateMap() {
           props.map.invalidateSize();
+          console.log('UPDATE! BOX')
           timing++;
-          if (timing > 100) { // 100 veces 10 milisegundos son 1s
+          if (timing > 200) { // 100 veces 10 milisegundos son 1s
             clearInterval(interval);
           }}
+      }
 
+      // este handle activa que el puntero se centre en la transicion mientras se abre el box
+      const handleClick = () => {
+        props.setBoxIsOpen(!props.boxIsOpen);
+        updateMapWhenResze();
         };
         
 
-
-
-
-
-
-
-
-
-
-
-        console.log('currentMarker CARD_2', props.currentMarker)
+        //console.log('currentMarker CARD_2', props.currentMarker)
         
 
         // esto para elijir entre las tres clases del "box"
         const boxStyle = () => {
           if (isEmpty(props.currentMarker)) {
-            return 'boxHidden'
+            //props.setBoxIsOpen(()=>false) // eso me daba un error en consola!!!
+                      return 'boxHidden'
             } else if (props.boxIsOpen) {
               return 'boxOpen'
             } else {
@@ -94,17 +75,76 @@ export default function Card_3(props) {
             }
           }
         
-
-
         return (
           <>
-          {/* poner una condicion que si no está seleccionado ningun marker no se abre */}
+              {/* poner una condicion que si no está seleccionado ningun marker no se abre */}
             <div className={boxStyle()}>
-              <div className="click"
-              onClick={handleClick}
-            />
-    hola
-            </div>
+                  <div className="click"
+                  onClick={handleClick}
+                />
+                <div className="p-2 mr-4 text-xl lg:text-2xl font-medium">
+                {props.currentMarker.scene_title}
+              </div>
+
+              <div className="p-2 mr-4 text-xs lg:text-2xl font-medium">
+                {props.currentMarker.movie_title}
+              </div>
+
+              <div className="p-4 absolute flex justify-between transform peer-checked:-translate-y-1/2 left-5 right-5 top-1/2">
+                  <svg
+                    onClick={() => buttonAction("previous")}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-white lg:text-black md:text-black cursor-pointer"
+                    >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
+                      />
+                  </svg>
+
+                  <svg
+                    onClick={() => buttonAction("next")}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-white lg:text-black md:text-black cursor-pointer"
+                    >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
+                      />
+                  </svg>
+                </div>
+
+                  {props.boxIsOpen &&
+                  <div className="imgContainer">
+                    <img src={props.currentMarker.img} />            
+                  </div>}
+
+                  <label htmlFor="my-modal-6" className="link">más</label>
+
+{/* Put this part before </body> tag */}
+<input type="checkbox" id="my-modal-6" className="modal-toggle" />
+<div className="modal modal-bottom sm:modal-middle">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
+    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+    
+    <div className="modal-action">
+      <label htmlFor="my-modal-6" className="link">close</label>
+    </div>
+  </div>
+</div>
+
+                </div>
           </>
         )
 }
