@@ -65,17 +65,17 @@ export default function AddScene() {
   return (
     <>
       <Navbar />
-      <div className="h-screen p-3">
-        <SearchMovie
-          moviesResults={moviesResults}
-          setMoviesResults={setMoviesResults}
-          userSearch={userSearch}
-          setUserSearch={setUserSearch}
-          movieSelected={movieSelected}
-          setsetMovieSelected={setsetMovieSelected}
-        />
+      <div className="grid grid-rows-5 h-screen p-3">
+        <div>
+          <SearchMovie
+            moviesResults={moviesResults}
+            setMoviesResults={setMoviesResults}
+            userSearch={userSearch}
+            setUserSearch={setUserSearch}
+            movieSelected={movieSelected}
+            setsetMovieSelected={setsetMovieSelected}
+          />
 
-        <form>
           <label className="label">
             Titula la escena:
             <input
@@ -84,7 +84,9 @@ export default function AddScene() {
               onChange={handleChangeSceneTitle}
             />
           </label>
+        </div>
 
+        <div>
           <label className="label">
             ...y escribe algo
             <textarea
@@ -95,9 +97,13 @@ export default function AddScene() {
               onChange={handleChangeSceneDescription}
             />
           </label>
+        </div>
 
-          <CloudinaryWidget url={url} updateUrl={updateUrl} />
+        <CloudinaryWidget url={url} updateUrl={updateUrl} />
+        {/* DIV VACÍO */}
+        <div></div>
 
+        <div>
           <label>
             {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
             {/* si aqui no pongo type='button' se comporta como un submit */}
@@ -109,7 +115,7 @@ export default function AddScene() {
               SUBMIT
             </button>
           </label>
-        </form>
+        </div>
       </div>
     </>
   );

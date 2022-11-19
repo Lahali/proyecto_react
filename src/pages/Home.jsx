@@ -44,7 +44,7 @@ export default function Home(props) {
 
   //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
   useEffect(() => {
-    setTimeout(() => setPepe("pepe"), 1000);
+    setTimeout(() => setPepe("pepe"), 5000);
   });
 
   // buscar xq el componente no es reactivo, hay un fallo de renderización
@@ -71,6 +71,8 @@ export default function Home(props) {
           ></input>
         </div>
         {/* RESULTADOS BUSCADOR */}
+        <div className="mt-5 max-h-[30rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] bg-base-200 rounded-lg">
+
         {filteredMovies.length > 0
           ? filteredMovies.map((movie, index) => {
               return (
@@ -93,6 +95,7 @@ export default function Home(props) {
                 />
               );
             })}
+        </div>
       </div>
     </>
   );

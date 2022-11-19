@@ -7,6 +7,8 @@ export default function SearchMovie(props) {
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
   const language = "&language=es-ES";
   const externalSource = "&external_source=imdb_id";
+  
+  const [openSearch, setOpenSearch] = useState(false)
 
   // ejemplo que te devuelve peli a partir de IMDB_ID tt0230600
   // /useEffect(() => {
@@ -26,11 +28,15 @@ export default function SearchMovie(props) {
       });
   }, [props.userSearch]);
 
-  const handleChange = (e) => props.setUserSearch(e.target.value);
+  const handleChange = (e) =>{
+    props.setUserSearch(e.target.value);
+    // ESTO HACE QUE EL BUSCADOR SÓLO SEA VISIBLE SI HAY ALGÚN VALOR
+    setOpenSearch(!openSearch)
+  } 
 
   return (
     <>
-      <div className="relative ">
+      <div className="relative">
         <label>Busca la peli: </label>
         <input
           className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
@@ -41,54 +47,28 @@ export default function SearchMovie(props) {
           value={
             props.movieSelected ? props.movieSelected.title : props.userSearch
           }
-          //   onClick={() => setOpenSearch(!openSearch)}
         />
 
-        {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es el absolute!*/}
-
-        {/* el listado lo enseño solo si hay los resultado y aun no he elejido un titulo.
+        {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es la combinación relative-absolute!*/}
+        {/* el listado lo enseño solo si hay los resultado y aun no he elegido un titulo.
             Faltaria agregar el boton 'cambiar' */}
-        {props.moviesResults &&
-          !props.movieSelected &&
-          props.moviesResults.map((movie) => {
-            return (
-              <ul>
-                <a
-                  className="relative"
-                  onClick={() => props.setsetMovieSelected(movie)}
-                >
-                  {movie.title}
-                </a>
-              </ul>
-            );
-          })}
+          <div className={`${openSearch ? "" : "hidden"} absolute bg-white w-full rounded-lg p-4 shadow`}>
+          {props.moviesResults &&
+            !props.movieSelected &&
+            props.moviesResults.map((movie) => {
+              return (
+                // <div className="absolute bg-white h-96">
+                  <ul className="space-y-4">
+                    <li
+                      onClick={() => props.setsetMovieSelected(movie)}
+                    >
+                      {movie.title}
+                    </li>
+                  </ul>
+              );
+            })}
+        </div>
       </div>
-
-      {/* <div>
-<h4>{props.movie[0].title}</h4>
-<img
-src={`${base_URL}${props.movie[0].poster_path}`}
-alt={props.movie[0].title}
-/>
-</div>
-
-
-<div>
-{
-    props.film[0] ?
-    <>
-    <h4>{props.film[0].title}</h4>
-    <img
-    src={`${base_URL}${props.film[0].poster_path}`}
-    alt={props.film[0].title}
-    /> 
-    </>
-    :
-    <>
-    <h4>Sorry, movie not found</h4>
-    </>
-}   
-</div> */}
     </>
   );
 }
