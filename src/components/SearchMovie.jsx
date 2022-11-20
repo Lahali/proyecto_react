@@ -6,9 +6,9 @@ export default function SearchMovie(props) {
   const url = "https://api.themoviedb.org/3/";
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
   const language = "&language=es-ES";
+  // ==> ESTO LO ESTÁ USANDO ALGUIEN??
   const externalSource = "&external_source=imdb_id";
-  
-  const [openSearch, setOpenSearch] = useState(false)
+  const [openSearch, setOpenSearch] = useState(false);
 
   // ejemplo que te devuelve peli a partir de IMDB_ID tt0230600
   // /useEffect(() => {
@@ -28,47 +28,86 @@ export default function SearchMovie(props) {
       });
   }, [props.userSearch]);
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     props.setUserSearch(e.target.value);
     // ESTO HACE QUE EL BUSCADOR SÓLO SEA VISIBLE SI HAY ALGÚN VALOR
-    setOpenSearch(!openSearch)
-  } 
+    // setOpenSearch(!openSearch);
+  };
+
+  const changeOpen = () => setOpenSearch(!openSearch);
 
   return (
     <>
-      <div className="relative">
-        <label>Busca la peli: </label>
-        <input
-          className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
-          type="text"
-          onChange={handleChange}
-          disabled={props.movieSelected}
-          /* mientras tecleo me enseña lo que tecleo, si escojo una peli me enseña solo esa */
-          value={
-            props.movieSelected ? props.movieSelected.title : props.userSearch
-          }
-        />
+      <div className="">
+        <label>
+          <p>Busca la peli:</p>
+          <input
+            className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
+            type="text"
+            onChange={handleChange}
+            disabled={props.movieSelected}
+            /* mientras tecleo me enseña lo que tecleo, si escojo una peli me enseña solo esa */
+            value={
+              props.movieSelected ? props.movieSelected.title : props.userSearch
+            }
+            onClick={() => setOpenSearch(!openSearch)}
+          />
+        </label>
 
         {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es la combinación relative-absolute!*/}
         {/* el listado lo enseño solo si hay los resultado y aun no he elegido un titulo.
             Faltaria agregar el boton 'cambiar' */}
-          <div className={`${openSearch ? "" : "hidden"} absolute bg-white w-full rounded-lg p-4 shadow`}>
-          {props.moviesResults &&
-            !props.movieSelected &&
-            props.moviesResults.map((movie) => {
-              return (
-                // <div className="absolute bg-white h-96">
-                  <ul className="space-y-4">
-                    <li
-                      onClick={() => props.setsetMovieSelected(movie)}
-                    >
-                      {movie.title}
+        {/* <div
+          className={`${
+            openSearch ? "" : "hidden"
+          } absolute bg-white w-full rounded-lg p-4 shadow`}
+        > */}
+        <div className="relative flex flex-col items-center">
+          <div
+            className={`${
+              openSearch ? "" : "hidden"
+            } absolute bg-white p-3 max-h-[40rem] w-[19rem] shadow rounded-lg flex flex-col items-left overflow-scroll`}
+          >
+            {props.moviesResults &&
+              !props.movieSelected &&
+              props.moviesResults.map((movie) => {
+                return (
+                  <ul className="btn btn-ghost hover:btn-link my-1" onClick={() => setOpenSearch(!openSearch)}>
+                    {/* AÑADÍ LLAMADA A CHANGEOPEN PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK */}
+                    <li>
+                      <a
+                        className=""
+                        onClick={() =>
+                          (props.setsetMovieSelected(movie))
+                        }
+                      >
+                        {movie.title}
+                      </a>
                     </li>
                   </ul>
-              );
-            })}
+                );
+              })}
+          </div>
         </div>
       </div>
+      {/* </div> */}
     </>
   );
 }
+
+<div className="dropdown dropdown-end">
+  <label tabIndex={0} className="btn m-1">
+    Click
+  </label>
+  <ul
+    tabIndex={0}
+    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+  >
+    <li>
+      <a>Item 1</a>
+    </li>
+    <li>
+      <a>Item 2</a>
+    </li>
+  </ul>
+</div>;

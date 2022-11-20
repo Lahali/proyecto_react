@@ -65,8 +65,9 @@ export default function AddScene() {
   return (
     <>
       <Navbar />
-      <div className="grid grid-rows-5 h-screen p-3">
-        <div>
+      {/* <div className="bg-base-200 flex items-center justify-center"> */}
+        <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]">
+        <div className="flex flex-col items-center content-center">
           <SearchMovie
             moviesResults={moviesResults}
             setMoviesResults={setMoviesResults}
@@ -75,9 +76,9 @@ export default function AddScene() {
             movieSelected={movieSelected}
             setsetMovieSelected={setsetMovieSelected}
           />
-
-          <label className="label">
-            Titula la escena:
+          
+          <label className="mt-3">
+            <p>Titula la escena:</p>
             <input
               className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
               type="text"
@@ -86,11 +87,11 @@ export default function AddScene() {
           </label>
         </div>
 
-        <div>
-          <label className="label">
-            ...y escribe algo
+        <div className="flex flex-col items-center content-center">
+          <label>
+           <p >...y escribe algo</p> 
             <textarea
-              className="rounded-xl border p-3"
+              className="rounded-xl border p-3 mt-3"
               rows="4"
               cols="30"
               placeholder="escribe algo aqui"
@@ -98,11 +99,7 @@ export default function AddScene() {
             />
           </label>
         </div>
-
         <CloudinaryWidget url={url} updateUrl={updateUrl} />
-        {/* DIV VACÍO */}
-        <div></div>
-
         <div>
           <label>
             {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
@@ -112,11 +109,14 @@ export default function AddScene() {
               type="button"
               onClick={handleSubmit}
             >
-              SUBMIT
+              ENVIAR
             </button>
           </label>
         </div>
-      </div>
+
+        </div>
+
+      {/* </div> */}
     </>
   );
 }

@@ -67,6 +67,13 @@ export const MoviesProvider = ({ children }) => {
   //   getSceneList();
   // }, [moviesId]);
 
+  // SEGUIMOS PROBANDO EL CONTADOR...
+
+  const dataOrdered = () => {
+    scenes.sort((a, b) => a.properties.TMDB_ID - b.properties.TMDB_ID)
+    moviesData.sort((a, b) => a.id - b.id)
+  }
+
 
  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
@@ -84,12 +91,12 @@ export const MoviesProvider = ({ children }) => {
           title: movie.original_title,
           id: movie.id,
           poster: movie.poster_path,
+          scenes: +1
         });
       };
       getMovieData();
     }
     Promise.all(data).then(setMoviesData(data));
-
 
   }, [moviesId]);
 
