@@ -1,23 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
-import Card from "../components/Card";
+import Box from "../components/Box";
 import { useLocation, useParams } from "react-router-dom"; // esto para importar "props" con Link
 import Map from "../components/Map";
 import { useGetData } from "../components/context/MoviesProvider";
-import { useEffect } from "react";
+import * as L from "leaflet";
+
 
 export default function Main() {
   const { scenes } = useGetData();
-  const [arrayScenes, setArrayScenes] = useState(scenes); // guardamo en un State los datos mandados dentro de Link
+  const [arrayScenes, setArrayScenes] = useState(); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
-  console.log("currentMarker (MAIN):", currentMarker);
+  const [boxPosition, setBoxPosition] = useState("isHidden");
+
+  const [triangulation, setTriangulation] = useState() // aqui el centro y nivel de zoom
 
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
 
   const filtered = () => {
-    const scenesFiltered = scenes.filter((movie) => movie.properties.TMDB_ID === id)
+    const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
     if(!id) {
       return setArrayScenes(scenes)
     } else {
@@ -31,27 +34,44 @@ export default function Main() {
   }, []);
 
 
+  function fTriangulation() {
+    if (arrayScenes) {
+      let myPoints = arrayScenes.map(scene=>{
+      return scene.geometry.coordinates
+    })
+    console.log('myPoints,', myPoints)
+    let myBounds = new L.LatLngBounds(myPoints);
+    console.log('myBounds,', myBounds)
+    setTriangulation(myBounds);
+  }}
+
+useEffect(()=>{
+  fTriangulation();
+}, [arrayScenes])
 
   return (
-    <>
+    <div className="mainContainer">
       <Navbar />
 
-      <div className="mainContainer">
+      <div className="mapAndBoxContainer">
         <Map
           map={map}
           setMap={setMap}
           arrayScenes={arrayScenes}
           currentMarker={currentMarker}
           setCurrentMarker={setCurrentMarker}
+          triangulation={triangulation}
         />
 
-        <Card // esta es la card que sube desde abajao "estilo Google Maps"
+        <Box // esta es la card que sube desde abajao "estilo Google Maps"
           arrayScenes={arrayScenes}
           currentMarker={currentMarker}
           setCurrentMarker={setCurrentMarker}
+          boxPosition={boxPosition}
+          setBoxPosition={setBoxPosition}
           map={map}
         />
       </div>
-    </>
+    </div>
   );
 }

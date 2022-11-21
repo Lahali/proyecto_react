@@ -92,7 +92,7 @@ export const MoviesProvider = ({ children }) => {
     Promise.all(data).then(setMoviesData(data));
   }, [moviesId]);
 
-  console.log("lo estoy intentado...", moviesData);
+  //console.log("lo estoy intentado...", moviesData);
 
   return (
     <div>

@@ -3,7 +3,6 @@ import * as L from "leaflet";
 import iconRed from '../icon/icon-red.png' // icono rojo
 import iconAzul from '../icon/marker1.svg' // icono azul
 
-
 export default function DisplayMarkers(props) {
 
     const leafletMap = useMap();
@@ -15,8 +14,11 @@ export default function DisplayMarkers(props) {
         });
     }
 
+
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
+         console.log('currentMarker', props.currentMarker)
+         // console.log('props.prevCurrentMarkertRef', props.prevCurrentMarkertRef.current)
         props.setCurrentMarker({
             scene_title: e.sourceTarget.options.scene_title,
             movie_title: e.sourceTarget.options.movie_title,

@@ -7,7 +7,6 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  border: dotted red 2px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -28,7 +27,7 @@ code {
   
 nav {
   background-color: rgba(255, 255, 255, 30);
-  height: 9.5vh
+  height: 10vh
 }
 
 /* esto es pra la licencia */
@@ -36,12 +35,16 @@ nav {
   display: none;
 } */
 
+/* .mainContainer{
+  height: 100vh;
+} */
 
-.mainContainer{
+.mapAndBoxContainer{
   display: flex;
   flex-direction: column;
-  height: 90vh;;
+  height: 90vh;
 }
+
 .mapContainer{
   height: 100%;
 }

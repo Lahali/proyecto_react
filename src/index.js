@@ -8,13 +8,11 @@ import { MoviesProvider } from "./components/context/MoviesProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <MoviesProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </MoviesProvider>
-  </React.StrictMode>
+  <MoviesProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </MoviesProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
