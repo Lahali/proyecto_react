@@ -30,11 +30,7 @@ export default function SearchMovie(props) {
 
   const handleChange = (e) => {
     props.setUserSearch(e.target.value);
-    // ESTO HACE QUE EL BUSCADOR SÓLO SEA VISIBLE SI HAY ALGÚN VALOR
-    // setOpenSearch(!openSearch);
   };
-
-  const changeOpen = () => setOpenSearch(!openSearch);
 
   return (
     <>
@@ -42,7 +38,7 @@ export default function SearchMovie(props) {
         <label>
           <p>Busca la peli:</p>
           <input
-            className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
+            className="input input-bordered w-[16rem] my-2 h-10 bg-white mx-2"
             type="text"
             onChange={handleChange}
             disabled={props.movieSelected}
@@ -57,11 +53,6 @@ export default function SearchMovie(props) {
         {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es la combinación relative-absolute!*/}
         {/* el listado lo enseño solo si hay los resultado y aun no he elegido un titulo.
             Faltaria agregar el boton 'cambiar' */}
-        {/* <div
-          className={`${
-            openSearch ? "" : "hidden"
-          } absolute bg-white w-full rounded-lg p-4 shadow`}
-        > */}
         <div className="relative flex flex-col items-center">
           <div
             className={`${
@@ -72,11 +63,10 @@ export default function SearchMovie(props) {
               !props.movieSelected &&
               props.moviesResults.map((movie) => {
                 return (
+                  // AÑADÍ ONCLICK PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK
                   <ul className="btn btn-ghost hover:btn-link my-1" onClick={() => setOpenSearch(!openSearch)}>
-                    {/* AÑADÍ LLAMADA A CHANGEOPEN PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK */}
                     <li>
                       <a
-                        className=""
                         onClick={() =>
                           (props.setsetMovieSelected(movie))
                         }

@@ -80,32 +80,34 @@ export default function AddScene() {
           <label className="mt-3">
             <p>Titula la escena:</p>
             <input
-              className="input input-bordered w-50 max-w-xs my-2 h-10 bg-white mx-2"
+              className="input input-bordered w-[16rem] my-2 h-10 bg-white mx-2"
               type="text"
               onChange={handleChangeSceneTitle}
             />
           </label>
         </div>
 
-        <div className="flex flex-col items-center content-center">
+        <div className="flex flex-col items-center content-center mt-4">
           <label>
            <p >...y escribe algo</p> 
             <textarea
-              className="rounded-xl border p-3 mt-3"
-              rows="4"
-              cols="30"
+              className="rounded-3xl border p-3 mt-3 w-[16rem]"
+              rows="8"
               placeholder="escribe algo aqui"
               onChange={handleChangeSceneDescription}
             />
           </label>
         </div>
+        <div className="flex flex-col items-center self-end">
+
         <CloudinaryWidget url={url} updateUrl={updateUrl} />
-        <div>
+        </div>
+        <div className="flex flex-col items-center self-center">
           <label>
             {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
             {/* si aqui no pongo type='button' se comporta como un submit */}
             <button
-              className="btn btn-outline btn-primary w-60 mt-5"
+              className="btn btn-wide btn-primary mt-5 "
               type="button"
               onClick={handleSubmit}
             >

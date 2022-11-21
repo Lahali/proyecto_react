@@ -17,7 +17,7 @@ export default function Home(props) {
 
   const [repeated, setRepeated] = useState(0)
 
-  const [pepe, setPepe] = useState("");
+const [pepe, setPepe] = useState("");
 
 
   scenes.sort((a, b) => {
@@ -44,7 +44,7 @@ export default function Home(props) {
 
   //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
   useEffect(() => {
-    setTimeout(() => setPepe("pepe"), 5000);
+    setTimeout(() => setPepe("pepe"), 1000);
   });
 
   // buscar xq el componente no es reactivo, hay un fallo de renderización
