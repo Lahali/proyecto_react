@@ -19,20 +19,14 @@ export default function Main() {
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
 
-
   const filtered = () => {
-
-    // ==> AQUÍ HAY QUE MIRAR QUE EL TMDB_ID PASARLO A NUMBER
-    const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
-
     if(!id) {
       return setArrayScenes(scenes)
     } else {
+      const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
       return setArrayScenes(scenesFiltered)
     }
   };
-
-
   
   useEffect(() => {
     filtered()
@@ -40,7 +34,8 @@ export default function Main() {
 
 
   function fTriangulation() {
-    if (arrayScenes) {
+    if (arrayScenes && arrayScenes.length>0) {
+      console.log('array scenes inside TRIANGULATION', arrayScenes)
       let myPoints = arrayScenes.map(scene=>{
       return scene.geometry.coordinates
     })

@@ -64,7 +64,7 @@ export default function Box(props) {
         // esto para elijir entre las tres clases del "box"
         const boxStyle = () => {
           if (isEmpty(props.currentMarker)) {
-            console.log('isEmpty!!!!!!!!!!')
+            // console.log('isEmpty!!!!!!!!!!')
                       return 'boxHidden'
             } else if (props.boxPosition === "isOpen") {
               // console.log('boxOpen');

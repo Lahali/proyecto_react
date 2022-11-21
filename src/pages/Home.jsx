@@ -44,7 +44,8 @@ const [pepe, setPepe] = useState("");
 
   //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
   useEffect(() => {
-    setTimeout(() => setPepe("pepe"), 1000);
+    console.log('filteredMovies de HOME', filteredMovies)
+    setTimeout(() => setPepe("pepe"), 2000);
   });
 
   // buscar xq el componente no es reactivo, hay un fallo de renderización
@@ -92,6 +93,7 @@ const [pepe, setPepe] = useState("");
                     getMoviePoster={movie.poster}
                     getMovieDate={movie.date}
                     getMovieScenes={movie.scenes}
+                    movieId={movie.id}
                 />
               );
             })}

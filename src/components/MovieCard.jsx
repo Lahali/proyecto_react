@@ -4,7 +4,7 @@ import { useGetData } from "./context/MoviesProvider";
 
 const MovieCard = (props) => {
   const getId = props.movieId
-  // console.log("esto debería ser el id", getId)
+  // console.log("ID movie card", getId)
 
   return (
     <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto">
