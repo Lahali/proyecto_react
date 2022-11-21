@@ -92,6 +92,7 @@ const [pepe, setPepe] = useState("");
                     getMoviePoster={movie.poster}
                     getMovieDate={movie.date}
                     getMovieScenes={movie.scenes}
+                    movieId={movie.id}
                 />
               );
             })}
