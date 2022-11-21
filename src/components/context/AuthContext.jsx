@@ -1,5 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { async } from "@firebase/util";
 
@@ -15,59 +20,67 @@ export const AuthProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
-  const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
 
-  //  los valores del parámetro vienen del evento (es una destructuración del evento con los valores que queremos)  
+  //  los valores del parámetro vienen del evento (es una destructuración del evento con los valores que queremos)
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
 
-  // para el signup
+  // SIGNUP
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('')
+    setError("");
     try {
       await signup(user.email, user.password);
-      console.log("super bien registrado");
+      
     } catch (error) {
       console.log("algo va fatal", error);
       setError(error.message);
     }
   };
 
-  // para el login
+  // LOGIN
   const handleSubmitLogin = async (e) => {
-    e.preventDefault()
-    setError('')
-    try{
-      await login(user.email, user.password)
-      console.log("HAS ENTRADO!!")
-      console.log(auth)
+    e.preventDefault();
+    setError("");
+    try {
+      await login(user.email, user.password);
+      e.target.reset()
     } catch (error) {
-      console.log("hemos hecho algo mal", error)
-      setError(error.message)
-      console.log(auth, error)
+      console.log("hemos hecho algo mal", error);
+      setError(error.message);
+      console.log(auth, error);
     }
-  }
+  };
 
   // para el logout
-  const logout = () =>  signOut(auth)
+  const logout = () => signOut(auth);
 
   // esta función de Firebase nos devuelve la información cada vez que el usuario cambia: abre o cierra sesión, etc
   useEffect(() => {
     const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    return () => unsuscribe()
+    return () => unsuscribe();
   }, []);
 
   return (
-    <authContext.Provider value={{ handleChange, handleSubmit, error, handleSubmitLogin, logout }}>
+    <authContext.Provider
+      value={{
+        handleChange,
+        handleSubmit,
+        error,
+        handleSubmitLogin,
+        logout
+      }}
+    >
       {children}
     </authContext.Provider>
   );

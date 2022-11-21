@@ -14,6 +14,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -29,6 +31,8 @@ nav {
   background-color: rgba(255, 255, 255, 30);
   height: 10vh
 }
+
+
 
 /* esto es pra la licencia */
 /* .leaflet-touch .leaflet-control-attribution {

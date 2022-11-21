@@ -9,13 +9,13 @@ import "font-awesome/css/font-awesome.min.css";
 
 export default function Map(props) {
 
-  // const [position, setPosition] = useState(null);
 
     const mapURL3 = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
     const attrib = '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
     const mapURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const mapURL1 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     const mapURL4 = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+
     const mapURL2 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     
     console.log('props.triangulation',props.triangulation)
