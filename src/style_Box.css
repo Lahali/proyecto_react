@@ -1,7 +1,7 @@
 .openCloseBox{
-    height: 25px;
-    background-color: red;
+    height: 2.5rem;
   }
+  
   .boxOpen{
     /* height: 110%; */
     height: 60vh;
@@ -32,8 +32,16 @@
     z-index: 9999;
   }
 
+  .buttonImg {
+    height: 3rem;
+    width: 3rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 30%;
+    
+  }
+
+  /* ==> ESTÁ ESTILADO CON TAILWIND */
   .moreInfo{
     text-align: center !important;
     border: solid red 1px;
-
   }

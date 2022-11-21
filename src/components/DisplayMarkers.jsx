@@ -1,7 +1,7 @@
 import { Marker, Popup, useMap } from "react-leaflet";
 import * as L from "leaflet";
-import iconRed from '../icon/icon-red.png' // icono rojo
-import iconAzul from '../icon/marker1.svg' // icono azul
+import iconRed from '../icon/icon-red.svg' // icono rojo
+import iconAzul from '../icon/icon-dark.svg' // icono azul
 
 export default function DisplayMarkers(props) {
 
@@ -24,8 +24,9 @@ export default function DisplayMarkers(props) {
             movie_title: e.sourceTarget.options.movie_title,
             img: e.sourceTarget.options.img,
             coordinates: e.latlng,
-            index: e.target.options.index // esto sireve para el icono
+            index: e.target.options.index // esto sirve para el icono
         });
+        console.log("necesito saber qué hay aquí", props.currentMarker)
     }
 
     const getMarkerIcon = index => { // segun el index es icono rojo o azul
