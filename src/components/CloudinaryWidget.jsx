@@ -40,7 +40,7 @@ export default function CloudinaryWidget(props) {
                 open();
               }
               return (
-                <button className="mt-5 btn btn-outline btn-primary btn-wide " onClick={handleOnClick}>
+                <button className="mt-5 btn btn-outline btn-primary w-80" onClick={handleOnClick}>
                   SUBE UNA IMAGEN
                 </button>
               )
