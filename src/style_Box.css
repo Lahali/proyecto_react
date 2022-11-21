@@ -1,9 +1,10 @@
-.click{
+.openCloseBox{
     height: 25px;
     background-color: red;
   }
   .boxOpen{
-    height: 110%;
+    /* height: 110%; */
+    height: 60vh;
     transition: 1s;
   }
   
@@ -17,5 +18,22 @@
   }
 
   .imgContainer{
-    height: 300px;
+    text-align: center;
+
+    height: 30vh;
+  }
+
+  .imgScene{
+    height: 100%;
+  }
+
+  .modalBox {
+    height: 50vh !important;
+    z-index: 9999;
+  }
+
+  .moreInfo{
+    text-align: center !important;
+    border: solid red 1px;
+
   }

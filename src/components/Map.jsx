@@ -1,19 +1,39 @@
-import { AttributionControl, MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import DisplayMarkers from '../components/DisplayMarkers';
 import NewMarker from '../components/NewMarker'
+import "leaflet-easybutton/src/easy-button.js";
+import "leaflet-easybutton/src/easy-button.css";
+import { useEffect, useState } from 'react';
+import * as L from "leaflet";
+import "font-awesome/css/font-awesome.min.css";
 
 export default function Map(props) {
 
+  // const [position, setPosition] = useState(null);
 
-    const mapURL = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+    const mapURL3 = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
     const attrib = '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-    const mapURL0 = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    const mapURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const mapURL1 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
-    const mapURL3 = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    const mapURL4 = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     const mapURL2 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     
     console.log('props.triangulation',props.triangulation)
+    console.log('props.map',props.map)
 
+    // boton "va a tu posicion"
+    useEffect(() => {
+      if (!props.map) return;
+      L.easyButton("fa-map-marker", () => {
+        props.map.locate().on("locationfound", function (e) {
+          // setPosition(e.latlng);
+          // props.map.flyTo(e.latlng, props.map.getZoom()); // esto si queremos mantener el nivel de zoom corriente
+          console.log('MI POSICION')
+          props.map.flyTo(e.latlng, 12);
+        });
+      }).addTo(props.map);
+    }, [props.map]);
+  
 
 return (
 <div className='mapContainer'>
@@ -44,6 +64,7 @@ return (
               arrayScenes={props.arrayScenes}
               currentMarker={props.currentMarker}
               setCurrentMarker={props.setCurrentMarker}
+              prevCurrentMarkertRef={props.prevCurrentMarkertRef}
             />
           </MapContainer  >}
         </div>

@@ -40,7 +40,9 @@ export default function CloudinaryWidget(props) {
                 open();
               }
               return (
-                <button onClick={handleOnClick}>
+                <button
+                className="btn btn-outline btn-info"
+                onClick={handleOnClick}>
                   UPLOAD AN IMAGE
                 </button>
               )

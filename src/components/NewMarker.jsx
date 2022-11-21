@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Marker, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { isEmpty } from "@firebase/util";
@@ -11,8 +11,17 @@ export default function NewMarker(props) {
     const [newMarkerPosition, setNweMarkerPosition] = useState();
     const [toogle, setToogle] = useState(false) // esto sirve solo para que no salga el marker a cada click (CUTRADAAAAA)
 
-    //const leafletMap = useMap();
-
+/*     function updateMapWhenResze(){
+        let timing = 0;
+        const interval = setInterval(updateMap, 10); // cada 10 milisegundos
+        function updateMap() {
+          props.map.invalidateSize();
+          console.log('UPDATE! BOX')
+          timing++;
+          if (timing > 200) { // 100 veces 10 milisegundos son 1s
+            clearInterval(interval);
+          }}
+      } */
 
     useMapEvents({
         click: (e) => {

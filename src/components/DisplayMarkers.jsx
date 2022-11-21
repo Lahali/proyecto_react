@@ -14,9 +14,11 @@ export default function DisplayMarkers(props) {
         });
     }
 
+
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
-        console.log('PAN TO displayMarker')
+         console.log('currentMarker', props.currentMarker)
+         // console.log('props.prevCurrentMarkertRef', props.prevCurrentMarkertRef.current)
         props.setCurrentMarker({
             scene_title: e.sourceTarget.options.scene_title,
             movie_title: e.sourceTarget.options.movie_title,

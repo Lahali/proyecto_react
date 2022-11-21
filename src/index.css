@@ -27,7 +27,7 @@ code {
   
 nav {
   background-color: rgba(255, 255, 255, 30);
-  height: 9.5vh
+  height: 10vh
 }
 
 /* esto es pra la licencia */
@@ -35,9 +35,9 @@ nav {
   display: none;
 } */
 
-.mainContainer{
+/* .mainContainer{
   height: 100vh;
-}
+} */
 
 .mapAndBoxContainer{
   display: flex;

@@ -23,8 +23,8 @@ export default function UploadWidget({ children, onUpload }){
     // about unsigned uploads at: https://cloudinary.com/documentation/upload_images#unsigned_upload
 
     const options = {
-      // sources: ['local', 'url', 'camera', 'facebook'],
-      maxFiles: 5,
+      sources: ['local', 'camera'],
+      maxFiles: 4,
       // poner todo en una carpeta. Ver parametro 'folder'
       cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME, // Ex: mycloudname
       uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET, // Ex: myuploadpreset
