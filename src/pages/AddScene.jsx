@@ -49,9 +49,9 @@ export default function AddScene() {
         type: "Point",
       },
     });
-    setSceneTitle("")
-    setSceneDescription("")
-    setUserSearch("")
+    setSceneTitle("");
+    setSceneDescription("");
+    setUserSearch("");
   };
 
   const scenesRef = collection(database, "scenes");
@@ -62,15 +62,15 @@ export default function AddScene() {
 
   console.log("movieSelected:", movieSelected);
   console.log("coordinates:", coordinates);
-
   console.log("sceneToUpload:", sceneToUpload);
 
   return (
     <>
       <Navbar />
       {/* <div className="bg-base-200 flex items-center justify-center"> */}
-        <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]">
-        <div className="flex flex-col items-center content-center">
+      {/* <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]"> */}
+      <div className="flex flex-col h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]">
+        <div className="flex flex-col items-center">
           <SearchMovie
             moviesResults={moviesResults}
             setMoviesResults={setMoviesResults}
@@ -79,31 +79,33 @@ export default function AddScene() {
             movieSelected={movieSelected}
             setsetMovieSelected={setsetMovieSelected}
           />
-          
-          <label className="label">
-            <span className="label-text">Titula la escena:</span >
+          <div className="w-80 ml-2 mt-3">
+            <label className="label">
+              <span className="label-text text-base">Titula la escena:</span>
             </label>
-            <input
-              className="input input-bordered w-80 my-2 h-10 bg-white mx-2"
-              type="text"
-              onChange={handleChangeSceneTitle}
-            />
+          </div>
+          <input
+            className="input input-bordered w-80 h-10 bg-white mx-2"
+            type="text"
+            onChange={handleChangeSceneTitle}
+          />
         </div>
 
-        <div className="flex flex-col items-center content-center mt-4">
-          <label>
-           <p >...y escribe algo</p> 
-            <textarea
-              className="rounded-3xl border p-3 mt-3 w-80"
-              rows="8"
-              placeholder="escribe algo aqui"
-              onChange={handleChangeSceneDescription}
-            />
-          </label>
+        <div className="flex flex-col items-center content-center mt-2">
+          <div className="w-80 ml-2">
+            <label className="label">
+              <span className="label-text text-base">... y escribe algo</span>
+            </label>
+          </div>
+          <textarea
+            className="rounded-3xl border p-3 mt-1 w-80"
+            rows="10"
+            placeholder="escribe algo aqui"
+            onChange={handleChangeSceneDescription}
+          />
         </div>
-        <div className="flex flex-col items-center self-end">
-
-        <CloudinaryWidget url={url} updateUrl={updateUrl} />
+        <div className="flex flex-col items-center self-center">
+          <CloudinaryWidget url={url} updateUrl={updateUrl} />
         </div>
         <div className="flex flex-col items-center self-center">
           <label>
@@ -118,8 +120,7 @@ export default function AddScene() {
             </button>
           </label>
         </div>
-
-        </div>
+      </div>
 
       {/* </div> */}
     </>
