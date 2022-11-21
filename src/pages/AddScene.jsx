@@ -49,6 +49,9 @@ export default function AddScene() {
         type: "Point",
       },
     });
+    setSceneTitle("")
+    setSceneDescription("")
+    setUserSearch("")
   };
 
   const scenesRef = collection(database, "scenes");
