@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { AuthProvider } from "./components/context/AuthContext";
+import Welcome from "./pages/Welcome";
+import Main from "./pages/Main"
+import Home from "./pages/Home";
+import AddScene from "./pages/AddScene";
+import { Routes, Route} from "react-router-dom";
+
+
+export default function App() {
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<Welcome />} />
+        <Route path="/home" element={<Home />} />
+        <Route path='/main' element={<Main />} />
+        <Route path="/main/:id" element={<Main/>} />
+        <Route path='/AddScene' element={<AddScene />} />
+      </Routes>
+    </AuthProvider>
+  
   );
 }
-
-export default App;
