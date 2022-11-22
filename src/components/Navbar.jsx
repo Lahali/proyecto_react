@@ -29,17 +29,17 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="grid grid-cols-3 drop-shadow">
-        <div className="container flex justify-start p-2 mx-auto mt-2 lg:space-x-4">
+      <nav className="grid grid-cols-3">
+        <div className="container flex justify-start items-center p-2 mx-auto mt-2 lg:space-x-4">
           <Link to="/home">
-            <p className="text-xl font-bold">Home</p>
+            <p className="text-xl font-bold text-primary-content hover:text-primary-focus m-4">Volver</p>
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
           <p className="text-center"></p>
         </div>
         <div className="lg:hidden md:hidden"></div>
-        <div className="flex justify-end p-2">
+        <div className="flex justify-end items-center p-2">
           {/* USUARIO */}
           <div className="relative">
             <label
@@ -56,7 +56,7 @@ const Navbar = (props) => {
             <div
               className={`${
                 isOpen ? "" : "hidden"
-              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[999] shadow md:max-w-xs lg:max-w-xs h-auto bg-white`}
+              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-white`}
               >
               <ul className="space-y-4 mt-3">
                 <li>
@@ -83,34 +83,3 @@ const Navbar = (props) => {
 
 export default Navbar;
 
-{/* BÚSQUEDA */}
-{/* <div className="relative">
-  <input
-    className= 'input input-bordered lg:w-60 w-40 max-w-xs max-h-10 mx-3 mt-2'
-    type="text"
-    placeholder="buscar películas"
-    value={props.filteredTitle}
-    onChange={props.handleChange}
-    onClick={() => setSearchOpen(!searchOpen)}
-  /> */}
-
-{/* MENÚ DROPDOWN BÚSQUEDA */}
-{/* <div className= {`${searchOpen ? "" : "hidden"} right-0 bg-white rounded-md absolute z-[999] shadow w-60`}>
-    <ul className="list-none space-y-4 mt-3"> */}
-{/* hacemos un renderizado condicional xq si el array está undefined, así sigue funcionando */}
-{/* {
-      avoidError
-        ? props.filteredMovies && props.filteredMovies.map((movie) => (
-            <li className="link link-hover m-5" key={movie.title}>
-              {movie.title}
-            </li>
-          ))
-        : props.movies && props.movies.map((movie) => (
-            <li className="link link-hover m-5" key={movie.title}>
-              {movie.title}
-            </li>
-          ))}
-      
-    </ul>
-  </div>
-</div> */}

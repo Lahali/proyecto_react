@@ -6,7 +6,7 @@ const MovieCard = (props) => {
   const getId = props.movieId
   
   return (
-    <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto">
+    <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto hover:bg-base-100">
       <Link to={`/main/${getId}`}>
         <img
           className="h-28 w-auto float-left mr-4 rounded-l-md"

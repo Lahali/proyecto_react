@@ -30,8 +30,8 @@ export default function Box(props) {
       img: props.arrayScenes[nextIndexEscena].properties.img,
       coordinates: props.arrayScenes[nextIndexEscena].geometry.coordinates,
       index: nextIndexEscena,
-      scene_description: props.arrayScenes[nextIndexEscena].properties.scene_description,
-
+      scene_description:
+        props.arrayScenes[nextIndexEscena].properties.scene_description,
     });
     props.map.flyTo(
       props.arrayScenes[nextIndexEscena].geometry.coordinates,
@@ -39,7 +39,6 @@ export default function Box(props) {
       { animate: true, duration: 1 }
     );
   };
-
 
   function updateMapWhenResze() {
     let timing = 0;
@@ -73,12 +72,11 @@ export default function Box(props) {
     }
   };
 
-
   return (
     <>
-      <div className={`${boxStyle()} bg-base-200`}>
+      <div className={`${boxStyle()} bg-base-200 `}>
         <div
-          className="openCloseBox bg-primary rounded-t-lg flex justify-center items-center"
+          className="openCloseBox bg-accent-focus flex justify-center items-center h-6"
           onClick={handleClick}
         >
           {props.boxPosition === "isOpen" ? (
@@ -115,12 +113,12 @@ export default function Box(props) {
         </div>
 
         <div className="p-2">
-          <p className="mx-2 text-md lg:text-lg">
+          <p className="mx-2 mt-3 text-md lg:text-lg text-primary-content">
             {props.currentMarker.movie_title}
           </p>
         </div>
         <div className="p-2 flex justify-between">
-          <p className="mx-2 font-semibold text-lg lg:text-xl ">
+          <p className="mx-2 font-semibold text-lg lg:text-xl text-primary-content">
             {props.currentMarker.scene_title}
           </p>
 
@@ -168,48 +166,33 @@ export default function Box(props) {
         {/* MODAL */}
         <input type="checkbox" id="my-modal-6" className="modal-toggle" />
 
-        <div className="modal modal-bottom sm:modal-middle z-[9999] ">
+        <div className="modal modal-bottom sm:modal-middle z-[9999]">
           <div className="modal-box bg-base-200">
-            <h3 className="font-bold text-lg">
+          <div className="flex justify-end h-8">
+              <label
+                htmlFor="my-modal-6"
+                className="text-primary-content font-bold text-2xl hover:text-primary-focus"
+                // onClick={props.setBoxPosition("isClose")}
+              >
+                X
+              </label>
+            </div>
+            <h3 className="font-bold text-lg text-primary-content">
               {props.currentMarker.movie_title}
             </h3>
-            <h4 className="font-semibold text-lg">
+            <h4 className="font-semibold text-lg text-primary-content">
               {props.currentMarker.scene_title}
             </h4>
 
-            <div className="imgContainer carousel-item relative w-full">
+            <div className="flex flex-col justify-center items-center py-4">
               <img
-                className="mt-4 object-cover w-auto h-"
+                className="w-screen h-auto"
                 src={props.currentMarker.img}
               />
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <button
-                  onClick={() => buttonAction("next")}
-                  className="buttonImg text-white"
-                >
-                  ❮❮
-                </button>
-                <button
-                  onClick={() => buttonAction("next")}
-                  className="buttonImg text-white"
-                >
-                  ❯❯
-                </button>
-              </div>
-            </div>
-            <p className="py-4">
-              {props.currentMarker.scene_description}
-            </p>
 
-            <div className="flex justify-end h-8">
-              <label
-                htmlFor="my-modal-6"
-                className="link modalBox m-2"
-                // onClick={props.setBoxPosition("isClose")}
-              >
-                cerrar
-              </label>
             </div>
+            <p className="py-4 text-primary-content" >{props.currentMarker.scene_description}</p>
+
           </div>
         </div>
       </div>
@@ -217,38 +200,4 @@ export default function Box(props) {
   );
 }
 
-{
-  /* <div className="p-4 absolute flex justify-between transform peer-checked:-translate-y-1/2 left-5 right-5 top-1/2">
-          <svg
-            onClick={() => buttonAction("previous")}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 text-white lg:text-black md:text-black cursor-pointer"
-            >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
-              />
-          </svg>
 
-          <svg
-            onClick={() => buttonAction("next")}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 text-white lg:text-black md:text-black cursor-pointer"
-            >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-              />
-          </svg>
-        </div> */
-}

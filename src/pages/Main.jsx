@@ -54,8 +54,9 @@ useEffect(()=>{
 
 
   return (
+    <>
+    <Navbar />
     <div className="mainContainer">
-      <Navbar />
 
       <div className="mapAndBoxContainer">
         <Map
@@ -77,5 +78,8 @@ useEffect(()=>{
         />
       </div>
     </div>
+    
+    </> 
+    
   );
 }
