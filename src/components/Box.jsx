@@ -34,6 +34,8 @@ export default function Box(props) {
       img: props.arrayScenes[nextIndexEscena].properties.img,
       coordinates: props.arrayScenes[nextIndexEscena].geometry.coordinates,
       index: nextIndexEscena,
+      scene_description: props.arrayScenes[nextIndexEscena].properties.scene_description,
+
     });
     props.map.flyTo(
       props.arrayScenes[nextIndexEscena].geometry.coordinates,
@@ -41,6 +43,8 @@ export default function Box(props) {
       { animate: true, duration: 1 }
     );
   };
+
+  console.log("a ver qué hay aquí...", props.currentMarker)
 
   function updateMapWhenResze() {
     let timing = 0;
@@ -202,8 +206,7 @@ export default function Box(props) {
               </div>
             </div>
             <p className="py-4">
-              Aquí va el texto de la descripción, pero no encuentro cómo
-              conseguirlo
+              {props.currentMarker.scene_description}
             </p>
 
             <div className="flex justify-end h-8">

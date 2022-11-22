@@ -100,7 +100,7 @@ export const MoviesProvider = ({ children }) => {
 
   }, [moviesId]);
 
-  //console.log("monto escenas", scenes);
+  console.log("monto escenas", scenes);
   //console.log("lo estoy intentado...", moviesData);
 
 

@@ -22,11 +22,11 @@ export default function DisplayMarkers(props) {
         props.setCurrentMarker({
             scene_title: e.sourceTarget.options.scene_title,
             movie_title: e.sourceTarget.options.movie_title,
+            scene_description: e.sourceTarget.options.scene_description,
             img: e.sourceTarget.options.img,
             coordinates: e.latlng,
             index: e.target.options.index // esto sirve para el icono
         });
-        console.log("necesito saber qué hay aquí", props.currentMarker)
     }
 
     const getMarkerIcon = index => { // segun el index es icono rojo o azul
