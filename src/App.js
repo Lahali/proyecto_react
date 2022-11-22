@@ -18,6 +18,8 @@ export default function App() {
     <AuthProvider>
       <Routes>
         <Route path='/proyecto_react' element={<Welcome />} />
+        <Route path='/welcome' element={<Welcome />} />
+        <Route path='/' element={<Welcome />} />
         <Route path="/home" element={<Home />} />
         <Route path='/main' element={<Main />} />
         <Route path="/main/:id" element={<Main />} />
