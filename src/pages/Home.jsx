@@ -53,25 +53,30 @@ const [pepe, setPepe] = useState("");
       <Navbar />
       <div className="flex-col items-center p-3 ">
         <h1 className="text-3xl m-3">Esta es la Home</h1>
-        <div className="">
-          <Link to="/main/">
-            <button className="btn btn-outline btn-primary w-60">
-              Todas las peliculas
-            </button>
-          </Link>
           <p className="m-3">
-            Busca en nuestro archivo de {scenes.length} escenas!
+            Busca en nuestro archivo, ya tenemos {scenes.length} escenas y {moviesData.length} películas!
           </p>
+        <div className="flex flex-col justify-center items-center">
           <input
-            className="input input-bordered w-60 max-w-xs my-2"
+            className="input input-bordered w-[315px] max-w-xs my-2"
             type="text"
             placeholder="search..."
             value={searchField}
             onChange={handleChange}
           ></input>
-        </div>
+          <Link to="/main/">
+            <button className="btn btn-outline btn-primary w-[315px] my-3">
+              Ver todas las peliculas y escenas
+            </button>
+          </Link>
+          <Link to="/main/">
+            <button className="btn btn-outline w-[315px] mt-1">
+              Añade una película o escena
+            </button>
+          </Link>
         {/* RESULTADOS BUSCADOR */}
-        <div className="mt-5 max-h-[30rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] bg-base-200 rounded-lg">
+        </div>
+        <div className="mt-5 max-h-[24rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] bg-base-200 rounded-lg">
 
         {filteredMovies.length > 0
           ? filteredMovies.map((movie, index) => {
