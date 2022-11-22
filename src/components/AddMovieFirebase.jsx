@@ -101,18 +101,14 @@ let scene4 = {
       console.log(err.message)
     })
     
-    console.log('database: ', database)
-    console.log('moviesRef: ', moviesRef)
-    console.log('Movies: ', movies);
+
     
     const addToFirebase = () => {
       addDoc(moviesRef, scene1)
       addDoc(moviesRef, scene2)
       addDoc(moviesRef, scene3)
       addDoc(moviesRef, scene4)
-      
-      console.log('aggiunto film')
-      console.log('database', database)
+
     }
     
 
@@ -123,7 +119,6 @@ let scene4 = {
         features: arrayUnion(escena_para_agregar)
       })
       
-      console.log("scene added")
       
       addToFirebase()
       return

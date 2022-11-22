@@ -18,8 +18,7 @@ export default function Map(props) {
 
     const mapURL2 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     
-    console.log('props.triangulation',props.triangulation)
-    console.log('props.map',props.map)
+
 
     // boton "va a tu posicion"
     useEffect(() => {
@@ -28,7 +27,6 @@ export default function Map(props) {
         props.map.locate().on("locationfound", function (e) {
           // setPosition(e.latlng);
           // props.map.flyTo(e.latlng, props.map.getZoom()); // esto si queremos mantener el nivel de zoom corriente
-          console.log('MI POSICION')
           props.map.flyTo(e.latlng, 12);
         });
       }).addTo(props.map);

@@ -57,12 +57,8 @@ export default function AddScene() {
   const scenesRef = collection(database, "scenes");
   useEffect(() => {
     sceneToUpload && addDoc(scenesRef, sceneToUpload);
-    console.log("ESCENA SUBIDA!!!");
   }, [sceneToUpload]);
 
-  console.log("movieSelected:", movieSelected);
-  console.log("coordinates:", coordinates);
-  console.log("sceneToUpload:", sceneToUpload);
 
   return (
     <>

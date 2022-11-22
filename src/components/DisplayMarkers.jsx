@@ -17,7 +17,6 @@ export default function DisplayMarkers(props) {
 
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
-         console.log('currentMarker', props.currentMarker)
          // console.log('props.prevCurrentMarkertRef', props.prevCurrentMarkertRef.current)
         props.setCurrentMarker({
             scene_title: e.sourceTarget.options.scene_title,
@@ -51,6 +50,7 @@ export default function DisplayMarkers(props) {
                 //key={String(coordinates)}
                 scene_title={properties.scene_title}
                 movie_title={properties.movie_title}
+                scene_description={properties.scene_description}
                 img={properties.img}
                 position={coordinates} // la propiedad tiene que ser position!
                 eventHandlers={{

@@ -44,15 +44,14 @@ export default function Main() {
       let myPoints = arrayScenes.map(scene=>{
       return scene.geometry.coordinates
     })
-    console.log('myPoints,', myPoints)
     let myBounds = new L.LatLngBounds(myPoints);
-    console.log('myBounds,', myBounds)
     setTriangulation(myBounds);
   }}
 
 useEffect(()=>{
   fTriangulation();
 }, [arrayScenes])
+
 
   return (
     <div className="mainContainer">

@@ -29,7 +29,6 @@ export const MoviesProvider = ({ children }) => {
         snapshot.docs.forEach((doc) => {
           scenes.push({ ...doc.data() }); // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
           setScenes(scenes);
-          console.log("useEffect!!!");
         });
       })
       .catch((err) => {
@@ -100,7 +99,6 @@ export const MoviesProvider = ({ children }) => {
 
   }, [moviesId]);
 
-  console.log("monto escenas", scenes);
   //console.log("lo estoy intentado...", moviesData);
 
 

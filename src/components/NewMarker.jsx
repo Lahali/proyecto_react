@@ -25,7 +25,6 @@ export default function NewMarker(props) {
 
     useMapEvents({
         click: (e) => {
-            console.log('CLICK newMarker')
 
                 props.setCurrentMarker({})
                 setNweMarkerPosition(e.latlng);

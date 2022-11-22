@@ -24,7 +24,6 @@ export default function SearchMovie(props) {
       .then((res) => res.json())
       .then((data) => {
         props.setMoviesResults(data.results);
-        console.log("DATA! ", data.results); // guardar titulo, ID
       });
   }, [props.userSearch]);
 

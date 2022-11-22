@@ -40,14 +40,12 @@ export default function Box(props) {
     );
   };
 
-  console.log("a ver qué hay aquí...", props.currentMarker)
 
   function updateMapWhenResze() {
     let timing = 0;
     const interval = setInterval(updateMap, 10); // cada 10 milisegundos
     function updateMap() {
       props.map.invalidateSize();
-      console.log("UPDATE! BOX");
       timing++;
       if (timing > 200) {
         // 100 veces 10 milisegundos son 1s
@@ -67,16 +65,14 @@ export default function Box(props) {
   // esto para elijir entre las tres clases del "box"
   const boxStyle = () => {
     if (isEmpty(props.currentMarker)) {
-      console.log("isEmpty!!!!!!!!!!");
       return "boxHidden";
     } else if (props.boxPosition === "isOpen") {
-      // console.log('boxOpen');
       return "boxOpen";
     } else {
-      // console.log('boxClosed');
       return "boxClosed";
     }
   };
+
 
   return (
     <>
