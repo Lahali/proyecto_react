@@ -1,9 +1,5 @@
-import up from "../media/up.svg";
-import down from "../media/down.svg";
-import NavigateButtons from "./NavigateButtons";
 import { isEmpty } from "@firebase/util";
 import "../style_Box.css"; // lo importo solo aqui de momento!
-import { connectFirestoreEmulator } from "firebase/firestore";
 
 export default function Box(props) {
   //funciones de activación de los botones
