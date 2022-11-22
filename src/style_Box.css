@@ -1,5 +1,5 @@
 .openCloseBox{
-    height: 2.5rem;
+    /* height: 2.5rem; */
   }
   
   .boxOpen{
@@ -19,8 +19,8 @@
 
   .imgContainer{
     text-align: center;
-
     height: 30vh;
+    align-items: center;
   }
 
   .imgScene{

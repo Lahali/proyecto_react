@@ -33,8 +33,9 @@ export default function Map(props) {
     }, [props.map]);
   
 
+
 return (
-<div className='mapContainer'>
+ <div className= 'mapContainer'>
   {/* para cargar esperamos de recibir los datos de triangulation */}
           {props.triangulation &&
           <MapContainer // este componente de React-Leaflet crea el mapa
