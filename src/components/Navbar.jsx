@@ -56,7 +56,7 @@ const Navbar = (props) => {
             <div
               className={`${
                 isOpen ? "" : "hidden"
-              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-white`}
+              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-base`}
               >
               <ul className="space-y-4 mt-3">
                 <li>

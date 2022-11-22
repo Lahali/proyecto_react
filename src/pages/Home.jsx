@@ -86,6 +86,8 @@ const [pepe, setPepe] = useState("");
                   getMovieTitle={movie.title}
                   getMoviePoster={movie.poster}
                   movieId={movie.id}
+                  getMovieRating={movie.rating}
+
                   />
                   );
                 })
@@ -95,9 +97,9 @@ const [pepe, setPepe] = useState("");
                     key={index}
                     getMovieTitle={movie.title}
                     getMoviePoster={movie.poster}
-                    getMovieDate={movie.date}
                     getMovieScenes={movie.scenes}
                     movieId={movie.id}
+                    getMovieRating={movie.rating}
                 />
               );
             })}
