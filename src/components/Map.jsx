@@ -43,7 +43,8 @@ return (
             //center={[41.4, 2.17]}
             // zoom={12}
             scrollWheelZoom={true}
-            bounds={props.triangulation}
+            bounds={props.triangulation} // ALGUN ERROR POR AQUI?
+            boundsOptions={{ padding: [50, 50] }}
             attributionControl={false} // quitamos la atribucion
           >
               <TileLayer // componenete de React-Leaflet para decidir el mapa (url) 
