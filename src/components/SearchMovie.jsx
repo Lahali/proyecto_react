@@ -31,11 +31,16 @@ export default function SearchMovie(props) {
     props.setUserSearch(e.target.value);
   };
 
+
   return (
     <>
-      <div className="">
-        <label>
-          <p>Busca la peli:</p>
+      <div>
+        <div classclassName="w-80 ml-2 mt-3">
+
+        <label className="label">
+          <span className="label-text text-base">Busca la peli:</span>
+          </label>
+        </div>
           <input
             className="input input-bordered w-80 my-2 h-10 bg-white mx-2"
             type="text"
@@ -47,7 +52,6 @@ export default function SearchMovie(props) {
             }
             onClick={() => setOpenSearch(!openSearch)}
           />
-        </label>
 
         {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es la combinación relative-absolute!*/}
         {/* el listado lo enseño solo si hay los resultado y aun no he elegido un titulo.
