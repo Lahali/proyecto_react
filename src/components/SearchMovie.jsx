@@ -36,7 +36,7 @@ export default function SearchMovie(props) {
   return (
     <>
       <div>
-        <div classclassName="w-80 ml-2 mt-3">
+        <div className="w-80 ml-2 mt-3">
 
         <label className="label">
           <span className="label-text text-base">Busca la peli:</span>
@@ -47,6 +47,7 @@ export default function SearchMovie(props) {
             type="text"
             onChange={handleChange}
             disabled={props.movieSelected}
+            required
             /* mientras tecleo me enseña lo que tecleo, si escojo una peli me enseña solo esa */
             value={
               props.movieSelected ? props.movieSelected.title : props.userSearch
