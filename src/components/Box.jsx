@@ -74,7 +74,7 @@ export default function Box(props) {
 
   return (
     <>
-      <div className={`${boxStyle()} bg-base-200 `}>
+      <div className={`${boxStyle()} bg-gray-100 `}>
         <div
           className="openCloseBox bg-accent-focus flex justify-center items-center h-6"
           onClick={handleClick}
@@ -113,12 +113,12 @@ export default function Box(props) {
         </div>
 
         <div className="p-2">
-          <p className="mx-2 mt-3 text-md lg:text-lg text-primary-content">
+          <p className="mx-2 mt-3 text-md lg:text-lg text-gray-700">
             {props.currentMarker.movie_title}
           </p>
         </div>
         <div className="p-2 flex justify-between">
-          <p className="mx-2 font-semibold text-lg lg:text-xl text-primary-content">
+          <p className="mx-2 font-semibold text-lg lg:text-xl text-gray-700">
             {props.currentMarker.scene_title}
           </p>
 
@@ -128,7 +128,7 @@ export default function Box(props) {
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="currentColor"
+              stroke="black"
               className="w-8 h-8"
             >
               <path
@@ -167,20 +167,20 @@ export default function Box(props) {
         <input type="checkbox" id="my-modal-6" className="modal-toggle" />
 
         <div className="modal modal-bottom sm:modal-middle z-[9999]">
-          <div className="modal-box bg-base-200">
+          <div className="modal-box bg-gray-100">
           <div className="flex justify-end h-8">
               <label
                 htmlFor="my-modal-6"
-                className="text-primary-content font-bold text-2xl hover:text-primary-focus"
+                className="text-gray-700 font-bold text-2xl hover:text-secondary-focus"
                 // onClick={props.setBoxPosition("isClose")}
               >
                 X
               </label>
             </div>
-            <h3 className="font-bold text-lg text-primary-content">
+            <h3 className="font-bold text-lg text-gray-700">
               {props.currentMarker.movie_title}
             </h3>
-            <h4 className="font-semibold text-lg text-primary-content">
+            <h4 className="font-semibold text-lg text-gray-700">
               {props.currentMarker.scene_title}
             </h4>
 
@@ -191,7 +191,7 @@ export default function Box(props) {
               />
 
             </div>
-            <p className="py-4 text-primary-content" >{props.currentMarker.scene_description}</p>
+            <p className="py-4 text-gray-700" >{props.currentMarker.scene_description}</p>
 
           </div>
         </div>

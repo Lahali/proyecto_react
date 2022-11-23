@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { itMatchesOne } from "daisyui/src/lib/postcss-prefixer/utils";
 import { getDocs } from "firebase/firestore";
 import { useEffect } from "react";
@@ -13,17 +14,18 @@ import Navbar from "../components/Navbar";
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const { moviesData, scenes  } = useGetData();
+  const { moviesData, scenes, setMoviesData } = useGetData();
 
-  const [repeated, setRepeated] = useState(0)
-
-const [pepe, setPepe] = useState("");
+  const [repeated, setRepeated] = useState(0);
 
 
-  scenes.sort((a, b) => {
-        return a.properties.TMDB_ID - b.properties.TMDB_ID
-      })
 
+  //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
+  // buscar xq el componente no es reactivo, hay un fallo de renderización
+  const [pepe, setPepe] = useState("");
+  useEffect(() => {
+    setTimeout(() => setPepe("pepe"), 3000);
+  });
 
 
   // LÓGICA DEL BUSCADOR
@@ -35,73 +37,74 @@ const [pepe, setPepe] = useState("");
     });
     setFilteredMovies(resultFilter);
   };
- 
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
     getFilter(e.target.value);
   };
 
-  //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
-  useEffect(() => {
-    setTimeout(() => setPepe("pepe"), 1000);
-  });
 
-  // buscar xq el componente no es reactivo, hay un fallo de renderización
   return (
     <>
       <Navbar />
-      <div className="flex-col items-center p-3 ">
-        <h1 className="text-3xl m-3">Esta es la Home</h1>
-          <p className="m-3">
-            Busca en nuestro archivo, ya tenemos {scenes.length} escenas y {moviesData.length} películas!
-          </p>
+      <div className="flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b h-screen">
+        <h1 className="text-3xl m-3 text-gray-400">Esta es la Home</h1>
+        <p className="m-3 text-gray-400">
+          Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
+          {moviesData.length} películas!
+        </p>
         <div className="flex flex-col justify-center items-center">
           <input
             className="input input-bordered w-[315px] max-w-xs my-2"
             type="text"
-            placeholder="search..."
+            placeholder="busca las películas ya registradas"
             value={searchField}
             onChange={handleChange}
           ></input>
-          <Link to="/main/">
-            <button className="btn btn-outline btn-primary w-[315px] my-3">
+          {/* <Link to="/main/">
+            <button className="btn btn-outline btn-accent w-[315px] my-3">
               Ver todas las peliculas y escenas
             </button>
-          </Link>
+          </Link> */}
           <Link to="/main/">
-            <button className="btn btn-outline w-[315px] mt-1">
+            <button className="btn  btn-secondary w-[315px] mt-1">
               Añade una película o escena
             </button>
           </Link>
-        {/* RESULTADOS BUSCADOR */}
+          {/* RESULTADOS BUSCADOR */}
         </div>
-        <div className="mt-5 max-h-[24rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] bg-base-200 rounded-lg">
-
-        {filteredMovies.length > 0
-          ? filteredMovies.map((movie, index) => {
-              return (
-                <MovieCard
-                  key={index}
-                  getMovieTitle={movie.title}
-                  getMoviePoster={movie.poster}
-                  movieId={movie.id}
-                  />
-                  );
-                })
-                : moviesData.map((movie, index) => {
-                  return (
-                    <MovieCard
+        {/* QUITAR CAJA CON SCROLL */}
+        <div className="mt-5 max-h-[24rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] rounded-lg">
+          {filteredMovies.length > 0
+            ? filteredMovies.map((movie, index) => {
+                return (
+                  <MovieCard
                     key={index}
                     getMovieTitle={movie.title}
                     getMoviePoster={movie.poster}
-                    getMovieDate={movie.date}
+                    movieId={movie.id}
+                    getMovieRating={movie.rating}
+                  />
+                );
+              })
+            : moviesData.map((movie, index) => {
+                return (
+                  <MovieCard
+                    key={index}
+                    getMovieTitle={movie.title}
+                    getMoviePoster={movie.poster}
                     getMovieScenes={movie.scenes}
                     movieId={movie.id}
-                />
-              );
-            })}
+                    getMovieRating={movie.rating}
+                  />
+                );
+              })}
         </div>
+        <Link to="/main/">
+            <button className="btn btn-outline btn-accent w-[315px] my-3">
+              Ver las peliculas y escenas en el mapa
+            </button>
+          </Link>
       </div>
     </>
   );

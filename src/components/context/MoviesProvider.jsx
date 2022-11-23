@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { connectFirestoreEmulator, getDocs } from "firebase/firestore";
+import {getDocs } from "firebase/firestore";
 import { scenesRef } from "../firebase/firebaseConfig";
-import { useParams } from "react-router-dom";
-import { async } from "@firebase/util";
+
 
 const moviesContext = React.createContext();
 
@@ -17,7 +16,7 @@ export const MoviesProvider = ({ children }) => {
   const [moviesId, setMoviesId] = useState([]);
   // esto viene de la api
   const [moviesData, setMoviesData] = useState([
-    { title: "", id: "", poster: "", scenes: 0 },
+    { title: "", id: "", poster: "", scenes: 0, rating: 0 },
   ]);
 
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
@@ -50,6 +49,7 @@ export const MoviesProvider = ({ children }) => {
     setMoviesId(movieList);
   }, [scenes]);
 
+  
 
   // ==> ESTA FUNCIONALIDAD CREO QUE ESTABA REPETIDA!!
 
@@ -73,6 +73,30 @@ export const MoviesProvider = ({ children }) => {
     moviesData.sort((a, b) => a.id - b.id)
   }
 
+  const compareData = () => {
+    scenes.map((item) => {
+      moviesData.map((movie) => {
+        if(item.properties.TMDB_ID === movie.id){
+           setMoviesData({...moviesData, scenes: +1})
+        }
+      })
+    })
+  }
+
+  const compareOtherWay = () => {
+    let data = []
+    scenes.forEach((item, index) => {
+      moviesData.forEach((movie, index) =>{
+        if(item[index].properties.TMDB_ID === movie[index].id) {
+         data.push({...moviesData, scenes: +1})
+        }
+      })
+    })
+    setMoviesData(data)
+  }
+
+
+
 
  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
@@ -90,16 +114,17 @@ export const MoviesProvider = ({ children }) => {
           title: movie.original_title,
           id: movie.id,
           poster: movie.poster_path,
-          scenes: +1
+          scenes: +1,
+          rating: movie.vote_average
         });
       };
       getMovieData();
     }
     Promise.all(data).then(setMoviesData(data));
-
   }, [moviesId]);
 
-  //console.log("lo estoy intentado...", moviesData);
+console.log("a ver ahora...", moviesData)
+
 
 
   return (
