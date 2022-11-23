@@ -8,42 +8,42 @@ import * as L from "leaflet";
 
 
 export default function Main() {
+  
   const { scenes } = useGetData();
   const [arrayScenes, setArrayScenes] = useState(); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
   const [boxPosition, setBoxPosition] = useState("isHidden");
-
+  
   const [triangulation, setTriangulation] = useState() // aqui el centro y nivel de zoom
-
+  
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
 
-
   const filtered = () => {
-
-    // ==> AQUÍ HAY QUE MIRAR QUE EL TMDB_ID PASARLO A NUMBER
-    const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
-
     if(!id) {
-      return setArrayScenes(scenes)
+      setArrayScenes(scenes)
     } else {
-      return setArrayScenes(scenesFiltered)
+      const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
+      setArrayScenes(scenesFiltered)
     }
   };
-
-
   
   useEffect(() => {
     filtered()
-  }, []);
-
+  }, [scenes], [id]);
 
   function fTriangulation() {
-    if (arrayScenes) {
+    console.log('TRIANGULATION')
+    if (!id) {
+      let myBounds = new L.LatLngBounds([[41.355,-4],[43,2.2]]);
+      setTriangulation(myBounds);
+    }
+    else if (arrayScenes && arrayScenes.length>0) {
+    // else {
       let myPoints = arrayScenes.map(scene=>{
-      return scene.geometry.coordinates
-    })
+        return scene.geometry.coordinates
+      })
     let myBounds = new L.LatLngBounds(myPoints);
     setTriangulation(myBounds);
   }}

@@ -1,3 +1,4 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { collection, addDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import Navbar from "../components/Navbar";
 import SearchMovie from "../components/SearchMovie";
 
 export default function AddScene() {
+
   const location = useLocation();
   const { latlng } = location.state; //hay problemas con esto si al dar al boton cambia la url
 
@@ -17,12 +19,12 @@ export default function AddScene() {
   const [sceneTitle, setSceneTitle] = useState("");
   const [sceneDescription, setSceneDescription] = useState("");
   const [url, updateUrl] = useState();
-
-  const [sceneToUpload, setSceneToUpload] = useState();
-
   // por el componente SearchMovie
   const [moviesResults, setMoviesResults] = useState([]);
   const [userSearch, setUserSearch] = useState(""); // lo que vamos tecleando en el input
+
+  const [sceneToUpload, setSceneToUpload] = useState();
+  
 
   const handleChangeSceneTitle = (e) => {
     setSceneTitle(e.target.value);
@@ -32,6 +34,11 @@ export default function AddScene() {
   };
 
   const handleSubmit = () => {
+    // if (url === undefined || sceneTitle.length<1 || movieSelected === undefined || sceneDescription<1 || url===undefined){
+    //   console.log('MANCANO DATI')
+    //   return;
+    // }
+
     setSceneToUpload({
       type: "Feature",
       properties: {
@@ -59,6 +66,20 @@ export default function AddScene() {
     sceneToUpload && addDoc(scenesRef, sceneToUpload);
   }, [sceneToUpload]);
 
+const  botonEnviarStyle =() => {
+if (url === undefined || sceneTitle.length<1 || movieSelected === undefined || sceneDescription<1) {
+  return "btn-disabled"
+} else {
+  return
+}
+}
+
+console.log('coordinates:', coordinates)
+console.log('movieSelected:', movieSelected)
+console.log('sceneTitle:', sceneTitle)
+console.log('sceneDescription:', sceneDescription)
+console.log('url:', url)
+console.log('sceneToUpload:', sceneToUpload)
 
   return (
     <>
@@ -108,19 +129,24 @@ export default function AddScene() {
             {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
             {/* si aqui no pongo type='button' se comporta como un submit */}
             <button
-              className="btn w-80 btn-primary mt-5 "
+              className={`${botonEnviarStyle()} btn w-80 btn-primary mt-5 `}
               type="button"
               onClick={handleSubmit}
             >
               ENVIAR
             </button>
           </label>
+              {/* <div className="alert alert-warning shadow-lg">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                  <span>compila todos los campos y sube una imagen!</span>
+                </div>
+              </div> */}
         </div>
       </div>
 
-      {/* </div> */}
     </>
-  );
+  )
 }
 
 // ejemplo de objecto escena que hay que subir:

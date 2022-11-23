@@ -32,7 +32,8 @@ export default function Map(props) {
       }).addTo(props.map);
     }, [props.map]);
   
-
+// console.log('MAP props.triangulation',props.triangulation)
+// console.log('typeof(MAP props.triangulation',typeof(props.triangulation))
 
 return (
  <div className= 'mapContainer'>
@@ -43,7 +44,8 @@ return (
             //center={[41.4, 2.17]}
             // zoom={12}
             scrollWheelZoom={true}
-            bounds={props.triangulation}
+            bounds={props.triangulation} // ALGUN ERROR POR AQUI?
+            boundsOptions={{ padding: [50, 50] }}
             attributionControl={false} // quitamos la atribucion
           >
               <TileLayer // componenete de React-Leaflet para decidir el mapa (url) 
