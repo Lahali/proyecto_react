@@ -73,6 +73,30 @@ export const MoviesProvider = ({ children }) => {
     moviesData.sort((a, b) => a.id - b.id)
   }
 
+  const compareData = () => {
+    scenes.map((item) => {
+      moviesData.map((movie) => {
+        if(item.properties.TMDB_ID === movie.id){
+           setMoviesData({...moviesData, scenes: +1})
+        }
+      })
+    })
+  }
+
+  const compareOtherWay = () => {
+    let data = []
+    scenes.forEach((item, index) => {
+      moviesData.forEach((movie, index) =>{
+        if(item[index].properties.TMDB_ID === movie[index].id) {
+         data.push({...moviesData, scenes: +1})
+        }
+      })
+    })
+    setMoviesData(data)
+  }
+
+
+
 
  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
@@ -99,7 +123,7 @@ export const MoviesProvider = ({ children }) => {
     Promise.all(data).then(setMoviesData(data));
   }, [moviesId]);
 
-console.log("escenitas", moviesData)
+console.log("a ver ahora...", moviesData)
 
 
 

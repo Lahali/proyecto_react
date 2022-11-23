@@ -29,10 +29,10 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="bg-gray-900 grid grid-cols-3">
+      <nav className="bg-gray-300 grid grid-cols-3">
         <div className="container flex justify-start items-center p-2 mx-auto mt-2 lg:space-x-4">
           <Link to="/home">
-            <p className="text-xl font-bold text-neutral-content hover:text-secondary m-4">Volver</p>
+            <p className="text-xl font-bold text-gray-900 hover:text-secondary m-4">Volver</p>
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">

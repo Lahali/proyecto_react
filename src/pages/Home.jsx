@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { itMatchesOne } from "daisyui/src/lib/postcss-prefixer/utils";
 import { getDocs } from "firebase/firestore";
 import { useEffect } from "react";
@@ -13,15 +14,19 @@ import Navbar from "../components/Navbar";
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const { moviesData, scenes } = useGetData();
+  const { moviesData, scenes, setMoviesData } = useGetData();
 
   const [repeated, setRepeated] = useState(0);
 
-  const [pepe, setPepe] = useState("");
 
-  scenes.sort((a, b) => {
-    return a.properties.TMDB_ID - b.properties.TMDB_ID;
+
+  //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
+  // buscar xq el componente no es reactivo, hay un fallo de renderización
+  const [pepe, setPepe] = useState("");
+  useEffect(() => {
+    setTimeout(() => setPepe("pepe"), 3000);
   });
+
 
   // LÓGICA DEL BUSCADOR
   const getFilter = (searchField) => {
@@ -38,12 +43,7 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
-  //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
-  useEffect(() => {
-    setTimeout(() => setPepe("pepe"), 1000);
-  });
 
-  // buscar xq el componente no es reactivo, hay un fallo de renderización
   return (
     <>
       <Navbar />
@@ -57,22 +57,23 @@ export default function Home(props) {
           <input
             className="input input-bordered w-[315px] max-w-xs my-2"
             type="text"
-            placeholder="search..."
+            placeholder="busca las películas ya registradas"
             value={searchField}
             onChange={handleChange}
           ></input>
-          <Link to="/main/">
+          {/* <Link to="/main/">
             <button className="btn btn-outline btn-accent w-[315px] my-3">
               Ver todas las peliculas y escenas
             </button>
-          </Link>
+          </Link> */}
           <Link to="/main/">
-            <button className="btn btn-outline btn-secondary w-[315px] mt-1">
+            <button className="btn  btn-secondary w-[315px] mt-1">
               Añade una película o escena
             </button>
           </Link>
           {/* RESULTADOS BUSCADOR */}
         </div>
+        {/* QUITAR CAJA CON SCROLL */}
         <div className="mt-5 max-h-[24rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] rounded-lg">
           {filteredMovies.length > 0
             ? filteredMovies.map((movie, index) => {
@@ -99,6 +100,11 @@ export default function Home(props) {
                 );
               })}
         </div>
+        <Link to="/main/">
+            <button className="btn btn-outline btn-accent w-[315px] my-3">
+              Ver las peliculas y escenas en el mapa
+            </button>
+          </Link>
       </div>
     </>
   );

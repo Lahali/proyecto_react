@@ -6,6 +6,8 @@ const MovieCard = (props) => {
   const getId = props.movieId;
   const rating = props.getMovieRating.toFixed(2);
 
+  
+
   return (
     <div className="bg-gray-800 h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto hover:bg-gray-900
     ">
@@ -18,7 +20,7 @@ const MovieCard = (props) => {
         />
 
         <div className="flex flex-col content-between h-full p-2">
-          <h2 className="card-title text-gray-400">{props.getMovieTitle}</h2>
+          <h2 className="card-title text-gray-400 leading-5">{props.getMovieTitle}</h2>
           <p className="mt-2 text-gray-400">
             Número de escenas: {props.getMovieScenes}
           </p>
