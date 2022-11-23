@@ -32,7 +32,8 @@ export default function Map(props) {
       }).addTo(props.map);
     }, [props.map]);
   
-
+// console.log('MAP props.triangulation',props.triangulation)
+// console.log('typeof(MAP props.triangulation',typeof(props.triangulation))
 
 return (
  <div className= 'mapContainer'>
