@@ -123,7 +123,7 @@ export const MoviesProvider = ({ children }) => {
     Promise.all(data).then(setMoviesData(data));
   }, [moviesId]);
 
-console.log("a ver ahora...", moviesData)
+// console.log("a ver ahora...", moviesData)
 
 
 
