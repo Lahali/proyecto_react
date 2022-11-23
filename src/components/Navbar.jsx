@@ -29,10 +29,10 @@ const Navbar = (props) => {
 
   return (
     <>
-      <nav className="grid grid-cols-3">
+      <nav className="bg-gray-900 grid grid-cols-3">
         <div className="container flex justify-start items-center p-2 mx-auto mt-2 lg:space-x-4">
           <Link to="/home">
-            <p className="text-xl font-bold text-primary-content hover:text-primary-focus m-4">Volver</p>
+            <p className="text-xl font-bold text-neutral-content hover:text-secondary m-4">Volver</p>
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
@@ -56,17 +56,17 @@ const Navbar = (props) => {
             <div
               className={`${
                 isOpen ? "" : "hidden"
-              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-base`}
+              } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-gray-900`}
               >
               <ul className="space-y-4 mt-3">
                 <li>
-                  <button className=" w-full p-2 rounded-full hover:bg-base-200 m-2">
-                    <label htmlFor="my-modal-signup">Signup</label>
+                  <button className=" w-full p-2 rounded-full text-neutral-content hover:bg-base-200 hover:text-secondary m-2">
+                    <label htmlFor="my-modal-signup ">Signup</label>
                   </button>
                 </li>
                 <li>
-                  <button className=" w-full p-2 rounded-full hover:bg-base-200 m-2">
-                    <label htmlFor="my-modal-login">Login</label>
+                  <button className=" w-full p-2 rounded-full text-neutral-content hover:text-secondary hover:bg-base-200 m-2">
+                    <label htmlFor="my-modal-login ">Login</label>
                   </button>
                 </li>
               </ul>

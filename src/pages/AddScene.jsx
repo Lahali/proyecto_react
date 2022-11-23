@@ -81,7 +81,7 @@ export default function AddScene() {
             </label>
           </div>
           <input
-            className="input input-bordered w-80 h-10 bg-white mx-2"
+            className="input input-bordered w-80 h-10 mx-2"
             type="text"
             onChange={handleChangeSceneTitle}
           />

@@ -29,6 +29,7 @@ export default function SearchMovie(props) {
 
   const handleChange = (e) => {
     props.setUserSearch(e.target.value);
+    setOpenSearch(true)
   };
 
   return (
@@ -37,7 +38,7 @@ export default function SearchMovie(props) {
         <label>
           <p>Busca la peli:</p>
           <input
-            className="input input-bordered w-80 my-2 h-10 bg-white mx-2"
+            className="input input-bordered w-80 my-2 h-10 mx-2"
             type="text"
             onChange={handleChange}
             disabled={props.movieSelected}
@@ -45,7 +46,6 @@ export default function SearchMovie(props) {
             value={
               props.movieSelected ? props.movieSelected.title : props.userSearch
             }
-            onClick={() => setOpenSearch(!openSearch)}
           />
         </label>
 
@@ -56,14 +56,14 @@ export default function SearchMovie(props) {
           <div
             className={`${
               openSearch ? "" : "hidden"
-            } absolute bg-white p-3 max-h-[40rem] w-[19rem] shadow rounded-lg flex flex-col items-left overflow-scroll`}
+            } absolute bg-gray-400 p-3 max-h-[40rem] w-[19rem] shadow rounded-lg flex flex-col items-left overflow-scroll`}
           >
             {props.moviesResults &&
               !props.movieSelected &&
               props.moviesResults.map((movie) => {
                 return (
                   // AÑADÍ ONCLICK PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK
-                  <ul className="btn btn-ghost hover:btn-link my-1" onClick={() => setOpenSearch(!openSearch)}>
+                  <ul className="hover:btn-link my-1" onClick={() => setOpenSearch(!openSearch)}>
                     <li>
                       <a
                         onClick={() =>
