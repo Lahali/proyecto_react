@@ -4,7 +4,20 @@ import { useGetData } from "./context/MoviesProvider";
 
 const MovieCard = (props) => {
   const getId = props.movieId
-  
+  const { scenes  } = useGetData();
+
+//ASÍ APROVECHAMOS EL MAP DE LA HOME
+function number (){
+  let scenesLength = scenes.length;
+  let numScene = 0;
+  for (let i=0; i<scenesLength; i++){
+    if (scenes[i].properties.TMDB_ID === getId){
+      numScene++;
+    }
+  }
+  return numScene;
+}
+
   return (
     <div className="bg-white h-28 shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech overflow-auto hover:bg-base-100">
       <Link to={`/main/${getId}`}>
@@ -15,7 +28,7 @@ const MovieCard = (props) => {
         />
         <div className="mx-3 p-4">
           <h2 className="card-title">{props.getMovieTitle}</h2>
-          <p>Número de escenas: {props.getMovieScenes}</p>
+          <p>Número de escenas: {number()}</p>
         </div>
       </Link>
     </div>
