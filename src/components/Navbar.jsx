@@ -1,6 +1,3 @@
-import { async } from "@firebase/util";
-import { getByTitle } from "@testing-library/react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Login from "../pages/Login";
@@ -19,10 +16,8 @@ const Navbar = (props) => {
     await logout;
   };
 
-  const {id} = useParams()
-  const {moviesData} = useGetData()
-
-  
+  const { id } = useParams();
+  const { moviesData } = useGetData();
 
   // esto es para evitar que dé errores al cargar esta página
   const avoidError = props.filteredMovies ? props.filteredMovies.length : 0;
@@ -32,7 +27,9 @@ const Navbar = (props) => {
       <nav className="bg-gray-300 grid grid-cols-3">
         <div className="container flex justify-start items-center p-2 mx-auto mt-2 lg:space-x-4">
           <Link to="/home">
-            <p className="text-xl font-bold text-gray-900 hover:text-secondary m-4">Volver</p>
+            <p className="text-xl font-bold text-gray-900 hover:text-secondary m-4">
+              Volver
+            </p>
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
@@ -46,7 +43,7 @@ const Navbar = (props) => {
               // tabIndex={0}
               className="btn btn-ghost btn-circle avatar"
               onClick={() => setIsOpen(!isOpen)}
-              >
+            >
               <div className="w-10 rounded-full">
                 <img src="https://placeimg.com/80/80/people" />
               </div>
@@ -57,17 +54,23 @@ const Navbar = (props) => {
               className={`${
                 isOpen ? "" : "hidden"
               } lg:mt-2 md:mt-2 right-0 w-screen rounded-md p-3 absolute z-[9999] shadow md:max-w-xs lg:max-w-xs h-auto bg-gray-900`}
-              >
+            >
               <ul className="space-y-4 mt-3">
                 <li>
-                  <button className=" w-full p-2 rounded-full text-neutral-content hover:bg-base-200 hover:text-secondary m-2">
-                    <label htmlFor="my-modal-signup ">Signup</label>
-                  </button>
+                  <label
+                    className="btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2"
+                    htmlFor="my-modal-signup"
+                  >
+                    Signup
+                  </label>
                 </li>
                 <li>
-                  <button className=" w-full p-2 rounded-full text-neutral-content hover:text-secondary hover:bg-base-200 m-2">
-                    <label htmlFor="my-modal-login ">Login</label>
-                  </button>
+                  <label
+                    className="btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2"
+                    htmlFor="my-modal-login"
+                  >
+                    Login
+                  </label>
                 </li>
               </ul>
             </div>
@@ -82,4 +85,3 @@ const Navbar = (props) => {
 };
 
 export default Navbar;
-

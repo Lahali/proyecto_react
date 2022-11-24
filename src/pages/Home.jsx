@@ -1,12 +1,7 @@
-import { data } from "autoprefixer";
-import { itMatchesOne } from "daisyui/src/lib/postcss-prefixer/utils";
-import { getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import AddMovieFirebase from "../components/AddMovieFirebase";
 import { useGetData } from "../components/context/MoviesProvider";
-import { scenesRef } from "../components/firebase/firebaseConfig";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import iconoMapa from "../icon/iconoMapaDark.svg";
@@ -41,14 +36,10 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
-  return (
+  return ( 
     <>
       <Navbar />
-      <div className="relative flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b h-fit">
-        <button className="flex flex-col justify-center items-center p-3 sticky bottom-0 btn btn-accent h-auto w-fit my-3">
-          PRUEBA DE UBICACIÓN
-          <img src={iconoMapa} className="h-8 m-2" />
-        </button>
+      <div className="relative flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b bg-repeat h-fit">
         <h1 className="text-3xl m-3 text-gray-400">Esta es la Home</h1>
         <p className="m-3 text-gray-400">
           Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
@@ -102,7 +93,7 @@ export default function Home(props) {
               })}
           {/* PARA QUE FUNCIONE EL STICKY, TIENE QUE ESTAR DENTRO DE UN DIV RELATIVE*/}
           <Link to="/main/">
-            <button className="flex flex-col justify-center items-center p-3 sticky bottom-10 btn btn-accent h-auto w-fit my-3">
+            <button className="flex flex-col justify-center items-center p-3 sticky bottom-10 right-0 btn btn-accent h-auto w-fit my-3">
               Ir al mapa
               <img src={iconoMapa} className="h-8 m-2" />
             </button>

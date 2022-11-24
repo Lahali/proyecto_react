@@ -5,14 +5,14 @@ const Signup = ({isOpen, setIsOpen}) => {
   const { handleChange, handleSubmit, error } = useAuth();
 
   return (
-    <div>
+    <div >
       <input type="checkbox" id="my-modal-signup" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box bg-gray-900">
           <div className="modal-action">
             <label
               htmlFor="my-modal-signup"
-              className="text-primary font-bold text-2xl hover:text-primary-content"
+              className="text-secondary font-bold text-2xl hover:text-secondary-content"
               onClick={() => setIsOpen(!isOpen)}
             >
               X
@@ -47,7 +47,7 @@ const Signup = ({isOpen, setIsOpen}) => {
             />
             <button
               type="submit"
-              className="btn btn-primary my-8 w-full max-w-xs"
+              className="btn btn-secondary my-8 w-full max-w-xs"
             >
               Registrarse
             </button>
