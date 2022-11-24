@@ -9,6 +9,7 @@ import { useGetData } from "../components/context/MoviesProvider";
 import { scenesRef } from "../components/firebase/firebaseConfig";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
+import iconoMapa from "../icon/iconoMapaDark.svg";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 
 export default function Home(props) {
@@ -18,15 +19,12 @@ export default function Home(props) {
 
   const [repeated, setRepeated] = useState(0);
 
-
-
   //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
   // buscar xq el componente no es reactivo, hay un fallo de renderización
   const [pepe, setPepe] = useState("");
   useEffect(() => {
     setTimeout(() => setPepe("pepe"), 3000);
   });
-
 
   // LÓGICA DEL BUSCADOR
   const getFilter = (searchField) => {
@@ -43,11 +41,14 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
-
   return (
     <>
       <Navbar />
-      <div className="flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b h-screen">
+      <div className="relative flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b h-fit">
+        <button className="flex flex-col justify-center items-center p-3 sticky bottom-0 btn btn-accent h-auto w-fit my-3">
+          PRUEBA DE UBICACIÓN
+          <img src={iconoMapa} className="h-8 m-2" />
+        </button>
         <h1 className="text-3xl m-3 text-gray-400">Esta es la Home</h1>
         <p className="m-3 text-gray-400">
           Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
@@ -55,7 +56,7 @@ export default function Home(props) {
         </p>
         <div className="flex flex-col justify-center items-center">
           <input
-            className="input input-bordered w-[315px] max-w-xs my-2"
+            className="input input-bordered w-[366px] text-center my-2"
             type="text"
             placeholder="busca las películas ya registradas"
             value={searchField}
@@ -67,14 +68,14 @@ export default function Home(props) {
             </button>
           </Link> */}
           <Link to="/main/">
-            <button className="btn  btn-secondary w-[315px] mt-1">
+            <button className="btn  btn-secondary w-[366px] mt-1">
               Añade una película o escena
             </button>
           </Link>
           {/* RESULTADOS BUSCADOR */}
         </div>
         {/* QUITAR CAJA CON SCROLL */}
-        <div className="mt-5 max-h-[24rem] overflow-scroll md:max-h-[45rem] lg:max-h-[40rem] rounded-lg">
+        <div className="relative mt-5 max-h-screen rounded-lg">
           {filteredMovies.length > 0
             ? filteredMovies.map((movie, index) => {
                 return (
@@ -99,13 +100,21 @@ export default function Home(props) {
                   />
                 );
               })}
-        </div>
-        <Link to="/main/">
-            <button className="btn btn-outline btn-accent w-[315px] my-3">
-              Ver las peliculas y escenas en el mapa
+          {/* PARA QUE FUNCIONE EL STICKY, TIENE QUE ESTAR DENTRO DE UN DIV RELATIVE*/}
+          <Link to="/main/">
+            <button className="flex flex-col justify-center items-center p-3 sticky bottom-10 btn btn-accent h-auto w-fit my-3">
+              Ir al mapa
+              <img src={iconoMapa} className="h-8 m-2" />
             </button>
           </Link>
+        </div>
       </div>
     </>
   );
 }
+
+// <Link to="/main/">
+//   <button className="sticky top-0 btn btn-outline btn-accent w-[366px] my-3">
+//     Visita nuestro mapa
+//   </button>
+// </Link>
