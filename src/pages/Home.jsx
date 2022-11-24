@@ -66,7 +66,7 @@ export default function Home(props) {
           {/* RESULTADOS BUSCADOR */}
         </div>
         {/* QUITAR CAJA CON SCROLL */}
-        <div className="relative mt-5 max-h-screen rounded-lg">
+        <div className="lg:flex-wrap lg:flex relative mt-5 max-h-screen rounded-lg">
           {filteredMovies.length > 0
             ? filteredMovies.map((movie, index) => {
                 return (
