@@ -22,7 +22,7 @@ const MovieCard = (props) => {
   }
 
   return (
-    <div className="lg:card lg:w-[250px] lg:block lg:h-auto lg:p-2 flex bg-gray-800 h-full shadow-md rounded-md col-start-2 col-end-6 m-3 items-strech hover:bg-gray-900">
+    <div className="lg:card lg:w-[250px] lg:block lg:h-[520px] lg:p-2 flex bg-gray-800 h-full shadow-md rounded-md col-start-2 col-end-6 m-3 items-strech hover:bg-gray-900">
       <Link to={`/main/${getId}`}>
         <img
           className="lg:h-auto lg:w-[250px] lg:rounded-md  h-28 w-auto float-left mr-4 rounded-l-md"
