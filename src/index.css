@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 body {
   margin: 0;
   box-sizing: border-box;
@@ -14,24 +12,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-  }
-  
-  .tooltip{
-    padding:20px;
-    display: flex;
-    font-size: 1rem
-  }
-  
-.navBar {
-  background-color: rgba(255, 255, 255, 10);
-  height: 10vh
 }
 
-/* bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b */
+.tooltip {
+  padding: 20px;
+  display: flex;
+  font-size: 1rem;
+}
+
+.navBar {
+  background-color: rgba(255, 255, 255, 10);
+  height: 10vh;
+}
 
 .homeBackground {
   background-image: linear-gradient(
@@ -39,11 +34,10 @@ code {
     rgb(17, 24, 39),
     rgb(75, 85, 99)
   );
-width: 100vw;
-height: 100vh;
-overflow: scroll;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
 }
-
 
 /* esto es pra la licencia */
 /* .leaflet-touch .leaflet-control-attribution {
@@ -54,32 +48,30 @@ overflow: scroll;
   height: 100vh;
 } */
 
-.mapAndBoxContainer{
+.mapAndBoxContainer {
   display: flex;
   flex-direction: column;
   height: 90vh;
   /* z-index: -1; */
 }
 
-.mapContainer{
+.mapContainer {
   height: 100%;
   /* z-index: -1 */
 }
 
-.leaflet-container { /* nunca borrar esto! */
+.leaflet-container {
+  /* nunca borrar esto! */
   width: 100%;
   height: 100%;
   /* z-index: -1; */
 }
 
-.isClose{
-  
+.isClose {
 }
 
 .isOpen {
-  
 }
-
 
 /* esto quien lo usa? */
 /* .container {
@@ -145,12 +137,9 @@ justify-content: center;
   font-size: 1.3rem;
 } */
 
-
-
 /* li {
   font-size: 30px;
 margin-top: 80px;} */
-
 
 /* .popup-fixed {
   position: fixed;
@@ -177,10 +166,6 @@ margin-top: 80px;} */
   position: fixed;
 } */
 
-
-
 /* .leaflet-marker-icon {
    border: solid red 2px;
 } */
-
-
