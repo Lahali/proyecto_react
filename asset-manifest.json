@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/proyecto_react/static/css/main.6cb4c761.css",
-    "main.js": "/proyecto_react/static/js/main.f066c845.js",
+    "main.css": "/proyecto_react/static/css/main.92bc3a56.css",
+    "main.js": "/proyecto_react/static/js/main.f65ff00b.js",
     "static/js/787.6f0ee195.chunk.js": "/proyecto_react/static/js/787.6f0ee195.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/proyecto_react/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/broken-2.jpg": "/proyecto_react/static/media/broken-2.fe8b8cd8275447e5ce04.jpg",
     "static/media/icon-dark.svg": "/proyecto_react/static/media/icon-dark.f3547ba07bc995b73e24b3f99b618a18.svg",
     "static/media/icon-red.svg": "/proyecto_react/static/media/icon-red.31d4063fe9400c79f2d841c269e2c7c6.svg",
     "index.html": "/proyecto_react/index.html",
     "static/media/iconoMapaDark.svg": "/proyecto_react/static/media/iconoMapaDark.2477964c77c46f538e33e5ef30dfd765.svg",
-    "static/media/index.cjs": "/proyecto_react/static/media/index.cd351d7c31d0d3fccf96.cjs",
-    "main.6cb4c761.css.map": "/proyecto_react/static/css/main.6cb4c761.css.map",
-    "main.f066c845.js.map": "/proyecto_react/static/js/main.f066c845.js.map",
+    "main.92bc3a56.css.map": "/proyecto_react/static/css/main.92bc3a56.css.map",
+    "main.f65ff00b.js.map": "/proyecto_react/static/js/main.f65ff00b.js.map",
     "787.6f0ee195.chunk.js.map": "/proyecto_react/static/js/787.6f0ee195.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6cb4c761.css",
-    "static/js/main.f066c845.js"
+    "static/css/main.92bc3a56.css",
+    "static/js/main.f65ff00b.js"
   ]
 }
