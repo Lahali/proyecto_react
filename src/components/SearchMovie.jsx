@@ -29,30 +29,32 @@ export default function SearchMovie(props) {
 
   const handleChange = (e) => {
     props.setUserSearch(e.target.value);
-    setOpenSearch(true)
+    setOpenSearch(true);
   };
-
 
   return (
     <>
       <div>
         <div className="w-80 ml-2 mt-3">
-
-        <label className="label">
-          <span className="label-text text-base">Busca la peli:</span>
+          <label className="label">
+            <span
+              className="label-text text-base text-gray-400"
+            >
+              Busca la peli:
+            </span>
           </label>
         </div>
-          <input
-            className="input input-bordered w-80 my-2 h-10 mx-2"
-            type="text"
-            onChange={handleChange}
-            disabled={props.movieSelected}
-            required
-            /* mientras tecleo me enseña lo que tecleo, si escojo una peli me enseña solo esa */
-            value={
-              props.movieSelected ? props.movieSelected.title : props.userSearch
-            }
-          />
+        <input
+          className="input input-bordered w-80 my-2 h-10 mx-2 bg-gray-800"
+          type="text"
+          onChange={handleChange}
+          disabled={props.movieSelected}
+          required
+          /* mientras tecleo me enseña lo que tecleo, si escojo una peli me enseña solo esa */
+          value={
+            props.movieSelected ? props.movieSelected.title : props.userSearch
+          }
+        />
 
         {/* MENÚ DROPDOWN DE BÚSQUEDA el secreto es la combinación relative-absolute!*/}
         {/* el listado lo enseño solo si hay los resultado y aun no he elegido un titulo.
@@ -68,13 +70,12 @@ export default function SearchMovie(props) {
               props.moviesResults.map((movie) => {
                 return (
                   // AÑADÍ ONCLICK PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK
-                  <ul className="hover:btn-link my-1" onClick={() => setOpenSearch(!openSearch)}>
+                  <ul
+                    className="hover:btn-link my-1"
+                    onClick={() => setOpenSearch(!openSearch)}
+                  >
                     <li>
-                      <a
-                        onClick={() =>
-                          (props.setsetMovieSelected(movie))
-                        }
-                      >
+                      <a onClick={() => props.setsetMovieSelected(movie)}>
                         {movie.title}
                       </a>
                     </li>
@@ -88,4 +89,3 @@ export default function SearchMovie(props) {
     </>
   );
 }
-
