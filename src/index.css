@@ -15,7 +15,6 @@ body {
 }
 
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -32,6 +31,18 @@ code {
   height: 10vh
 }
 
+/* bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b */
+
+.homeBackground {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(17, 24, 39),
+    rgb(75, 85, 99)
+  );
+width: 100vw;
+height: 100vh;
+overflow: scroll;
+}
 
 
 /* esto es pra la licencia */

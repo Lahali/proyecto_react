@@ -36,10 +36,12 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
+  // bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b
+
   return ( 
     <>
       <Navbar />
-      <div className="relative flex-col items-center p-3 bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b bg-repeat h-fit">
+      <div className="homeBackground relative flex-col items-center bg-scroll p-3 h-fit">
         <h1 className="text-3xl m-3 text-gray-400">Esta es la Home</h1>
         <p className="m-3 text-gray-400">
           Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
