@@ -127,7 +127,7 @@ export default function AddScene() {
               </label>
             </div>
             <textarea
-              className="rounded-lg bg-gray-800 border p-3 mt-1 w-80 text-gray-400 text-base"
+              className="rounded-lg bg-gray-800 border-gray-600 border  p-3 mt-1 w-80 text-gray-400 text-base focus:border-violet-500 selection:border-violet-500 hover:border-violet-500 active:border-violet-500"
               rows="10"
               placeholder="escribe algo aqui"
               onChange={handleChangeSceneDescription}
