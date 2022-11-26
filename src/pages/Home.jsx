@@ -76,7 +76,9 @@ export default function Home(props) {
         </div>
         {/* QUITAR CAJA CON SCROLL */}
         <div className="relative mt-5 max-h-screen rounded-lg">
-          {filteredMovies.length > 0
+          {moviesData.length == 0
+          ? <div className="btn btn-block loading h-full bg-transparent border-none"></div>
+          : filteredMovies.length > 0
             ? filteredMovies.map((movie, index) => {
                 return (
                   <MovieCard
