@@ -22,23 +22,23 @@ const MovieCard = (props) => {
   }
 
   return (
-    <div className="flex bg-gray-800 h-full shadow-md rounded-lg col-start-2 col-end-6 m-3 items-strech hover:bg-gray-900">
+    <div className="lg:card lg:w-[250px] lg:block lg:h-[520px] lg:p-2 flex bg-gray-800 h-full shadow-md rounded-md col-start-2 col-end-6 m-3 items-strech hover:bg-gray-900">
       <Link to={`/main/${getId}`}>
         <img
-          className="h-28 w-auto float-left mr-4 rounded-l-md"
+          className="lg:h-auto lg:w-[250px] lg:rounded-md  h-28 w-auto float-left mr-4 rounded-l-md"
           src={`https://image.tmdb.org/t/p/w300${props.getMoviePoster}`}
           alt="movie poster"
           onError={(e) => (e.target.src = imgNotFound)}
         />
 
-        <div className="flex flex-col content-between h-full p-2">
+        <div className="lg:card-body lg:h-fit lg:p-3 flex flex-col content-between h-full p-2">
           <h2 className="card-title text-gray-400 leading-5">
             {props.getMovieTitle}
           </h2>
-          <p className="mt-2 text-gray-400">Número de escenas: {number()}</p>
+          <p className=" mt-2 text-gray-400">Número de escenas: {number()}</p>
           <div className="flex flex-row mt-1 lg:mt-4 space-x-6 items-center">
             <progress
-              className="progress progress-accent w-56"
+              className="lg:block progress progress-accent w-56"
               value={props.getMovieRating * 10}
               max="100"
             />
