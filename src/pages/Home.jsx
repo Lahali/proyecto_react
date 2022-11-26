@@ -36,7 +36,49 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
-  // bg-gradient-from-t from-gray-900 to-gray-600 bg-gradient-to-b
+  const displayResults = () => {
+    if (moviesData.length == 0){
+      console.log('opzione 1');
+        return <div className="btn btn-block loading h-full bg-transparent border-none"></div>
+    } else if ((filteredMovies.length === 0) && (searchField.length>0)) {
+        console.log('opzione 2')
+        return <p>no se ha encontrado nada... </p>
+    } else if (filteredMovies.length > 0) {
+      console.log('opzione 3')
+        return(
+          filteredMovies.map((movie, index) => {
+            return (
+              <MovieCard
+                key={index}
+                getMovieTitle={movie.title}
+                getMoviePoster={movie.poster}
+                movieId={movie.id}
+                getMovieRating={movie.rating}
+              />
+            )
+          })
+        )
+    } else {
+      console.log('opzione 4')
+        return (
+          moviesData.map((movie, index) => {
+            return (
+              <MovieCard
+                key={index}
+                getMovieTitle={movie.title}
+                getMoviePoster={movie.poster}
+                getMovieScenes={movie.scenes}
+                movieId={movie.id}
+                getMovieRating={movie.rating}
+              />
+            )
+          })
+        )
+    }
+  }
+
+  //console.log('moviesData',moviesData)
+  console.log('filteredMovies',filteredMovies)
 
   return (
     <>
@@ -77,32 +119,7 @@ export default function Home(props) {
           </div>
           {/* QUITAR CAJA CON SCROLL */}
          <div className="relative mt-5 max-h-screen rounded-lg">
-          {moviesData.length == 0
-          ? <div className="btn btn-block loading h-full bg-transparent border-none"></div>
-          : filteredMovies.length > 0
-            ? filteredMovies.map((movie, index) => {
-                  return (
-                    <MovieCard
-                      key={index}
-                      getMovieTitle={movie.title}
-                      getMoviePoster={movie.poster}
-                      movieId={movie.id}
-                      getMovieRating={movie.rating}
-                    />
-                  );
-                })
-              : moviesData.map((movie, index) => {
-                  return (
-                    <MovieCard
-                      key={index}
-                      getMovieTitle={movie.title}
-                      getMoviePoster={movie.poster}
-                      getMovieScenes={movie.scenes}
-                      movieId={movie.id}
-                      getMovieRating={movie.rating}
-                    />
-                  );
-                })}
+          {displayResults()}
             {/* PARA QUE FUNCIONE EL STICKY, TIENE QUE ESTAR DENTRO DE UN DIV RELATIVE*/}
             <Link to="/main/">
               <button className="lg:hidden flex flex-col justify-center items-center p-3 sticky bottom-5 left-80 btn btn-accent h-auto w-fit my-3">
