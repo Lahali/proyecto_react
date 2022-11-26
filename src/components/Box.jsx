@@ -1,5 +1,6 @@
 import { isEmpty } from "@firebase/util";
 import "../style_Box.css"; // lo importo solo aqui de momento!
+import imgNotFound from '../image/broken-2.jpg'
 
 export default function Box(props) {
   //funciones de activación de los botones
@@ -76,7 +77,7 @@ export default function Box(props) {
     <>
       <div className={`${boxStyle()} bg-gray-100 `}>
         <div
-          className="openCloseBox bg-accent-focus flex justify-center items-center h-6"
+          className="openCloseBox bg-secondary flex justify-center items-center h-6"
           onClick={handleClick}
         >
           {props.boxPosition === "isOpen" ? (
@@ -141,10 +142,11 @@ export default function Box(props) {
         </div>
 
         {props.boxPosition === "isOpen" && (
-          <div className="imgContainer carousel-item relative w-full">
+          <div className="imgContainer carousel-item relative w-full flex">
             <img
-              className="mt-4 object-cover w-full h-48"
+              className="mt-4 object-cover w-full h-auto max-h-56"
               src={props.currentMarker.img}
+              onError={(e) => (e.target.src = imgNotFound)}
             />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <button

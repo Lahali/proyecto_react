@@ -35,7 +35,7 @@ export default function CloudinaryWidget(props) {
             }
             return (
               <button
-                className="mt-5 btn btn-outline btn-primary w-80"
+                className="mt-5 btn btn-outline btn-secondary w-80"
                 onClick={handleOnClick}
               >
                 SUBE UNA IMAGEN
@@ -47,7 +47,7 @@ export default function CloudinaryWidget(props) {
         {error && <p>{error}</p>}
 
         {/* aqui para cambiar que pasa despues upload con exito */}
-        {props.url && <p>imagen cargada con exito!</p>}
+        {props.url && <p className="text-base text-gray-400 mt-2">imagen cargada con exito!</p>}
       </div>
     </main>
   );

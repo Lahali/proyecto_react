@@ -8,7 +8,6 @@ import { database } from "../components/firebase/firebaseConfig";
 import Navbar from "../components/Navbar";
 import SearchMovie from "../components/SearchMovie";
 export default function AddScene() {
-
   const location = useLocation();
   const { latlng } = location.state; //hay problemas con esto si al dar al boton cambia la url
 
@@ -21,11 +20,11 @@ export default function AddScene() {
   // por el componente SearchMovie
   const [moviesResults, setMoviesResults] = useState([]);
   const [userSearch, setUserSearch] = useState(""); // lo que vamos tecleando en el input
-  
+
   const scenesRef = collection(database, "scenes");
   // const [sceneToUpload, setSceneToUpload] = useState();
-  
-  const [checkModal, setCheckModal] = useState(false)
+
+  const [checkModal, setCheckModal] = useState(false);
 
   const handleChangeSceneTitle = (e) => {
     setSceneTitle(e.target.value);
@@ -35,9 +34,9 @@ export default function AddScene() {
   };
 
   const handleSubmit = (e) => {
-e.preventDefault();
-console.log('hola?')
-const scene ={
+    e.preventDefault();
+    console.log("hola?");
+    const scene = {
       type: "Feature",
       properties: {
         img: url,
@@ -55,11 +54,11 @@ const scene ={
       },
     };
     addDoc(scenesRef, scene);
-    console.log('SCENA SUBIDA')
+    console.log("SCENA SUBIDA");
     // window.location.href = "#my-modal-2";
-    setCheckModal(true)
-  }
-  
+    setCheckModal(true);
+  };
+
   // setSceneTitle("");
   // setSceneDescription("");
   // setUserSearch("");
@@ -68,28 +67,33 @@ const scene ={
   // useEffect(() => {
   // }, [sceneToUpload]);
 
-const  botonEnviarStyle =() => {
-if (url === undefined || sceneTitle.length<1 || movieSelected === undefined || sceneDescription<1) {
-  return "btn-disabled"
-} else {
-  return
-}
-}
+  const botonEnviarStyle = () => {
+    if (
+      url === undefined ||
+      sceneTitle.length < 1 ||
+      movieSelected === undefined ||
+      sceneDescription < 1
+    ) {
+      return "btn-disabled";
+    } else {
+      return;
+    }
+  };
 
-console.log('coordinates:', coordinates)
-console.log('movieSelected:', movieSelected)
-console.log('sceneTitle:', sceneTitle)
-console.log('sceneDescription:', sceneDescription)
-console.log('url:', url)
-// console.log('sceneToUpload:', sceneToUpload)
+  console.log("coordinates:", coordinates);
+  console.log("movieSelected:", movieSelected);
+  console.log("sceneTitle:", sceneTitle);
+  console.log("sceneDescription:", sceneDescription);
+  console.log("url:", url);
+  // console.log('sceneToUpload:', sceneToUpload)
 
   return (
     <>
-      <Navbar />
       {/* <div className="bg-base-200 flex items-center justify-center"> */}
       {/* <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]"> */}
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]">
+      <form onSubmit={handleSubmit} className="bg-gray-900 overflow-hidden">
+        <Navbar />
+        <div className="flex flex-col h-screen p-3 mx-6 my-4 rounded-lg max-h-[47rem]">
           <div className="flex flex-col items-center">
             <SearchMovie
               moviesResults={moviesResults}
@@ -101,11 +105,13 @@ console.log('url:', url)
             />
             <div className="w-80 ml-2 mt-3">
               <label className="label">
-                <span className="label-text text-base">Titula la escena:</span>
+                <span className="label-text text-gray-400 text-base">
+                  Titula la escena:
+                </span>
               </label>
             </div>
             <input
-              className="input input-bordered w-80 h-10 mx-2"
+              className="input input-bordered bg-gray-800 w-80 h-10 mx-2 text-gray-400 text-base"
               type="text"
               onChange={handleChangeSceneTitle}
               required
@@ -115,52 +121,60 @@ console.log('url:', url)
           <div className="flex flex-col items-center content-center mt-2">
             <div className="w-80 ml-2">
               <label className="label">
-                <span className="label-text text-base">... y escribe algo</span>
+                <span className="label-text text-gray-400 text-base">
+                  ... y escribe algo
+                </span>
               </label>
             </div>
             <textarea
-              className="rounded-3xl border p-3 mt-1 w-80"
+              className="rounded-lg bg-gray-800 border-gray-600 border  p-3 mt-1 w-80 text-gray-400 text-base focus:border-violet-500 selection:border-violet-500 hover:border-violet-500 active:border-violet-500"
               rows="10"
               placeholder="escribe algo aqui"
               onChange={handleChangeSceneDescription}
               required
             />
           </div>
-          <div className="flex flex-col items-center self-center">
+          <div className="flex flex-col items-center self-center mt-3">
             <CloudinaryWidget url={url} updateUrl={updateUrl} />
           </div>
-          <div className="flex flex-col items-center self-center">
+          <div className="flex flex-col items-center self-center mt-7">
             <label>
               {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
               {/* si aqui no pongo type='button' se comporta como un submit */}
               <button
-              //className={`${botonEnviarStyle()} btn w-80 btn-primary mt-5 `}
-              className='btn w-80 btn-primary mt-5'
+                //className={`${botonEnviarStyle()} btn w-80 btn-primary mt-5 `}
+                className="btn w-80 btn-secondary"
                 //type="button"
                 //onClick={handleSubmit}
               >
                 ENVIAR
               </button>
             </label>
-
           </div>
         </div>
       </form>
 
       {/* M O D A L */}
-      <input type="checkbox" checked={checkModal}  id="my-modal" className="modal-toggle" />
-<div className="modal">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
-    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-    <div className="modal-action">
-      {/* <label htmlFor="my-modal" className="btn">Yay!</label> */}
-      <Link to="/home">GO HOME</Link>
-    </div>
-  </div>
-</div>
-
+      <input
+        type="checkbox"
+        checked={checkModal}
+        id="my-modal"
+        className="modal-toggle"
+      />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-gray-400 text-lg">
+            Gracias!
+          </h3>
+          <p className="py-4 text-base text-gray-400">
+            Tu película se ha subido currectamente!!
+          </p>
+          <div className="modal-action">
+            {/* <label htmlFor="my-modal" className="btn">Yay!</label> */}
+            <Link to="/home">VOLVER</Link>
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
-
