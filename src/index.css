@@ -29,15 +29,8 @@ code {
   
 .navBar {
   background-color: rgba(255, 255, 255, 10);
-  height: 10vh
 }
 
-
-
-/* esto es pra la licencia */
-/* .leaflet-touch .leaflet-control-attribution {
-  display: none;
-} */
 
 /* .mainContainer{
   height: 100vh;
@@ -46,8 +39,6 @@ code {
 .mapAndBoxContainer{
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  /* z-index: -1; */
 }
 
 .mapContainer{
@@ -60,16 +51,6 @@ code {
   height: 100%;
   /* z-index: -1; */
 }
-
-.isClose{
-  
-}
-
-.isOpen {
-  
-}
-
-
 /* esto quien lo usa? */
 /* .container {
   display: flex;
