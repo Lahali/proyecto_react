@@ -38,13 +38,10 @@ export default function Home(props) {
 
   const displayResults = () => {
     if (moviesData.length == 0){
-      console.log('opzione 1');
         return <div className="btn btn-block loading h-full bg-transparent border-none"></div>
     } else if ((filteredMovies.length === 0) && (searchField.length>0)) {
-        console.log('opzione 2')
         return <p>no se ha encontrado nada... </p>
     } else if (filteredMovies.length > 0) {
-      console.log('opzione 3')
         return(
           filteredMovies.map((movie, index) => {
             return (
@@ -59,7 +56,6 @@ export default function Home(props) {
           })
         )
     } else {
-      console.log('opzione 4')
         return (
           moviesData.map((movie, index) => {
             return (
@@ -76,9 +72,6 @@ export default function Home(props) {
         )
     }
   }
-
-  //console.log('moviesData',moviesData)
-  console.log('filteredMovies',filteredMovies)
 
   return (
     <>
