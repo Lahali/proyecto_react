@@ -76,12 +76,11 @@ export default function Home(props) {
             {/* RESULTADOS BUSCADOR */}
           </div>
           {/* QUITAR CAJA CON SCROLL */}
-          <div
-            className=" relative mt-5  max-h-screen rounded-lg
-          lg:flex-wrap lg:flex lg:justify-center lg:items-center"
-          >
-            {filteredMovies.length > 0
-              ? filteredMovies.map((movie, index) => {
+         <div className="relative mt-5 max-h-screen rounded-lg">
+          {moviesData.length == 0
+          ? <div className="btn btn-block loading h-full bg-transparent border-none"></div>
+          : filteredMovies.length > 0
+            ? filteredMovies.map((movie, index) => {
                   return (
                     <MovieCard
                       key={index}

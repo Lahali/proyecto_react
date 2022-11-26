@@ -1,14 +1,8 @@
-/* .openCloseBox{
-    height: 2.5rem;
-  } */
-  
-
-
   .boxOpen{
-    /* height: 110%; */
+    /*height: 110%;*/
     height: 60vh;
     transition: 1s;
-  }
+  } 
   
   .boxClosed{
     height: 20%;
@@ -16,6 +10,7 @@
   }
   .boxHidden{
   height: 0px;
+  display: none;
   transition: 1s;
   }
 

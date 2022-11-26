@@ -5,10 +5,13 @@ import { useLocation, useParams } from "react-router-dom"; // esto para importar
 import Map from "../components/Map";
 import { useGetData } from "../components/context/MoviesProvider";
 import * as L from "leaflet";
+import useWindowDimensions from "../components/useWindowDimensions";
 
 
 export default function Main() {
   
+  const { height, width } = useWindowDimensions();
+
   const { scenes } = useGetData();
   const [arrayScenes, setArrayScenes] = useState(); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
@@ -19,6 +22,8 @@ export default function Main() {
   
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
+
+
 
   const filtered = () => {
     if(!id) {
@@ -52,12 +57,23 @@ useEffect(()=>{
   fTriangulation();
 }, [arrayScenes])
 
+console.log('altezza', height)
+console.log('altezza', (height-84))
 
-  return (
+return (
     <>
-    <div className="mainContainer">
-    <Navbar />
-      <div className="mapAndBoxContainer">
+    <div style={{height: `${height}px`,
+    position: 'fixed',
+  bottom:'0',
+  width: '100%'
+  }}>
+      <Navbar />
+      {/* <div className="mapAndBoxContainer"> */}
+     <div  style={{height: `${(height-84)}px`,
+            display: "flex",
+            'flex-direction': "column"
+            }}>
+
         <Map
           map={map}
           setMap={setMap}
