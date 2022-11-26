@@ -51,22 +51,25 @@ export default function Home(props) {
           </p>
           <div
             className="flex flex-col justify-center items-center
-          lg:flex-row lg:justify-around"
+          lg:flex-row lg:justify-around 
+          md:flex-row md:justify-evenly"
           >
             <input
-              className="input input-bordered w-[366px] text-center my-2"
+              className="input input-bordered w-[366px] text-center my-2 md:w-60"
               type="text"
               placeholder="busca las películas ya registradas"
               value={searchField}
               onChange={handleChange}
             ></input>
             <Link to="/main/">
-              <button className="hidden lg:btn lg:btn-outline lg:btn-accent-focus lg:w-[366px] lg:my-3">
+              <button className="hidden 
+               md:w-60 md:btn md:btn-outline md:btn-accent-focus md:my-3
+               lg:btn lg:btn-outline lg:btn-accent-focus lg:w-[366px] lg:my-3">
                 Ver todas las peliculas y escenas
               </button>
             </Link>
             <Link to="/main/">
-              <button className="btn btn-secondary w-[366px] mt-1">
+              <button className="btn btn-secondary w-[366px] mt-1 md:w-60">
                 Añade una película o escena
               </button>
             </Link>
