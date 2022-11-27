@@ -8,25 +8,20 @@ import { useGetData } from "./context/MoviesProvider";
 
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [searchOpen, setSearchOpen] = useState(false);
-  // const [searchField, setSearchField] = useState('')
-  const { logout, user } = useAuth();
 
-  const navigate = useNavigate();
+  const { logout, user, loading } = useAuth();
 
   const handleLogout = async () => {
-    await logout;
-    navigate("/");
-    console.log("he salido?", user);
+    await logout();
+    setIsOpen(!isOpen);
   };
+
+  // if(loading) return <h1>loading</h1>
 
   console.log("usuario", user);
 
-  const { id } = useParams();
-  const { moviesData } = useGetData();
-
   // esto es para evitar que dé errores al cargar esta página
-  const avoidError = props.filteredMovies ? props.filteredMovies.length : 0;
+  // const avoidError = props.filteredMovies ? props.filteredMovies.length : 0;
 
   return (
     <>
@@ -39,14 +34,13 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
-          <p className="text-center">Hola {}</p>
+          <p className="text-center"></p>
         </div>
         <div className="lg:hidden md:hidden"></div>
         <div className="flex justify-end items-center p-2">
           {/* USUARIO */}
           <div className="relative">
             <label
-              // tabIndex={0}
               className="btn btn-ghost btn-circle avatar"
               onClick={() => setIsOpen(!isOpen)}
             >
@@ -66,6 +60,7 @@ const Navbar = (props) => {
                   <label
                     className="btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2"
                     htmlFor="my-modal-signup"
+                    onClick={() => setIsOpen(!isOpen)}
                   >
                     Signup
                   </label>
@@ -74,6 +69,7 @@ const Navbar = (props) => {
                   <label
                     className="btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2"
                     htmlFor="my-modal-login"
+                    onClick={() => setIsOpen(!isOpen)}
                   >
                     Login
                   </label>
@@ -81,9 +77,9 @@ const Navbar = (props) => {
                 <li>
                   <label
                     className={`${
-                      user ? "" : "hiden"
+                      user === null ? "hidden" : ""
                     } btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2`}
-                    // htmlFor="my-modal-logout"
+                    htmlFor="my-modal-logout"
                     onClick={handleLogout}
                   >
                     Logout
@@ -96,7 +92,7 @@ const Navbar = (props) => {
       </nav>
       <Signup isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
-      {/* <Logout isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+      <Logout isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

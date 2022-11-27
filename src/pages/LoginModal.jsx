@@ -66,12 +66,15 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
                   : "input input-bordered w-full max-w-xs text-gray-400"
               }
             />
-            <button
+            {/* ==> PARA QUE SE CIERRE EL MODAL NECESITAMOS EL LABEL */}
+            <label
+              htmlFor="my-modal-login"
               type="submit"
               className="btn btn-secondary my-8 w-full max-w-xs"
+              onClick={handleSubmitLogin}
             >
               Entrar
-            </button>
+            </label>
           </form>
         </div>
       </div>

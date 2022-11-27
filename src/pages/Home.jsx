@@ -117,7 +117,7 @@ export default function Home(props) {
           {displayResults()}
             {/* PARA QUE FUNCIONE EL STICKY, TIENE QUE ESTAR DENTRO DE UN DIV RELATIVE*/}
             <Link to="/main/">
-              <button className="lg:hidden flex flex-col justify-center items-center p-3 sticky bottom-5 left-80 btn btn-accent h-auto w-fit my-3">
+              <button className="lg:hidden md:hidden flex flex-col justify-center items-center p-3 sticky bottom-5 left-80 btn btn-accent h-auto w-fit my-3">
                 Ir al mapa
                 <img src={iconoMapa} className="h-8 m-2" />
               </button>

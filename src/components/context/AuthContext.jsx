@@ -6,7 +6,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import { async } from "@firebase/util";
 import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
@@ -22,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     password: "",
   });
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -32,8 +31,8 @@ export const AuthProvider = ({ children }) => {
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
-  const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
-
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
 
   //  los valores del parámetro vienen del evento (es una destructuración del evento con los valores que queremos)
   const handleChange = ({ target: { name, value } }) => {
@@ -61,7 +60,6 @@ export const AuthProvider = ({ children }) => {
     try {
       await login(userData.email, userData.password);
       e.target.reset();
-      console.log("he funcionado")
     } catch (error) {
       console.log("hemos hecho algo mal", error);
       setError(error.message);
@@ -74,12 +72,13 @@ export const AuthProvider = ({ children }) => {
 
   // esta función de Firebase nos devuelve la información cada vez que el usuario cambia: abre o cierra sesión, etc
   useEffect(() => {
-      onAuthStateChanged(auth, currentUser => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // setLoading(false)
+      setLoading(false);
     });
-    // return () => unsuscribe()
+    return () => unsubscribe();
   }, []);
+
 
   return (
     <authContext.Provider
@@ -90,7 +89,7 @@ export const AuthProvider = ({ children }) => {
         handleSubmitLogin,
         logout,
         loading,
-        user
+        user,
       }}
     >
       {children}

@@ -66,12 +66,14 @@ const SignupModal = ({ isOpen, setIsOpen }) => {
                   : "input input-bordered w-full max-w-xs text-gray-400"
               }
             />
-            <button
+            <label
+              htmlFor="my-modal-login"
               type="submit"
               className="btn btn-secondary my-8 w-full max-w-xs hover:btn-secondary-focus"
+              onClick={handleSubmit}
             >
               Registrarse
-            </button>
+            </label>
           </form>
         </div>
       </div>
