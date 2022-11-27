@@ -10,9 +10,8 @@ import iconoMapa from "../icon/iconoMapaDark.svg";
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const { moviesData, scenes, setMoviesData } = useGetData();
+  const { moviesData, scenes } = useGetData();
 
-  const [repeated, setRepeated] = useState(0);
 
   //  ==> ESTO ES PARA FORZAR AL COMPONENTE A RENDERIZARSE. ES UNA SOLUCIÓN TEMPORAL AL BUG DE LA RECARGA
   // buscar xq el componente no es reactivo, hay un fallo de renderización
@@ -22,6 +21,7 @@ export default function Home(props) {
   });
 
   // LÓGICA DEL BUSCADOR
+  // ==> ESTAMOS USÁNDOLO???
   const getFilter = (searchField) => {
     const resultFilter = moviesData.filter((item) => {
       if (item.title.toLowerCase().includes(searchField.toLowerCase())) {
@@ -36,11 +36,13 @@ export default function Home(props) {
     getFilter(e.target.value);
   };
 
+
+  // BUSCADOR NUEVO, NOS AVISA SI NO HAY NINGUNA CORRESPONDENCIA 
   const displayResults = () => {
     if (moviesData.length == 0){
         return <div className="btn btn-block loading h-full bg-transparent border-none"></div>
     } else if ((filteredMovies.length === 0) && (searchField.length>0)) {
-        return <p>no se ha encontrado nada... </p>
+        return <p className="text-lg text-gray-400">no se ha encontrado nada... </p>
     } else if (filteredMovies.length > 0) {
         return(
           filteredMovies.map((movie, index) => {
@@ -90,7 +92,7 @@ export default function Home(props) {
           md:flex-row md:justify-evenly"
           >
             <input
-              className="input input-bordered w-[366px] text-center my-2 md:w-60"
+              className="input input-bordered w-[342px] lg:w-[366px] text-center my-2 md:w-60"
               type="text"
               placeholder="busca las películas ya registradas"
               value={searchField}
@@ -104,14 +106,14 @@ export default function Home(props) {
               </button>
             </Link>
             <Link to="/main/">
-              <button className="btn btn-secondary w-[366px] mt-1 md:w-60">
+              <button className="btn btn-secondary w-[342px] mt-1 lg:w-[366px] md:w-60">
                 Añade una película o escena
               </button>
             </Link>
             {/* RESULTADOS BUSCADOR */}
           </div>
-          {/* QUITAR CAJA CON SCROLL */}
-         <div className="relative mt-5 max-h-screen rounded-lg">
+         <div className="relative mt-5 max-h-screen rounded-lg
+         lg:flex-wrap lg:flex lg:justify-center lg:items-center">
           {displayResults()}
             {/* PARA QUE FUNCIONE EL STICKY, TIENE QUE ESTAR DENTRO DE UN DIV RELATIVE*/}
             <Link to="/main/">

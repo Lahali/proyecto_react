@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import Login from "../pages/Login";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Login from "../pages/LoginModal";
 import Logout from "../pages/Logout";
-import Signup from "../pages/Signup";
+import Signup from "../pages/SignupModal";
 import { useAuth } from "./context/AuthContext";
 import { useGetData } from "./context/MoviesProvider";
 
@@ -10,11 +10,17 @@ const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   // const [searchOpen, setSearchOpen] = useState(false);
   // const [searchField, setSearchField] = useState('')
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout;
+    navigate("/");
+    console.log("he salido?", user);
   };
+
+  console.log("usuario", user);
 
   const { id } = useParams();
   const { moviesData } = useGetData();
@@ -33,7 +39,7 @@ const Navbar = (props) => {
           </Link>
         </div>
         <div className="p-2 hidden mt-3 lg:flex md:flex md:justify-center lg:justify-center">
-          <p className="text-center"></p>
+          <p className="text-center">Hola {}</p>
         </div>
         <div className="lg:hidden md:hidden"></div>
         <div className="flex justify-end items-center p-2">
@@ -72,6 +78,17 @@ const Navbar = (props) => {
                     Login
                   </label>
                 </li>
+                <li>
+                  <label
+                    className={`${
+                      user ? "" : "hiden"
+                    } btn btn-ghost w-full p-2 text-neutral-content hover:bg-base-200 hover:text-secondary m-2`}
+                    // htmlFor="my-modal-logout"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </label>
+                </li>
               </ul>
             </div>
           </div>
@@ -79,7 +96,7 @@ const Navbar = (props) => {
       </nav>
       <Signup isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
-      {/* <Logout /> */}
+      {/* <Logout isOpen={isOpen} setIsOpen={setIsOpen} /> */}
     </>
   );
 };
