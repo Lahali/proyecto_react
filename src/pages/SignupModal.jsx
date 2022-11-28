@@ -67,7 +67,7 @@ const SignupModal = ({ isOpen, setIsOpen }) => {
               }
             />
             <label
-              htmlFor="my-modal-login"
+              htmlFor="my-modal-signup"
               type="submit"
               className="btn btn-secondary my-8 w-full max-w-xs hover:btn-secondary-focus"
               onClick={handleSubmit}

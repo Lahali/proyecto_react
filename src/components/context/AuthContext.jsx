@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/main");
     try {
       await login(userData.email, userData.password);
-      e.target.reset();
+      setUserData({email: '', password: ''})
     } catch (error) {
       console.log("hemos hecho algo mal", error);
       setError(error.message);
