@@ -43,23 +43,24 @@ export default function Home(props) {
       );
     } else if (filteredMovies.length === 0 && searchField.length > 0) {
       return (
-        <div className="flex flex-col justify-center items-center p-2">
-          {/* <p className="text-gray-400 text-lg m-2"> Esta película aún no está. Regístrate y añádela a nuestro mapa.</p>
-          <iframe
-            src="https://giphy.com/embed/3o7aTskHEUdgCQAXde"
-            width="480"
-            height="204"
-            frameBorder="0"
-            class="giphy-embed"
-            allowFullScreen
-          ></iframe>
+        <>
+        <div className="flex flex-col items-center justify-center">
+          <div className="giftContainer">
+            <iframe
+              src="https://giphy.com/embed/A9EcBzd6t8DZe"
+              frameBorder="0"
+              className="giftObject giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
           <p>
-            <a href="https://giphy.com/gifs/quentin-tarantino-pulp-fiction-vincent-vega-3o7aTskHEUdgCQAXde">
+            <a href="https://giphy.com/stickers/john-travolta-A9EcBzd6t8DZe">
               via GIPHY
             </a>
-          </p> */}
-         
+          </p>
+          <p>holiii</p>
         </div>
+        </>
       );
     } else if (filteredMovies.length > 0) {
       return filteredMovies.map((movie, index) => {
