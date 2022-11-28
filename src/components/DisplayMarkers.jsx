@@ -1,19 +1,18 @@
 import { Marker, Popup, useMap } from "react-leaflet";
 import * as L from "leaflet";
-import iconRed from '../icon/icon-red.svg' // icono rojo
-import iconAzul from '../icon/icon-dark.svg' // icono azul
+import iconRed from '../icon/icono-lila.svg' // icono rojo
+import iconAzul from '../icon/icono-dark.svg' // icono azul
 
 export default function DisplayMarkers(props) {
 
     const leafletMap = useMap();
-
+    
     function createIcon(url) {
         return new L.Icon({
             iconUrl: url,
             iconSize: [40, 40],
         });
     }
-
 
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
@@ -66,31 +65,3 @@ export default function DisplayMarkers(props) {
         </>
     )
 }
-
-/* <Popup
-    className="request-popup"
-    /* pane="fixed"
-    className="popup-fixed"
-    autoPan="false" >
-    <h2>{properties.Edifici}</h2> <br />
-    {properties.Nom_Via}
-</Popup> */
-
-/* const handleClick = e => {
-    leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-    props.setEvento(e.target);
-    //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-    console.log(e.target.option.attribution);
-} */
-/*   e => {
-      leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-      props.setEvento(properties.Edifici);
-      //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-      console.log(properties);
-  } */
-//console.log('direccion', e.sourceTarget.options)
-//console.log('e.latlng:::', e.latlng)
-//console.log('nombre:::', e.sourceTarget.options.nombre);
-//console.log('IMG:::', e.sourceTarget.options.imagen);
-//props.setMapPosition(e.latlng);
-//leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...

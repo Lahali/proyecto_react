@@ -44,22 +44,22 @@ export default function Home(props) {
     } else if (filteredMovies.length === 0 && searchField.length > 0) {
       return (
         <>
-        <div className="flex flex-col items-center justify-center">
-          <div className="giftContainer">
-            <iframe
-              src="https://giphy.com/embed/A9EcBzd6t8DZe"
-              frameBorder="0"
-              className="giftObject giphy-embed"
-              allowFullScreen
-            ></iframe>
+          <div className="flex flex-col items-center justify-center">
+            <div className="giftContainer">
+              <iframe
+                src="https://giphy.com/embed/A9EcBzd6t8DZe"
+                frameBorder="0"
+                className="giftObject giphy-embed"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <p>
+              <a href="https://giphy.com/stickers/john-travolta-A9EcBzd6t8DZe">
+                via GIPHY
+              </a>
+            </p>
+            <p>holiii</p>
           </div>
-          <p>
-            <a href="https://giphy.com/stickers/john-travolta-A9EcBzd6t8DZe">
-              via GIPHY
-            </a>
-          </p>
-          <p>holiii</p>
-        </div>
         </>
       );
     } else if (filteredMovies.length > 0) {
@@ -96,18 +96,20 @@ export default function Home(props) {
       <div className="homeBackground relative flex-col items-center bg-scroll">
         <Navbar />
         <div className="p-3 h-fit">
-          <h1 className="text-3xl m-3 text-gray-400">Esta es la Home</h1>
-          <p className="m-3 text-gray-400">
-            Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
-            {moviesData.length} películas!
-          </p>
+          <div className="p-2 lg:mx-8 md:mx-6">
+            <h1 className="text-3xl m-3 text-gray-400">¿Dónde se rodó?</h1>
+            <p className="m-3 text-gray-400">
+              Busca en nuestro archivo, ya tenemos {scenes.length} escenas y{" "}
+              {moviesData.length} películas!
+            </p>
+          </div>
           <div
             className="flex flex-col justify-center items-center
           lg:flex-row lg:justify-around 
           md:flex-row md:justify-evenly"
           >
             <input
-              className="input input-bordered w-[342px] lg:w-[366px] text-center my-2 md:w-60"
+              className="input input-bordered w-[342px] lg:min-w-[366px] text-center my-2 md:w-60"
               type="text"
               placeholder="busca las películas ya registradas"
               value={searchField}
@@ -115,15 +117,15 @@ export default function Home(props) {
             ></input>
             <Link to="/main/">
               <button
-                className="hidden 
-               md:w-60 md:btn md:btn-outline md:btn-accent-focus md:my-3
-               lg:btn lg:btn-outline lg:btn-accent-focus lg:w-[366px] lg:my-3"
+                className="hidden
+               md:w-60 md:btn md:btn-outline md:btn-accent md:my-3
+               lg:btn lg:btn-outline lg:btn-accent lg:min-w-[366px] lg:my-3"
               >
                 Ver todas las peliculas y escenas
               </button>
             </Link>
             <Link to="/main/">
-              <button className="btn btn-secondary w-[342px] mt-1 lg:w-[366px] md:w-60">
+              <button className="btn btn-secondary w-[342px] mt-1 lg:min-w-[366px] md:w-60">
                 Añade una película o escena
               </button>
             </Link>

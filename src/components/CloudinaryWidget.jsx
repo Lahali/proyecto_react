@@ -19,8 +19,6 @@ export default function CloudinaryWidget(props) {
     }
     props.updateUrl(result?.info?.secure_url);
     //updateUrl("imagen cargada con exito");
-
-    //console.log('result.info.url: ',result.info.url); // url de la imagen
   }
 
   return (

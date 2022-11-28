@@ -47,8 +47,7 @@ export default function Box(props) {
     function updateMap() {
       props.map.invalidateSize();
       timing++;
-      if (timing > 200) {
-        // 100 veces 10 milisegundos son 1s
+      if (timing > 200) {// 200 veces 10 milisegundos son 1s
         clearInterval(interval);
       }
     }
@@ -123,7 +122,7 @@ export default function Box(props) {
             {props.currentMarker.scene_title}
           </p>
 
-          <label htmlFor="my-modal-6" className="mx-2 link ">
+          {props.boxPosition === "isOpen" && <label htmlFor="my-modal-6" className="mx-2 link ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -138,7 +137,7 @@ export default function Box(props) {
                 d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
               />
             </svg>
-          </label>
+          </label>}
         </div>
 
         {props.boxPosition === "isOpen" && (
@@ -174,7 +173,6 @@ export default function Box(props) {
               <label
                 htmlFor="my-modal-6"
                 className="text-gray-700 font-bold text-2xl hover:text-secondary-focus"
-                // onClick={props.setBoxPosition("isClose")}
               >
                 X
               </label>
