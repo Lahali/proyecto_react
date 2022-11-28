@@ -66,31 +66,3 @@ export default function DisplayMarkers(props) {
         </>
     )
 }
-
-/* <Popup
-    className="request-popup"
-    /* pane="fixed"
-    className="popup-fixed"
-    autoPan="false" >
-    <h2>{properties.Edifici}</h2> <br />
-    {properties.Nom_Via}
-</Popup> */
-
-/* const handleClick = e => {
-    leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-    props.setEvento(e.target);
-    //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-    console.log(e.target.option.attribution);
-} */
-/*   e => {
-      leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-      props.setEvento(properties.Edifici);
-      //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-      console.log(properties);
-  } */
-//console.log('direccion', e.sourceTarget.options)
-//console.log('e.latlng:::', e.latlng)
-//console.log('nombre:::', e.sourceTarget.options.nombre);
-//console.log('IMG:::', e.sourceTarget.options.imagen);
-//props.setMapPosition(e.latlng);
-//leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...

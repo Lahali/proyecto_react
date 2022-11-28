@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Box from "../components/Box";
-import { useLocation, useParams } from "react-router-dom"; // esto para importar "props" con Link
+import { useParams } from "react-router-dom"; // esto para importar "props" con Link
 import Map from "../components/Map";
 import { useGetData } from "../components/context/MoviesProvider";
 import * as L from "leaflet";
@@ -10,7 +10,7 @@ import useWindowDimensions from "../components/useWindowDimensions";
 
 export default function Main() {
   
-  const { height, width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   const { scenes } = useGetData();
   const [arrayScenes, setArrayScenes] = useState(); // guardamo en un State los datos mandados dentro de Link
@@ -22,8 +22,6 @@ export default function Main() {
   
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
-
-
 
   const filtered = () => {
     if(!id) {
@@ -39,9 +37,11 @@ export default function Main() {
   }, [scenes], [id]);
 
   function fTriangulation() {
-    console.log('TRIANGULATION')
     if (!id) {
-      let myBounds = new L.LatLngBounds([[41.355,-4],[43,2.2]]);
+      let myBounds = new L.LatLngBounds([
+        [41.38335344726354,2.1950622987747197],
+        [41.36862049989975,2.147043944192602]
+      ]);
       setTriangulation(myBounds);
     }
     else if (arrayScenes && arrayScenes.length>0) {
@@ -57,44 +57,38 @@ useEffect(()=>{
   fTriangulation();
 }, [arrayScenes])
 
-console.log('altezza', height)
-console.log('altezza', (height-84))
-
 return (
     <>
     <div style={{height: `${height}px`,
-    position: 'fixed',
-  bottom:'0',
-  width: '100%'
-  }}>
+          position: 'fixed',
+          bottom:'0',
+          width: '100%'
+          }}>
       <Navbar />
-      {/* <div className="mapAndBoxContainer"> */}
-     <div  style={{height: `${(height-84)}px`,
-            display: "flex",
-            'flex-direction': "column"
-            }}>
+      <div  style={{height: `${(height-84)}px`,
+              display: "flex",
+              'flexDirection': "column"
+              }}>
 
-        <Map
-          map={map}
-          setMap={setMap}
-          arrayScenes={arrayScenes}
-          currentMarker={currentMarker}
-          setCurrentMarker={setCurrentMarker}
-          triangulation={triangulation}
-        />
+          <Map
+            map={map}
+            setMap={setMap}
+            arrayScenes={arrayScenes}
+            currentMarker={currentMarker}
+            setCurrentMarker={setCurrentMarker}
+            triangulation={triangulation}
+          />
 
-        <Box // esta es la card que sube desde abajao "estilo Google Maps"
-          arrayScenes={arrayScenes}
-          currentMarker={currentMarker}
-          setCurrentMarker={setCurrentMarker}
-          boxPosition={boxPosition}
-          setBoxPosition={setBoxPosition}
-          map={map}
-        />
-      </div>
+          <Box // esta es la card que sube desde abajao "estilo Google Maps"
+            arrayScenes={arrayScenes}
+            currentMarker={currentMarker}
+            setCurrentMarker={setCurrentMarker}
+            boxPosition={boxPosition}
+            setBoxPosition={setBoxPosition}
+            map={map}
+          />
+        </div>
     </div>
-    
     </> 
-    
   );
 }
