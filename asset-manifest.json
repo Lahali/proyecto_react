@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/proyecto_react/static/css/main.17a18cb0.css",
-    "main.js": "/proyecto_react/static/js/main.a1c402aa.js",
+    "main.css": "/proyecto_react/static/css/main.4ebfc47c.css",
+    "main.js": "/proyecto_react/static/js/main.dc6c2087.js",
     "static/js/787.6f0ee195.chunk.js": "/proyecto_react/static/js/787.6f0ee195.chunk.js",
+    "static/media/travolta.gif": "/proyecto_react/static/media/travolta.37230ef7580b5df6bbd4.gif",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/proyecto_react/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
@@ -15,12 +16,12 @@
     "static/media/movie-camera.svg": "/proyecto_react/static/media/movie-camera.22ee2c676af35179c9348639b3991af0.svg",
     "index.html": "/proyecto_react/index.html",
     "static/media/iconoMapaDark.svg": "/proyecto_react/static/media/iconoMapaDark.2477964c77c46f538e33e5ef30dfd765.svg",
-    "main.17a18cb0.css.map": "/proyecto_react/static/css/main.17a18cb0.css.map",
-    "main.a1c402aa.js.map": "/proyecto_react/static/js/main.a1c402aa.js.map",
+    "main.4ebfc47c.css.map": "/proyecto_react/static/css/main.4ebfc47c.css.map",
+    "main.dc6c2087.js.map": "/proyecto_react/static/js/main.dc6c2087.js.map",
     "787.6f0ee195.chunk.js.map": "/proyecto_react/static/js/787.6f0ee195.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.17a18cb0.css",
-    "static/js/main.a1c402aa.js"
+    "static/css/main.4ebfc47c.css",
+    "static/js/main.dc6c2087.js"
   ]
 }
