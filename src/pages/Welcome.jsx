@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useWindowDimensions from "../components/useWindowDimensions";
 import camera from "../icon/movie-camera.svg";
-import cameraMan from "../image/camera-man-sm.jpeg"
+import cameraMan from "../image/camera-man-sm.jpeg";
 
 export default function Welcome() {
   const { height } = useWindowDimensions();
@@ -18,15 +18,17 @@ export default function Welcome() {
                 ¿Dónde se rodó?
               </h1>
             </div>
-            <div className="flex flex-col justify-center items-center
+            <div
+              className="flex flex-col justify-center items-center
             lg:items-start md:items-start
-            ">
+            "
+            >
               <p className="py-6 text-gray-200">
                 Busca, encuentra y visita dónde se rodaron tus películas
                 favoritas.
               </p>
               <img
-                src= {cameraMan}
+                src={cameraMan}
                 // "https://placeimg.com/260/260/arch"
                 className="max-w-[260px] rounded-lg"
               />
