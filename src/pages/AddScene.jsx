@@ -171,7 +171,7 @@ export default function AddScene() {
             Tu película se ha subido currectamente!!
           </p>
           <div className="modal-action">
-            <Link to="/main"><a className="link link-secondary">VOLVER</a></Link>
+            <Link to="/main" className="link link-secondary">VOLVER</Link>
           </div>
         </div>
       </div>

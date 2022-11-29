@@ -14,14 +14,14 @@ export default function Welcome() {
           <div>
             <div className="flex flex-row justify-center lg:justify-start md:justify-start">
               <img src={camera} className="h-[35px]" />
-              <h1 className="text-4xl font-bold text-gray-400 mx-4">
+              <h1 className="text-4xl font-bold text-gray-200 mx-4">
                 ¿Dónde se rodó?
               </h1>
             </div>
             <div className="flex flex-col justify-center items-center
             lg:items-start md:items-start
             ">
-              <p className="py-6 text-gray-400">
+              <p className="py-6 text-gray-200">
                 Busca, encuentra y visita dónde se rodaron tus películas
                 favoritas.
               </p>
@@ -32,8 +32,8 @@ export default function Welcome() {
               />
             </div>
             <div className="my-5 ml-3">
-              <p className="text-gray-400">Las reglas son sencillas:</p>
-              <ul className="list-disc list-inside my-3 text-gray-400">
+              <p className="text-gray-200">Las reglas son sencillas:</p>
+              <ul className="list-disc list-inside my-3 text-gray-300">
                 <li>Busca si la película está en nuestra base de datos</li>
                 <li>Explora las ubicaciones en nuestro mapa</li>
                 <li>

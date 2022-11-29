@@ -1,4 +1,4 @@
-import { Marker, Popup, useMap } from "react-leaflet";
+import { Marker, useMap } from "react-leaflet";
 import * as L from "leaflet";
 import iconRed from '../icon/icono-lila.svg' // icono rojo
 import iconAzul from '../icon/icono-dark.svg' // icono azul

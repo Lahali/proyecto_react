@@ -5,11 +5,10 @@ import { useGetData } from "../components/context/MoviesProvider";
 import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import iconoMapa from "../icon/iconoMapaDark.svg";
-// import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
 import travolta from "../icon/travolta.gif"
 
 
-export default function Home(props) {
+export default function Home() {
   const [searchField, setSearchField] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const { moviesData, scenes } = useGetData();

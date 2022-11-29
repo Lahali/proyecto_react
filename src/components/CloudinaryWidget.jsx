@@ -5,10 +5,6 @@ export default function CloudinaryWidget(props) {
   // const [url, updateUrl] = useState();
   const [error, updateError] = useState();
 
-  /**
-   * handleOnUpload
-   */
-
   function handleOnUpload(error, result, widget) {
     if (error) {
       updateError(error);
@@ -51,5 +47,3 @@ export default function CloudinaryWidget(props) {
   );
 }
 
-// <p><img src={ props.url } alt="Uploaded image" /></p>
-// <p>{ props.url }</p>

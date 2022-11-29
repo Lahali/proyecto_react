@@ -25,15 +25,11 @@ export default function Map(props) {
       if (!props.map) return;
       L.easyButton("fa-map-marker", () => {
         props.map.locate().on("locationfound", function (e) {
-          // setPosition(e.latlng);
-          // props.map.flyTo(e.latlng, props.map.getZoom()); // esto si queremos mantener el nivel de zoom corriente
-          props.map.flyTo(e.latlng, 12);
+        props.map.flyTo(e.latlng, 12);
         });
       }).addTo(props.map);
     }, [props.map]);
   
-// console.log('MAP props.triangulation',props.triangulation)
-// console.log('typeof(MAP props.triangulation',typeof(props.triangulation))
 
 return (
  <div className= 'mapContainer'>
@@ -41,8 +37,6 @@ return (
           {props.triangulation &&
           <MapContainer // este componente de React-Leaflet crea el mapa
             ref={props.setMap} // whenCreated={setMap} esta era la forma antigua de hacerlo
-            //center={[41.4, 2.17]}
-            // zoom={12}
             scrollWheelZoom={true}
             bounds={props.triangulation} // ALGUN ERROR POR AQUI?
             boundsOptions={{ padding: [50, 50] }}

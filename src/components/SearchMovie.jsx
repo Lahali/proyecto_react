@@ -1,4 +1,4 @@
-import PreviousMap from "postcss/lib/previous-map";
+
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -9,13 +9,6 @@ export default function SearchMovie(props) {
   // ==> ESTO LO ESTÁ USANDO ALGUIEN??
   const externalSource = "&external_source=imdb_id";
   const [openSearch, setOpenSearch] = useState(false);
-
-  // ejemplo que te devuelve peli a partir de IMDB_ID tt0230600
-  // /useEffect(() => {
-  //     fetch(`${url}find/tt0230600?api_key=${APIkey}${language}${externalSource}`)
-  //       .then(res => res.json())
-  //       .then(data => console.log('TMDB data: ', data))
-  //   }, [])
 
   useEffect(() => {
     fetch(
@@ -85,7 +78,6 @@ export default function SearchMovie(props) {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 }
