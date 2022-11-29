@@ -13,11 +13,9 @@ const Logout = () => {
             X
           </label>
           <h3 className="text-lg font-bold text-gray-400">
-          Gracias por tu visita!
+            Gracias por tu visita!
           </h3>
-          <p className="py-4 text-gray-400">
-          Has salido correctamente
-          </p>
+          <p className="py-4 text-gray-400">Has salido correctamente</p>
         </div>
       </div>
     </div>
@@ -25,5 +23,3 @@ const Logout = () => {
 };
 
 export default Logout;
-
-
