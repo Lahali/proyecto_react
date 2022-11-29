@@ -6,6 +6,8 @@ import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import iconoMapa from "../icon/iconoMapaDark.svg";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
+import travolta from "../icon/travolta.gif"
+
 
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
@@ -43,22 +45,9 @@ export default function Home(props) {
       );
     } else if (filteredMovies.length === 0 && searchField.length > 0) {
       return (
-        <div className="flex flex-col justify-center items-center p-2">
-          {/* <p className="text-gray-400 text-lg m-2"> Esta película aún no está. Regístrate y añádela a nuestro mapa.</p>
-          <iframe
-            src="https://giphy.com/embed/3o7aTskHEUdgCQAXde"
-            width="480"
-            height="204"
-            frameBorder="0"
-            class="giphy-embed"
-            allowFullScreen
-          ></iframe>
-          <p>
-            <a href="https://giphy.com/gifs/quentin-tarantino-pulp-fiction-vincent-vega-3o7aTskHEUdgCQAXde">
-              via GIPHY
-            </a>
-          </p> */}
-         
+        <div>
+        <img src={travolta} />
+
         </div>
       );
     } else if (filteredMovies.length > 0) {
