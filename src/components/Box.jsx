@@ -112,13 +112,13 @@ export default function Box(props) {
           )}
         </div>
 
-        <div className="p-2">
-          <p className="mx-2 mt-3 text-md lg:text-lg text-gray-700">
+        <div className="">
+          <p className="mx-4 mt-3 text-xl lg:text-lg text-gray-600 italic underline underline-offset-4 decoration-gray-200	 ">
             {props.currentMarker.movie_title}
           </p>
         </div>
-        <div className="p-2 flex justify-between">
-          <p className="mx-2 font-semibold text-lg lg:text-xl text-gray-700">
+        <div className=" flex justify-between">
+          <p className="mx-4 mt-1 font-semibold text-xl lg:text-xl text-gray-900 tracking-wide">
             {props.currentMarker.scene_title}
           </p>
 
@@ -143,7 +143,7 @@ export default function Box(props) {
         {props.boxPosition === "isOpen" && (
           <div className="imgContainer carousel-item relative w-full flex">
             <img
-              className="mt-4 object-cover w-full h-auto max-h-56"
+              className="mt-4 object-cover w-full h-auto max-h-60"
               src={props.currentMarker.img}
               onError={(e) => (e.target.src = imgNotFound)}
             />

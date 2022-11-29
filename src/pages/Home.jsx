@@ -6,6 +6,8 @@ import MovieCard from "../components/MovieCard";
 import Navbar from "../components/Navbar";
 import iconoMapa from "../icon/iconoMapaDark.svg";
 // import peliculas from "../data/peliculas.json"; // el archivo con el array de peliculas
+import travolta from "../icon/travolta.gif"
+
 
 export default function Home(props) {
   const [searchField, setSearchField] = useState("");
@@ -43,24 +45,11 @@ export default function Home(props) {
       );
     } else if (filteredMovies.length === 0 && searchField.length > 0) {
       return (
-        <>
-          <div className="flex flex-col items-center justify-center">
-            <div className="giftContainer">
-              <iframe
-                src="https://giphy.com/embed/A9EcBzd6t8DZe"
-                frameBorder="0"
-                className="giftObject giphy-embed"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <p>
-              <a href="https://giphy.com/stickers/john-travolta-A9EcBzd6t8DZe">
-                via GIPHY
-              </a>
-            </p>
-            <p>holiii</p>
-          </div>
-        </>
+        <div>
+        <img src={travolta} />
+
+        </div>
+
       );
     } else if (filteredMovies.length > 0) {
       return filteredMovies.map((movie, index) => {
