@@ -8,9 +8,9 @@ const Logout = () => {
         <div className="modal-box relative">
           <label
             htmlFor="my-modal-logout"
-            className=" absolute right-2 top-2 text-secondary hover:text-secondary-focus"
+            className="font-bold text-lg absolute right-4 top-2 text-secondary hover:text-secondary-focus"
           >
-            ✕
+            X
           </label>
           <h3 className="text-lg font-bold text-gray-400">
           Gracias por tu visita!

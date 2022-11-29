@@ -8,8 +8,8 @@ const Login = () => {
 
   return (
     <div className="h-[100vh] w-[100vw] flex flex-col justify-center items-center p-4">
-      <h3 className="font-bold text-lg text-gray-400">Entra en tu cuenta</h3>
-      <form className="flex flex-col" onSubmit={handleSubmitLogin}>
+      <form className="flex flex-col my-4 p-8 rounded-lg bg-gray-900" onSubmit={handleSubmitLogin}>
+      <h3 className="my-4 font-bold text-lg text-gray-400">Entra en tu cuenta</h3>
         {error && (
           <div className="alert alert-error shadow-lg">
             <div>
@@ -26,7 +26,7 @@ const Login = () => {
                   d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span>Algo ha ido mal, inténtalo de nuevo</span>
+              <span>{error}</span>
             </div>
           </div>
         )}
@@ -43,7 +43,7 @@ const Login = () => {
               : "input input-bordered w-full max-w-xs text-gray-400"
           }
         />
-        <label className="m-2 text-gray-400">Contraseña:</label>
+        <label className="m-2 mt-8 text-gray-400">Contraseña:</label>
         <input
           onChange={handleChange}
           name="password"
@@ -62,7 +62,7 @@ const Login = () => {
           Entrar
         </button>
       </form>
-      <p className="text-gray-400">¿No estás registrado? <Link to="/signup">Regístrate</Link> </p>
+      <p className="text-gray-400">¿No estás registrado? <Link to="/signup" className="link link-secondary">Regístrate</Link> </p>
     </div>
   )
 }

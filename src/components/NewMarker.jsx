@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-
-import { Marker, Tooltip, useMap, useMapEvents } from "react-leaflet";
+import { useState } from "react";
+import { Marker, Tooltip, useMapEvents } from "react-leaflet";
 import { isEmpty } from "@firebase/util";
-
 import { Link } from "react-router-dom";
 
-
 export default function NewMarker(props) {
+  const [newMarkerPosition, setNweMarkerPosition] = useState();
+  const [toogle, setToogle] = useState(false); // esto sirve solo para que no salga el marker a cada click (CUTRADAAAAA)
 
-    const [newMarkerPosition, setNweMarkerPosition] = useState();
-    const [toogle, setToogle] = useState(false) // esto sirve solo para que no salga el marker a cada click (CUTRADAAAAA)
-
-/*     function updateMapWhenResze(){
+  /*     function updateMapWhenResze(){
         let timing = 0;
         const interval = setInterval(updateMap, 10); // cada 10 milisegundos
         function updateMap() {
@@ -23,45 +19,51 @@ export default function NewMarker(props) {
           }}
       } */
 
-    useMapEvents({
-        click: (e) => {
+  useMapEvents({
+    click: (e) => {
+      props.setCurrentMarker({});
+      setNweMarkerPosition(e.latlng);
 
-                props.setCurrentMarker({})
-                setNweMarkerPosition(e.latlng);
-                
-                if (isEmpty(props.currentMarker)) {
-                    setToogle(!toogle) 
-                    // !toogle && leafletMap.panTo(e.latlng); // esto para centrar el mapa donde sale el tooltip
-                } else {
-                    // esto pasa alguna vez?
-                return;
-                            }
-        },      
-    })
+      if (isEmpty(props.currentMarker)) {
+        setToogle(!toogle);
+        // !toogle && leafletMap.panTo(e.latlng); // esto para centrar el mapa donde sale el tooltip
+      } else {
+        // esto pasa alguna vez?
+        return;
+      }
+    },
+  });
 
-    // let renderCondition = ()=> {
-    //     if ()
-    // }
+  // let renderCondition = ()=> {
+  //     if ()
+  // }
 
-// console.log('props.currentMarker IsEMPTY', (isEmpty(props.currentMarker)))
-     return (
-        <>
-           
-            {(newMarkerPosition && (toogle && isEmpty(props.currentMarker))) && <Marker //componente de ReactLeaflet
-                position={newMarkerPosition} >
-                <Tooltip //componente de ReactLeaflet
-                    permanent // siempre visible
-                    interactive> {/* hace que se pueda hacer click dentro por ejemplo */}
-                    <div className="tooltip">
-                        <Link to='/addScene' state={{latlng: newMarkerPosition}}>Añade una escena<br />en esta posicion!</Link>
-                    </div>
-                </Tooltip>
-            </Marker>}
-        </>
-    )
+  // console.log('props.currentMarker IsEMPTY', (isEmpty(props.currentMarker)))
+  return (
+    <>
+      {newMarkerPosition && toogle && isEmpty(props.currentMarker) && (
+        <Marker //componente de ReactLeaflet
+          position={newMarkerPosition}
+        >
+          <Tooltip //componente de ReactLeaflet
+            permanent // siempre visible
+            interactive
+          >
+            {" "}
+            {/* hace que se pueda hacer click dentro por ejemplo */}
+            <div className="tooltip">
+              <Link to="/addScene" state={{ latlng: newMarkerPosition }}>
+                Añade una escena
+                <br />
+                en esta posicion!
+              </Link>
+            </div>
+          </Tooltip>
+        </Marker>
+      )}
+    </>
+  );
 }
-
-
 
 /* click: (e) => {
     console.log('E', e)
