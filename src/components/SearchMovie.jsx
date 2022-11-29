@@ -67,11 +67,11 @@ export default function SearchMovie(props) {
           >
             {props.moviesResults &&
               !props.movieSelected &&
-              props.moviesResults.map((movie) => {
+              props.moviesResults.map((movie, index) => { 
                 return (
                   // AÑADÍ ONCLICK PARA QUE EL MENÚ DROPDOWN SE CIERRE AL HACER CLICK
-                  <ul
-                    className="hover:btn-link my-1"
+                  <ul key={index}
+                    className="hover:link hover:link-secondary my-1"
                     onClick={() => setOpenSearch(!openSearch)}
                   >
                     <li>

@@ -48,7 +48,19 @@ export const AuthProvider = ({ children }) => {
       navigate("/main");
     } catch (error) {
       console.log("algo va fatal", error);
-      setError(error.message);
+      // setError(error.message);
+      if(error.code === "auth/internal-error"){
+        setError("Parece que algún dato está mal...")
+      }
+      if(error.code === "auth/weak-password") {
+        setError("La contraseña es demasiado corta")
+      }
+      if(error.code === "auth/invalid-email") {
+        setError("Ese correo no parece válido")
+      }
+      if(error.code === "auth/email-already-in-use"){
+        setError("El usuario ya está registrado")
+      }
     }
   };
 
@@ -56,14 +68,24 @@ export const AuthProvider = ({ children }) => {
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     setError("");
-    navigate("/main");
     try {
       await login(userData.email, userData.password);
       setUserData({email: '', password: ''})
+      navigate("/main");
     } catch (error) {
       console.log("hemos hecho algo mal", error);
-      setError(error.message);
-      console.log(auth, error);
+      if(error.code === "auth/user-not-found"){
+        setError("Ese usuario no está registrado")
+      }
+      if(error.code === "auth/weak-password") {
+        setError("La contraseña es demasiado corta")
+      }
+      if(error.code === "auth/invalid-email") {
+        setError("Ese correo no parece válido")
+      }
+      if(error.code === "auth/wrong-password"){
+        setError("El usuario o la contraseña están mal")
+      }
     }
   };
 

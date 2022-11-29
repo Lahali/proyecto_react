@@ -1,19 +1,18 @@
 import { Marker, Popup, useMap } from "react-leaflet";
 import * as L from "leaflet";
-import iconRed from '../icon/icon-red.svg' // icono rojo
-import iconAzul from '../icon/icon-dark.svg' // icono azul
+import iconRed from '../icon/icono-lila.svg' // icono rojo
+import iconAzul from '../icon/icono-dark.svg' // icono azul
 
 export default function DisplayMarkers(props) {
 
     const leafletMap = useMap();
-
+    
     function createIcon(url) {
         return new L.Icon({
             iconUrl: url,
             iconSize: [40, 40],
         });
     }
-
 
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado

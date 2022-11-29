@@ -1,12 +1,12 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { collection, addDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom"; // esto para importar "props" con Link
 import CloudinaryWidget from "../components/CloudinaryWidget";
 import { database } from "../components/firebase/firebaseConfig";
 import Navbar from "../components/Navbar";
 import SearchMovie from "../components/SearchMovie";
+
 export default function AddScene() {
   const location = useLocation();
   const { latlng } = location.state; //hay problemas con esto si al dar al boton cambia la url
@@ -67,6 +67,7 @@ export default function AddScene() {
   // useEffect(() => {
   // }, [sceneToUpload]);
 
+  // ==> ALGUIEN USA ESTO?
   const botonEnviarStyle = () => {
     if (
       url === undefined ||
@@ -80,11 +81,11 @@ export default function AddScene() {
     }
   };
 
-  console.log("coordinates:", coordinates);
-  console.log("movieSelected:", movieSelected);
-  console.log("sceneTitle:", sceneTitle);
-  console.log("sceneDescription:", sceneDescription);
-  console.log("url:", url);
+  // console.log("coordinates:", coordinates);
+  // console.log("movieSelected:", movieSelected);
+  // console.log("sceneTitle:", sceneTitle);
+  // console.log("sceneDescription:", sceneDescription);
+  // console.log("url:", url);
   // console.log('sceneToUpload:', sceneToUpload)
 
   return (
@@ -170,8 +171,7 @@ export default function AddScene() {
             Tu película se ha subido currectamente!!
           </p>
           <div className="modal-action">
-            {/* <label htmlFor="my-modal" className="btn">Yay!</label> */}
-            <Link to="/home">VOLVER</Link>
+            <Link to="/main"><a className="link link-secondary">VOLVER</a></Link>
           </div>
         </div>
       </div>

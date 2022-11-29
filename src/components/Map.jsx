@@ -3,7 +3,7 @@ import DisplayMarkers from '../components/DisplayMarkers';
 import NewMarker from '../components/NewMarker'
 import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as L from "leaflet";
 import "font-awesome/css/font-awesome.min.css";
 
