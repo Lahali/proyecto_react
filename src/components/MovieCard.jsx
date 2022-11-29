@@ -32,7 +32,7 @@ const MovieCard = (props) => {
         />
 
         <div className="lg:card-body lg:h-fit lg:p-3 flex flex-col content-between h-full p-2">
-          <h2 className="card-title text-gray-400 leading-5">
+          <h2 className="card-title text-gray-200 leading-5">
             {props.getMovieTitle}
           </h2>
           <p className=" mt-2 text-gray-400">Número de escenas: {number()}</p>

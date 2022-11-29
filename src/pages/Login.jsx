@@ -62,7 +62,7 @@ const Login = () => {
           Entrar
         </button>
       </form>
-      <p className="text-gray-400">¿No estás registrado? <Link to="/signup"><a className="link link-secondary">Regístrate</a></Link> </p>
+      <p className="text-gray-400">¿No estás registrado? <Link to="/signup" className="link link-secondary">Regístrate</Link> </p>
     </div>
   )
 }

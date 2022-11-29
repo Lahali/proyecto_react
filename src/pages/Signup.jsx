@@ -61,7 +61,7 @@ const Signup = () => {
           Registrarse
         </button>
       </form>
-      <p className="text-gray-400">Si ya estás registrado, <Link to= "/login"> <a className="link link-secondary">inicia sesión</a></Link></p>
+      <p className="text-gray-400">Si ya estás registrado, <Link to= "/login" className="link link-secondary"> inicia sesión </Link></p>
     </div>
   );
 };
