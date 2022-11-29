@@ -7,8 +7,13 @@ const Signup = () => {
 
   return (
     <div className="h-[100vh] w-[100vw] flex flex-col justify-center items-center p-4 ">
-      <form className="flex flex-col my-4 p-8 rounded-lg bg-gray-900" onSubmit={handleSubmit}>
-      <h3 className="my-4 font-bold text-lg text-gray-400">Crea una cuenta nueva</h3>
+      <form
+        className="flex flex-col my-4 p-8 rounded-lg bg-gray-900"
+        onSubmit={handleSubmit}
+      >
+        <h3 className="my-4 font-bold text-lg text-gray-400">
+          Crea una cuenta nueva
+        </h3>
         {/* {error && <p className="text-red-500">{error}</p>} */}
         {error && (
           <div className="alert alert-error shadow-lg">
@@ -61,7 +66,13 @@ const Signup = () => {
           Registrarse
         </button>
       </form>
-      <p className="text-gray-400">Si ya estás registrado, <Link to= "/login" className="link link-secondary"> inicia sesión </Link></p>
+      <p className="text-gray-400">
+        Si ya estás registrado,{" "}
+        <Link to="/login" className="link link-secondary">
+          {" "}
+          inicia sesión{" "}
+        </Link>
+      </p>
     </div>
   );
 };
