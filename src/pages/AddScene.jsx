@@ -1,5 +1,5 @@
 import { collection, addDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom"; // esto para importar "props" con Link
 import CloudinaryWidget from "../components/CloudinaryWidget";
@@ -16,13 +16,15 @@ export default function AddScene() {
   const [movieSelected, setsetMovieSelected] = useState(); // desde este sacamos titulo peli y ID
   const [sceneTitle, setSceneTitle] = useState("");
   const [sceneDescription, setSceneDescription] = useState("");
-  const [url, updateUrl] = useState();
-
-  const [sceneToUpload, setSceneToUpload] = useState();
-
+  const [url, updateUrl] = useState("");
   // por el componente SearchMovie
   const [moviesResults, setMoviesResults] = useState([]);
   const [userSearch, setUserSearch] = useState(""); // lo que vamos tecleando en el input
+
+  const scenesRef = collection(database, "scenes");
+  // const [sceneToUpload, setSceneToUpload] = useState();
+
+  const [checkModal, setCheckModal] = useState(false);
 
   const handleChangeSceneTitle = (e) => {
     setSceneTitle(e.target.value);
@@ -31,8 +33,10 @@ export default function AddScene() {
     setSceneDescription(e.target.value);
   };
 
-  const handleSubmit = () => {
-    setSceneToUpload({
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hola?");
+    const scene = {
       type: "Feature",
       properties: {
         img: url,
@@ -48,125 +52,129 @@ export default function AddScene() {
         coordinates: coordinates,
         type: "Point",
       },
-    });
-    setSceneTitle("");
-    setSceneDescription("");
-    setUserSearch("");
+    };
+    addDoc(scenesRef, scene);
+    console.log("SCENA SUBIDA");
+    // window.location.href = "#my-modal-2";
+    setCheckModal(true);
   };
 
-  const scenesRef = collection(database, "scenes");
-  useEffect(() => {
-    sceneToUpload && addDoc(scenesRef, sceneToUpload);
-    console.log("ESCENA SUBIDA!!!");
-  }, [sceneToUpload]);
+  // setSceneTitle("");
+  // setSceneDescription("");
+  // setUserSearch("");
 
-  console.log("movieSelected:", movieSelected);
-  console.log("coordinates:", coordinates);
-  console.log("sceneToUpload:", sceneToUpload);
+  // const scenesRef = collection(database, "scenes");
+  // useEffect(() => {
+  // }, [sceneToUpload]);
+
+  // ==> ALGUIEN USA ESTO?
+  const botonEnviarStyle = () => {
+    if (
+      url === undefined ||
+      sceneTitle.length < 1 ||
+      movieSelected === undefined ||
+      sceneDescription < 1
+    ) {
+      return "btn-disabled";
+    } else {
+      return;
+    }
+  };
+
+  // console.log("coordinates:", coordinates);
+  // console.log("movieSelected:", movieSelected);
+  // console.log("sceneTitle:", sceneTitle);
+  // console.log("sceneDescription:", sceneDescription);
+  // console.log("url:", url);
+  // console.log('sceneToUpload:', sceneToUpload)
 
   return (
     <>
-      <Navbar />
       {/* <div className="bg-base-200 flex items-center justify-center"> */}
       {/* <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]"> */}
-      <div className="flex flex-col h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]">
-        <div className="flex flex-col items-center">
-          <SearchMovie
-            moviesResults={moviesResults}
-            setMoviesResults={setMoviesResults}
-            userSearch={userSearch}
-            setUserSearch={setUserSearch}
-            movieSelected={movieSelected}
-            setsetMovieSelected={setsetMovieSelected}
-          />
-          <div className="w-80 ml-2 mt-3">
-            <label className="label">
-              <span className="label-text text-base">Titula la escena:</span>
-            </label>
+      <form onSubmit={handleSubmit} className="bg-gray-900 overflow-hidden">
+        <Navbar />
+        <div className="flex flex-col h-screen p-3 mx-6 my-4 rounded-lg max-h-[47rem]">
+          <div className="flex flex-col items-center">
+            <SearchMovie
+              moviesResults={moviesResults}
+              setMoviesResults={setMoviesResults}
+              userSearch={userSearch}
+              setUserSearch={setUserSearch}
+              movieSelected={movieSelected}
+              setsetMovieSelected={setsetMovieSelected}
+            />
+            <div className="w-80 ml-2 mt-3">
+              <label className="label">
+                <span className="label-text text-gray-400 text-base">
+                  Titula la escena:
+                </span>
+              </label>
+            </div>
+            <input
+              className="input input-bordered bg-gray-800 w-80 h-10 mx-2 text-gray-400 text-base"
+              type="text"
+              onChange={handleChangeSceneTitle}
+              required
+            />
           </div>
-          <input
-            className="input input-bordered w-80 h-10 bg-white mx-2"
-            type="text"
-            onChange={handleChangeSceneTitle}
-          />
-        </div>
 
-        <div className="flex flex-col items-center content-center mt-2">
-          <div className="w-80 ml-2">
-            <label className="label">
-              <span className="label-text text-base">... y escribe algo</span>
+          <div className="flex flex-col items-center content-center mt-2">
+            <div className="w-80 ml-2">
+              <label className="label">
+                <span className="label-text text-gray-400 text-base">
+                  ... y escribe algo
+                </span>
+              </label>
+            </div>
+            <textarea
+              className="rounded-lg bg-gray-800 border-gray-600 border  p-3 mt-1 w-80 text-gray-400 text-base focus:border-violet-500 selection:border-violet-500 hover:border-violet-500 active:border-violet-500"
+              rows="10"
+              placeholder="escribe algo aqui"
+              onChange={handleChangeSceneDescription}
+              required
+            />
+          </div>
+          <div className="flex flex-col items-center self-center mt-3">
+            <CloudinaryWidget url={url} updateUrl={updateUrl} />
+          </div>
+          <div className="flex flex-col items-center self-center mt-7">
+            <label>
+              {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
+              {/* si aqui no pongo type='button' se comporta como un submit */}
+              <button
+                //className={`${botonEnviarStyle()} btn w-80 btn-primary mt-5 `}
+                className="btn w-80 btn-secondary"
+                //type="button"
+                //onClick={handleSubmit}
+              >
+                ENVIAR
+              </button>
             </label>
           </div>
-          <textarea
-            className="rounded-3xl border p-3 mt-1 w-80"
-            rows="10"
-            placeholder="escribe algo aqui"
-            onChange={handleChangeSceneDescription}
-          />
         </div>
-        <div className="flex flex-col items-center self-center">
-          <CloudinaryWidget url={url} updateUrl={updateUrl} />
-        </div>
-        <div className="flex flex-col items-center self-center">
-          <label>
-            {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
-            {/* si aqui no pongo type='button' se comporta como un submit */}
-            <button
-              className="btn w-80 btn-primary mt-5 "
-              type="button"
-              onClick={handleSubmit}
-            >
-              ENVIAR
-            </button>
-          </label>
+      </form>
+
+      {/* M O D A L */}
+      <input
+        type="checkbox"
+        checked={checkModal}
+        id="my-modal"
+        className="modal-toggle"
+      />
+      <div className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-gray-400 text-lg">
+            Gracias!
+          </h3>
+          <p className="py-4 text-base text-gray-400">
+            Tu película se ha subido currectamente!!
+          </p>
+          <div className="modal-action">
+            <Link to="/main" className="link link-secondary">VOLVER</Link>
+          </div>
         </div>
       </div>
-
-      {/* </div> */}
     </>
   );
 }
-
-// ejemplo de objecto escena que hay que subir:
-
-/* const escena_para_agregar = {
-    "type": "Feature",
-    "properties": {
-        "img":"./data/img/99.jpg",
-        "escena": "juega a la playstation",
-        "lugar": "Barcelona"
-    },
-    "geometry": {
-        "coordinates": [
-            2.0,
-            41.0
-        ],
-        "type": "Point"
-    }
-} */
-/* {
-    "type": "Feature",
-    "properties": {
-        "img":"",
-        "escena": "", // habria que cambiarlo por titulo escena
-        "sceneDescription": "",
-        "lugar": ""
-    },
-    "geometry": {
-        "coordinates": latlng,
-        "type": "Point"
-    }
-} */
-
-// actualizar el State de objectos anidados es un poco complicado...
-/* function handleChange(e) {    
-    console.log("event target:" ,e.target)
-    setScene(prev =>{
-        return{
-            ...prev,
-            [e.target.name]: e.target.value
-        }
-    })
-} */
-
-//window.history.replaceState({}, document.title) // esto sirve a no tener problemas co el useLocation al refrescar la pagina

@@ -3,7 +3,7 @@ import DisplayMarkers from '../components/DisplayMarkers';
 import NewMarker from '../components/NewMarker'
 import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as L from "leaflet";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -18,33 +18,28 @@ export default function Map(props) {
 
     const mapURL2 = 'https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png' // serve token
     
-    console.log('props.triangulation',props.triangulation)
-    console.log('props.map',props.map)
+
 
     // boton "va a tu posicion"
     useEffect(() => {
       if (!props.map) return;
       L.easyButton("fa-map-marker", () => {
         props.map.locate().on("locationfound", function (e) {
-          // setPosition(e.latlng);
-          // props.map.flyTo(e.latlng, props.map.getZoom()); // esto si queremos mantener el nivel de zoom corriente
-          console.log('MI POSICION')
-          props.map.flyTo(e.latlng, 12);
+        props.map.flyTo(e.latlng, 12);
         });
       }).addTo(props.map);
     }, [props.map]);
   
 
 return (
-<div className='mapContainer'>
+ <div className= 'mapContainer'>
   {/* para cargar esperamos de recibir los datos de triangulation */}
           {props.triangulation &&
           <MapContainer // este componente de React-Leaflet crea el mapa
             ref={props.setMap} // whenCreated={setMap} esta era la forma antigua de hacerlo
-            //center={[41.4, 2.17]}
-            // zoom={12}
             scrollWheelZoom={true}
-            bounds={props.triangulation}
+            bounds={props.triangulation} // ALGUN ERROR POR AQUI?
+            boundsOptions={{ padding: [50, 50] }}
             attributionControl={false} // quitamos la atribucion
           >
               <TileLayer // componenete de React-Leaflet para decidir el mapa (url) 

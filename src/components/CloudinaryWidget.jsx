@@ -5,10 +5,6 @@ export default function CloudinaryWidget(props) {
   // const [url, updateUrl] = useState();
   const [error, updateError] = useState();
 
-  /**
-   * handleOnUpload
-   */
-
   function handleOnUpload(error, result, widget) {
     if (error) {
       updateError(error);
@@ -19,9 +15,6 @@ export default function CloudinaryWidget(props) {
     }
     props.updateUrl(result?.info?.secure_url);
     //updateUrl("imagen cargada con exito");
-
-    console.log("result: ", result); // esto te da todos los detalles
-    //console.log('result.info.url: ',result.info.url); // url de la imagen
   }
 
   return (
@@ -36,7 +29,7 @@ export default function CloudinaryWidget(props) {
             }
             return (
               <button
-                className="mt-5 btn btn-outline btn-primary w-80"
+                className="mt-5 btn btn-outline btn-secondary w-80"
                 onClick={handleOnClick}
               >
                 SUBE UNA IMAGEN
@@ -48,11 +41,9 @@ export default function CloudinaryWidget(props) {
         {error && <p>{error}</p>}
 
         {/* aqui para cambiar que pasa despues upload con exito */}
-        {props.url && <p>imagen cargada con exito!</p>}
+        {props.url && <p className="text-base text-gray-400 mt-2">imagen cargada con exito!</p>}
       </div>
     </main>
   );
 }
 
-// <p><img src={ props.url } alt="Uploaded image" /></p>
-// <p>{ props.url }</p>

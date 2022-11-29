@@ -1,12 +1,8 @@
-.openCloseBox{
-    height: 25px;
-    background-color: red;
-  }
   .boxOpen{
-    /* height: 110%; */
+    /*height: 110%;*/
     height: 60vh;
     transition: 1s;
-  }
+  } 
   
   .boxClosed{
     height: 20%;
@@ -14,13 +10,14 @@
   }
   .boxHidden{
   height: 0px;
+  display: none;
   transition: 1s;
   }
 
   .imgContainer{
     text-align: center;
-
     height: 30vh;
+    align-items: center;
   }
 
   .imgScene{
@@ -32,8 +29,16 @@
     z-index: 9999;
   }
 
+  .buttonImg {
+    height: 3rem;
+    width: 3rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 30%;
+    
+  }
+
+  /* ==> ESTÁ ESTILADO CON TAILWIND */
   .moreInfo{
     text-align: center !important;
     border: solid red 1px;
-
   }

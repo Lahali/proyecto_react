@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import { async } from "@firebase/util";
+import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
@@ -16,11 +16,17 @@ export function useAuth() {
 }
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
+  const [user, setUser] = useState(null);
+
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
@@ -30,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   //  los valores del parámetro vienen del evento (es una destructuración del evento con los valores que queremos)
   const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
+    setUserData({ ...userData, [name]: value });
   };
 
   // SIGNUP
@@ -38,11 +44,23 @@ export const AuthProvider = ({ children }) => {
     e.preventDefault();
     setError("");
     try {
-      await signup(user.email, user.password);
-      
+      await signup(userData.email, userData.password);
+      navigate("/main");
     } catch (error) {
       console.log("algo va fatal", error);
-      setError(error.message);
+      // setError(error.message);
+      if(error.code === "auth/internal-error"){
+        setError("Parece que algún dato está mal...")
+      }
+      if(error.code === "auth/weak-password") {
+        setError("La contraseña es demasiado corta")
+      }
+      if(error.code === "auth/invalid-email") {
+        setError("Ese correo no parece válido")
+      }
+      if(error.code === "auth/email-already-in-use"){
+        setError("El usuario ya está registrado")
+      }
     }
   };
 
@@ -51,12 +69,23 @@ export const AuthProvider = ({ children }) => {
     e.preventDefault();
     setError("");
     try {
-      await login(user.email, user.password);
-      e.target.reset()
+      await login(userData.email, userData.password);
+      setUserData({email: '', password: ''})
+      navigate("/main");
     } catch (error) {
       console.log("hemos hecho algo mal", error);
-      setError(error.message);
-      console.log(auth, error);
+      if(error.code === "auth/user-not-found"){
+        setError("Ese usuario no está registrado")
+      }
+      if(error.code === "auth/weak-password") {
+        setError("La contraseña es demasiado corta")
+      }
+      if(error.code === "auth/invalid-email") {
+        setError("Ese correo no parece válido")
+      }
+      if(error.code === "auth/wrong-password"){
+        setError("El usuario o la contraseña están mal")
+      }
     }
   };
 
@@ -65,11 +94,13 @@ export const AuthProvider = ({ children }) => {
 
   // esta función de Firebase nos devuelve la información cada vez que el usuario cambia: abre o cierra sesión, etc
   useEffect(() => {
-    const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
-    return () => unsuscribe();
+    return () => unsubscribe();
   }, []);
+
 
   return (
     <authContext.Provider
@@ -78,7 +109,9 @@ export const AuthProvider = ({ children }) => {
         handleSubmit,
         error,
         handleSubmitLogin,
-        logout
+        logout,
+        loading,
+        user,
       }}
     >
       {children}

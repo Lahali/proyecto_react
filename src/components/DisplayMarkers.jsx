@@ -1,12 +1,12 @@
-import { Marker, Popup, useMap } from "react-leaflet";
+import { Marker, useMap } from "react-leaflet";
 import * as L from "leaflet";
-import iconRed from '../icon/icon-red.png' // icono rojo
-import iconAzul from '../icon/marker1.svg' // icono azul
+import iconRed from '../icon/icono-lila.svg' // icono rojo
+import iconAzul from '../icon/icono-dark.svg' // icono azul
 
 export default function DisplayMarkers(props) {
 
     const leafletMap = useMap();
-
+    
     function createIcon(url) {
         return new L.Icon({
             iconUrl: url,
@@ -14,17 +14,16 @@ export default function DisplayMarkers(props) {
         });
     }
 
-
     const handleClick = e => {
         leafletMap.panTo(e.latlng); //esto sirve para centrar el marker seleccionado
-         console.log('currentMarker', props.currentMarker)
          // console.log('props.prevCurrentMarkertRef', props.prevCurrentMarkertRef.current)
         props.setCurrentMarker({
             scene_title: e.sourceTarget.options.scene_title,
             movie_title: e.sourceTarget.options.movie_title,
+            scene_description: e.sourceTarget.options.scene_description,
             img: e.sourceTarget.options.img,
             coordinates: e.latlng,
-            index: e.target.options.index // esto sireve para el icono
+            index: e.target.options.index // esto sirve para el icono
         });
     }
 
@@ -50,6 +49,7 @@ export default function DisplayMarkers(props) {
                 //key={String(coordinates)}
                 scene_title={properties.scene_title}
                 movie_title={properties.movie_title}
+                scene_description={properties.scene_description}
                 img={properties.img}
                 position={coordinates} // la propiedad tiene que ser position!
                 eventHandlers={{
@@ -65,31 +65,3 @@ export default function DisplayMarkers(props) {
         </>
     )
 }
-
-/* <Popup
-    className="request-popup"
-    /* pane="fixed"
-    className="popup-fixed"
-    autoPan="false" >
-    <h2>{properties.Edifici}</h2> <br />
-    {properties.Nom_Via}
-</Popup> */
-
-/* const handleClick = e => {
-    leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-    props.setEvento(e.target);
-    //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-    console.log(e.target.option.attribution);
-} */
-/*   e => {
-      leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...
-      props.setEvento(properties.Edifici);
-      //console.log(e.target.options.children.props.children[0].props.children); queste info le prendeva dal popup
-      console.log(properties);
-  } */
-//console.log('direccion', e.sourceTarget.options)
-//console.log('e.latlng:::', e.latlng)
-//console.log('nombre:::', e.sourceTarget.options.nombre);
-//console.log('IMG:::', e.sourceTarget.options.imagen);
-//props.setMapPosition(e.latlng);
-//leafletMap.panTo(e.latlng) //serve a centrare il markatore pero il Popup interferisce...

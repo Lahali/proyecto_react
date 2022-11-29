@@ -1,52 +1,55 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Box from "../components/Box";
-import { useLocation, useParams } from "react-router-dom"; // esto para importar "props" con Link
+import { useParams } from "react-router-dom"; // esto para importar "props" con Link
 import Map from "../components/Map";
 import { useGetData } from "../components/context/MoviesProvider";
 import * as L from "leaflet";
+import useWindowDimensions from "../components/useWindowDimensions";
 
 
 export default function Main() {
+  
+  const { height } = useWindowDimensions();
+
   const { scenes } = useGetData();
   const [arrayScenes, setArrayScenes] = useState(); // guardamo en un State los datos mandados dentro de Link
   const [map, setMap] = useState(null);
   const [currentMarker, setCurrentMarker] = useState({}); // el marker actualmente seleccionado
   const [boxPosition, setBoxPosition] = useState("isHidden");
-
+  
   const [triangulation, setTriangulation] = useState() // aqui el centro y nivel de zoom
-
+  
   // AQUÍ RECOGEMOS LAS ESCENAS FILTRANDO EL ID DE LA RUTA
   const { id } = useParams();
 
-
   const filtered = () => {
-
-    // ==> AQUÍ HAY QUE MIRAR QUE EL TMDB_ID PASARLO A NUMBER
-    const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
-
     if(!id) {
-      return setArrayScenes(scenes)
+      setArrayScenes(scenes)
     } else {
-      return setArrayScenes(scenesFiltered)
+      const scenesFiltered = scenes.filter((scene) => scene.properties.TMDB_ID === parseInt(id))
+      setArrayScenes(scenesFiltered)
     }
   };
-
-
   
   useEffect(() => {
     filtered()
-  }, []);
-
+  }, [scenes], [id]);
 
   function fTriangulation() {
-    if (arrayScenes) {
+    if (!id) {
+      let myBounds = new L.LatLngBounds([
+        [41.38335344726354,2.1950622987747197],
+        [41.36862049989975,2.147043944192602]
+      ]);
+      setTriangulation(myBounds);
+    }
+    else if (arrayScenes && arrayScenes.length>0) {
+    // else {
       let myPoints = arrayScenes.map(scene=>{
-      return scene.geometry.coordinates
-    })
-    console.log('myPoints,', myPoints)
+        return scene.geometry.coordinates
+      })
     let myBounds = new L.LatLngBounds(myPoints);
-    console.log('myBounds,', myBounds)
     setTriangulation(myBounds);
   }}
 
@@ -54,29 +57,38 @@ useEffect(()=>{
   fTriangulation();
 }, [arrayScenes])
 
-  return (
-    <div className="mainContainer">
+return (
+    <>
+    <div style={{height: `${height}px`,
+          position: 'fixed',
+          bottom:'0',
+          width: '100%'
+          }}>
       <Navbar />
+      <div  style={{height: `${(height-84)}px`,
+              display: "flex",
+              'flexDirection': "column"
+              }}>
 
-      <div className="mapAndBoxContainer">
-        <Map
-          map={map}
-          setMap={setMap}
-          arrayScenes={arrayScenes}
-          currentMarker={currentMarker}
-          setCurrentMarker={setCurrentMarker}
-          triangulation={triangulation}
-        />
+          <Map
+            map={map}
+            setMap={setMap}
+            arrayScenes={arrayScenes}
+            currentMarker={currentMarker}
+            setCurrentMarker={setCurrentMarker}
+            triangulation={triangulation}
+          />
 
-        <Box // esta es la card que sube desde abajao "estilo Google Maps"
-          arrayScenes={arrayScenes}
-          currentMarker={currentMarker}
-          setCurrentMarker={setCurrentMarker}
-          boxPosition={boxPosition}
-          setBoxPosition={setBoxPosition}
-          map={map}
-        />
-      </div>
+          <Box // esta es la card que sube desde abajao "estilo Google Maps"
+            arrayScenes={arrayScenes}
+            currentMarker={currentMarker}
+            setCurrentMarker={setCurrentMarker}
+            boxPosition={boxPosition}
+            setBoxPosition={setBoxPosition}
+            map={map}
+          />
+        </div>
     </div>
+    </> 
   );
 }

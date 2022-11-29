@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { connectFirestoreEmulator, getDocs } from "firebase/firestore";
+import {getDocs } from "firebase/firestore";
 import { scenesRef } from "../firebase/firebaseConfig";
-import { useParams } from "react-router-dom";
-import { async } from "@firebase/util";
+
 
 const moviesContext = React.createContext();
 
@@ -17,7 +16,7 @@ export const MoviesProvider = ({ children }) => {
   const [moviesId, setMoviesId] = useState([]);
   // esto viene de la api
   const [moviesData, setMoviesData] = useState([
-    { title: "", id: "", poster: "", scenes: 0 },
+    { title: "", id: "", poster: "", scenes: 0, rating: 0 },
   ]);
 
   // con este useEffect guardamos todo el database de Firestore en el useState 'peliculas'
@@ -29,7 +28,6 @@ export const MoviesProvider = ({ children }) => {
         snapshot.docs.forEach((doc) => {
           scenes.push({ ...doc.data() }); // si queremos tambien el ID: movies.push({ ...doc.data(), id: doc.id })
           setScenes(scenes);
-          console.log("useEffect!!!");
         });
       })
       .catch((err) => {
@@ -52,29 +50,6 @@ export const MoviesProvider = ({ children }) => {
   }, [scenes]);
 
 
-  // ==> ESTA FUNCIONALIDAD CREO QUE ESTABA REPETIDA!!
-
-  // const getSceneList = () => {
-  //   getDocs(scenesRef)
-  //     .then((response) => {
-  //       const sceneList = response.doc.map((doc) => doc.data());
-  //       setScenes(sceneList);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
-  // useEffect(() => {
-  //   getSceneList();
-  // }, [moviesId]);
-
-  // SEGUIMOS PROBANDO EL CONTADOR...
-
-  const dataOrdered = () => {
-    scenes.sort((a, b) => a.properties.TMDB_ID - b.properties.TMDB_ID)
-    moviesData.sort((a, b) => a.id - b.id)
-  }
-
-
  // AQUÍ LLAMAMOS A LA API Y LLENAMOS EL ARRAY CON LA INFO QUE NECESITAMOS
   const APIkey = process.env.REACT_APP_API_KEY_TMDB;
   const url = "https://api.themoviedb.org/3/";
@@ -91,17 +66,14 @@ export const MoviesProvider = ({ children }) => {
           title: movie.original_title,
           id: movie.id,
           poster: movie.poster_path,
-          scenes: +1
+          scenes: +1,
+          rating: movie.vote_average
         });
       };
       getMovieData();
     }
     Promise.all(data).then(setMoviesData(data));
-
   }, [moviesId]);
-
-  //console.log("monto escenas", scenes);
-  //console.log("lo estoy intentado...", moviesData);
 
 
   return (
