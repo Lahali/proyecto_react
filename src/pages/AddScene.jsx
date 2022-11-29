@@ -59,39 +59,8 @@ export default function AddScene() {
     setCheckModal(true);
   };
 
-  // setSceneTitle("");
-  // setSceneDescription("");
-  // setUserSearch("");
-
-  // const scenesRef = collection(database, "scenes");
-  // useEffect(() => {
-  // }, [sceneToUpload]);
-
-  // ==> ALGUIEN USA ESTO?
-  const botonEnviarStyle = () => {
-    if (
-      url === undefined ||
-      sceneTitle.length < 1 ||
-      movieSelected === undefined ||
-      sceneDescription < 1
-    ) {
-      return "btn-disabled";
-    } else {
-      return;
-    }
-  };
-
-  // console.log("coordinates:", coordinates);
-  // console.log("movieSelected:", movieSelected);
-  // console.log("sceneTitle:", sceneTitle);
-  // console.log("sceneDescription:", sceneDescription);
-  // console.log("url:", url);
-  // console.log('sceneToUpload:', sceneToUpload)
-
   return (
     <>
-      {/* <div className="bg-base-200 flex items-center justify-center"> */}
-      {/* <div className="grid grid-rows-4 h-screen p-3 bg-base-100 mx-6 my-4 rounded-lg max-h-[47rem]"> */}
       <form onSubmit={handleSubmit} className="bg-gray-900 overflow-hidden">
         <Navbar />
         <div className="flex flex-col h-screen p-3 mx-6 my-4 rounded-lg max-h-[47rem]">
@@ -140,16 +109,7 @@ export default function AddScene() {
           </div>
           <div className="flex flex-col items-center self-center mt-7">
             <label>
-              {/* <input type="button" onClick={console.log('scene:::', scene)}/> */}
-              {/* si aqui no pongo type='button' se comporta como un submit */}
-              <button
-                //className={`${botonEnviarStyle()} btn w-80 btn-primary mt-5 `}
-                className="btn w-80 btn-secondary"
-                //type="button"
-                //onClick={handleSubmit}
-              >
-                ENVIAR
-              </button>
+              <button className="btn w-80 btn-secondary">ENVIAR</button>
             </label>
           </div>
         </div>
@@ -164,14 +124,14 @@ export default function AddScene() {
       />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-gray-400 text-lg">
-            Gracias!
-          </h3>
+          <h3 className="font-bold text-gray-400 text-lg">Gracias!</h3>
           <p className="py-4 text-base text-gray-400">
             Tu película se ha subido currectamente!!
           </p>
           <div className="modal-action">
-            <Link to="/main" className="link link-secondary">VOLVER</Link>
+            <Link to="/main" className="link link-secondary">
+              VOLVER
+            </Link>
           </div>
         </div>
       </div>
