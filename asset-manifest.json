@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/proyecto_react/static/css/main.b0f786ed.css",
-    "main.js": "/proyecto_react/static/js/main.d66bf5fc.js",
+    "main.js": "/proyecto_react/static/js/main.255210e3.js",
     "static/js/787.6f0ee195.chunk.js": "/proyecto_react/static/js/787.6f0ee195.chunk.js",
     "static/media/travolta.gif": "/proyecto_react/static/media/travolta.37230ef7580b5df6bbd4.gif",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/proyecto_react/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -17,11 +17,11 @@
     "index.html": "/proyecto_react/index.html",
     "static/media/iconoMapaDark.svg": "/proyecto_react/static/media/iconoMapaDark.2477964c77c46f538e33e5ef30dfd765.svg",
     "main.b0f786ed.css.map": "/proyecto_react/static/css/main.b0f786ed.css.map",
-    "main.d66bf5fc.js.map": "/proyecto_react/static/js/main.d66bf5fc.js.map",
+    "main.255210e3.js.map": "/proyecto_react/static/js/main.255210e3.js.map",
     "787.6f0ee195.chunk.js.map": "/proyecto_react/static/js/787.6f0ee195.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b0f786ed.css",
-    "static/js/main.d66bf5fc.js"
+    "static/js/main.255210e3.js"
   ]
 }
