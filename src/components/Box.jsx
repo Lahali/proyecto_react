@@ -1,5 +1,5 @@
 import { isEmpty } from "@firebase/util";
-import "../style_Box.css"; // lo importo solo aqui de momento!
+import "../style_Box.css";
 import imgNotFound from '../image/broken-2.jpg'
 
 export default function Box(props) {
@@ -43,17 +43,17 @@ export default function Box(props) {
 
   function updateMapWhenResze() {
     let timing = 0;
-    const interval = setInterval(updateMap, 10); // cada 10 milisegundos
+    const interval = setInterval(updateMap, 10); 
     function updateMap() {
       props.map.invalidateSize();
       timing++;
-      if (timing > 200) {// 200 veces 10 milisegundos son 1s
+      if (timing > 200) {
         clearInterval(interval);
       }
     }
   }
 
-  // este handle activa que el puntero se centre en la transicion mientras se abre el box
+  // este handle hace que el puntero se centre en la transicion mientras se abre el box
   const handleClick = () => {
     props.boxPosition === "isOpen"
       ? props.setBoxPosition("isClose")

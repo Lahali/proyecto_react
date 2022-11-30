@@ -1,7 +1,7 @@
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom"; // esto para importar "props" con Link
+import { useLocation } from "react-router-dom"; 
 import CloudinaryWidget from "../components/CloudinaryWidget";
 import { database } from "../components/firebase/firebaseConfig";
 import Navbar from "../components/Navbar";
@@ -9,7 +9,7 @@ import SearchMovie from "../components/SearchMovie";
 
 export default function AddScene() {
   const location = useLocation();
-  const { latlng } = location.state; //hay problemas con esto si al dar al boton cambia la url
+  const { latlng } = location.state;
 
   // state para luego poner en la escena. Demasiado lio hacer un state solo como que es un objecto anidado
   const [coordinates, setCoordinates] = useState([latlng.lat, latlng.lng]);
@@ -35,16 +35,12 @@ export default function AddScene() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hola?");
     const scene = {
       type: "Feature",
       properties: {
         img: url,
         scene_title: sceneTitle,
         scene_description: sceneDescription,
-        position: "",
-        scene_ID: "esto lo borramos?", // el id lo pone ya firebase en automatico?
-        imdb_movie_ID: "",
         TMDB_ID: movieSelected.id,
         movie_title: movieSelected.title,
       },

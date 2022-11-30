@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Box from "../components/Box";
-import { useParams } from "react-router-dom"; // esto para importar "props" con Link
+import { useParams } from "react-router-dom";
 import Map from "../components/Map";
 import { useGetData } from "../components/context/MoviesProvider";
 import * as L from "leaflet";

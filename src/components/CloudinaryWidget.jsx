@@ -2,7 +2,6 @@ import { useState } from "react";
 import UploadWidget from "./UploadWidget";
 
 export default function CloudinaryWidget(props) {
-  // const [url, updateUrl] = useState();
   const [error, updateError] = useState();
 
   function handleOnUpload(error, result, widget) {
@@ -14,12 +13,10 @@ export default function CloudinaryWidget(props) {
       return;
     }
     props.updateUrl(result?.info?.secure_url);
-    //updateUrl("imagen cargada con exito");
   }
 
   return (
     <main className="main">
-      {/* este classname que es? */}
       <div className="container">
         <UploadWidget onUpload={handleOnUpload}>
           {({ open }) => {
@@ -37,11 +34,7 @@ export default function CloudinaryWidget(props) {
             );
           }}
         </UploadWidget>
-
-        {error && <p>{error}</p>}
-
-        {/* aqui para cambiar que pasa despues upload con exito */}
-        {props.url && <p className="text-base text-gray-400 mt-2">imagen cargada con exito!</p>}
+       {props.url && <p className="text-base text-gray-400 mt-2">imagen cargada con exito!</p>}
       </div>
     </main>
   );
