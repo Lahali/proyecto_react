@@ -47,6 +47,7 @@ export default function Welcome() {
             <Link to="/home">
               <button className="btn btn-secondary lg:w-40">Entrar</button>
             </Link>
+            </div>
           </div>
         </div>
       </div>

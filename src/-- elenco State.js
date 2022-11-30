@@ -14,3 +14,21 @@ const [clickedCard, setClickedCard] = useState(false)
 
 // AddScene
 const [scene, setScene] = useState({})
+
+
+// tecnologias:
+
+// React
+// React Routing
+// Firebase (Authentication & Firestore)
+// Tailwind y daisyUI
+// Leaflet y React-Leaflet
+// Cloudinary
+// API de TMDB
+
+
+
+
+
+
+

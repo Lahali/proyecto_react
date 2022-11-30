@@ -15,7 +15,7 @@ Se puede visualizar el proyecto [aqui](https://lahali.github.io/proyecto_react)
 En el proyecto se han utilizado las siguientes tecnologias y servicios:
 - Reat 18
 - React Routing 6
-- Firebase
+- Firebase (Authentication & Firestore)
 - Tailwind y daisyUI
 - Leaflet y React-Leaflet
 - Cloudinary

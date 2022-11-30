@@ -38,7 +38,7 @@ return (
           <MapContainer // este componente de React-Leaflet crea el mapa
             ref={props.setMap} // whenCreated={setMap} esta era la forma antigua de hacerlo
             scrollWheelZoom={true}
-            bounds={props.triangulation} // ALGUN ERROR POR AQUI?
+            bounds={props.triangulation}
             boundsOptions={{ padding: [50, 50] }}
             attributionControl={false} // quitamos la atribucion
           >
@@ -46,21 +46,19 @@ return (
                 attribution={attrib}
                 url={mapURL}
               />
-
-            <NewMarker // para agregar al mapa para una nueva escena
-              map={props.map}
-              currentMarker={props.currentMarker}
-              setCurrentMarker={props.setCurrentMarker}
-              boxIsOpen={props.boxIsOpen}
-              setBoxIsOpen={props.setBoxIsOpen}
-                />
-
-            <DisplayMarkers // eseña los marker en el mapa
-              arrayScenes={props.arrayScenes}
-              currentMarker={props.currentMarker}
-              setCurrentMarker={props.setCurrentMarker}
-              prevCurrentMarkertRef={props.prevCurrentMarkertRef}
-            />
+              <NewMarker // para agregar al mapa para una nueva escena
+                map={props.map}
+                currentMarker={props.currentMarker}
+                setCurrentMarker={props.setCurrentMarker}
+                boxIsOpen={props.boxIsOpen}
+                setBoxIsOpen={props.setBoxIsOpen}
+                  />
+              <DisplayMarkers // eseña los marker en el mapa
+                arrayScenes={props.arrayScenes}
+                currentMarker={props.currentMarker}
+                setCurrentMarker={props.setCurrentMarker}
+                prevCurrentMarkertRef={props.prevCurrentMarkertRef}
+              />
           </MapContainer  >}
         </div>
 )
